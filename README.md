@@ -16,7 +16,9 @@ We will store a lot of diary entries in the forms of texts, pictures, and videos
 *What will users be able to do with this data?*
 
 The users can see all data related to their accounts by accessing the Application’s graphical user interface.
-What is some additional functionality you can add/remove based on time constraints?
+
+*What is some additional functionality you can add/remove based on time constraints?*
+
 We are aiming to allow users to play mini games as well as having video/audio calls with each other. Based on time constraints, we will either include or exclude it from the final deliverable.
 
 ### Project task requirements: 
