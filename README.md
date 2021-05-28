@@ -63,3 +63,20 @@ Pre condition: let user choose the word to represent the weather, emotion for ea
 	- Create a function to input messages and store into database
 	- Create a function to insert videos and store into database
 
+Sketches:
+
+![Alt Text](./sketches/Function1.gif)
+
+Allow users to create accounts and modify their accounts (profile pictures, description, etc.)
+
+
+![Alt Text](./sketches/Function2.gif)
+
+Allow users to write and edit and store diary entries in the form of pictures, text, videos, etc.
+
+![Alt Text](./sketches/Function3.JPG)
+
+Allow users to send messages, pictures, videos (anonymously or non-anonymously) into a public space where all users can see and respond.
+
+
+
