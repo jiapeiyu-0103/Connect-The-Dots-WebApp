@@ -34,14 +34,15 @@ We are aiming to allow users to play mini games as well as having video/audio ca
 *Standard requirements (will most likely complete)*
 
 1. Allow users to connect to a random stranger and have a text-based chat.
-2. Allow users to add friends.
-3. Allow users to set the visibility of the diary entries (public, restricted, and private). Public will be visible to everyone visiting the profile. Restricted will only be visible to friends. And private will only be visible to the owner.
-4. Sort the diary entries, let the user search their diary by date, emotion (emoji), content (key word), weather, location, activity.
-Pre condition: let user choose the word to represent the weather, emotion for each diary (give them the options) and system will automatically record the dates
+2. Allow users to search for the diary entry by dates, key words and weather, emotion, activite tags that they added to their diaries.
+3. Allow users to view the diary-related data, which includes the user emotion report and the charts that will reflect users' emotional change.(For example, showcase the most frequent emotion user pick for their diary entry and their emotion distribution in a month.)
+4. Allow users to favorite their preferred diaries.
+5. Allow users to save unfinished diary in the draft box.
 
 *Stretch requirements (plan to complete at least 1!)*
-1. Allow users to connect via video and/or audio call to a random stranger.
-2. Allow users to play mini games with a random stranger on this call (tic-tac-toe, collaborative drawing, etc.)
+1. Allow users to add friends through search or 'add' button beside user name.;
+2. Allow users to connect via video and/or audio call to a random stranger.
+3. Allow users to play mini games with a random stranger on this call (tic-tac-toe, collaborative drawing, etc.)
 
 ### Minimal requirements task breakdown:
 1. Allow users to create accounts.
