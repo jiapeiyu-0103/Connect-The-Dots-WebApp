@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Diary from './Diary';
-import Message from './Message';
+import Message from './Message/Message';
 import Account from './Account';
 import * as DashboardStates from '../constants/DashboardStates';
 function DashboardMainView({dashboardState}) {

@@ -1,0 +1,19 @@
+#messageNav button {
+    text-align: center;
+    height: 50px;
+    line-height: 25px;
+    width: 150px;
+    border-radius: 10px;
+    border: gray 2px solid;
+    background: white;
+}
+
+#messageNav button:hover {
+    cursor: pointer;
+    background: #95C9FB;
+    
+}
+
+.chosen {
+    background: #95C9FB;
+}
