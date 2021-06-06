@@ -1,10 +1,63 @@
-function Diary() {
+import './Diary.css'
+// function Diary() {
 
-            return (
-                <div> This is the Diary page </div>
-            );
+//     return (
+//         // <div >
+//         //   {/* <ul>
+//         //     <li><a className="active" href="/diary">Diary</a></li>
+//         //     <li><a href="/message">Message</a></li>
+//         //     <li><a href="#contact">Data</a></li>
+//         //     <li><a href="#about">Account</a></li>
+//         //   </ul> */}
+//         //   <div className="topnav">
+//         //         <a className="active" href="/diary">Diary</a>
+//         //         <a href="/diary">Search</a>
+//         //     </div> 
+//         // </div>
+        
+//         <div> This is the Diary page </div>
+       
+//       );
  
- 
+// }
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tab from '@material-ui/core/Tab';
+import TabContext from '@material-ui/lab/TabContext';
+import TabList from '@material-ui/lab/TabList';
+import TabPanel from '@material-ui/lab/TabPanel';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function Diary() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState('1');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root}>
+      <TabContext className="tabwidth" value={value}>
+        <AppBar position="static">
+          <TabList onChange={handleChange} aria-label="simple tabs example">
+            <Tab label="Diary" value="1" />
+            <Tab label="Search" value="2" />
+            <Tab label="Favorite" value="3" />
+          </TabList>
+        </AppBar>
+        <TabPanel value="1">Item One</TabPanel>
+        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="3">Item Three</TabPanel>
+      </TabContext>
+    </div>
+  );
 }
 
-export default Diary;

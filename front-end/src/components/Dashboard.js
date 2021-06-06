@@ -26,15 +26,15 @@ function Dashboard({setState}) {
 
         return (
            <div>
-                <p>This is the dashboard nav bar with the following buttons: </p>
+                {/* <p>This is the dashboard nav bar with the following buttons: </p> */}
             
                 <DashboardNavBar setDashboardViewToDiary={setDashboardViewToDiary} setDashboardViewToMessage={setDashboardViewToMessage} setDashboardViewToAccount={setDashboardViewToAccount} setStateToLoginForm={setStateToLoginForm} />
             
+                {/* <br/>
                 <br/>
-                <br/>
-                <br/>
+                <br/> */}
             
-                <DashboardMainView dashboardState={dashboardState} />
+                {/* <DashboardMainView dashboardState={dashboardState} /> */}
                     
                 
             </div>
