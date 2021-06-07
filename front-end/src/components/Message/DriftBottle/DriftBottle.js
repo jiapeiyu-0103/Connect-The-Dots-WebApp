@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import DriftBottleModal from './DriftBottleModal';
+import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
 function DriftBottle() {
 const [showDriftBotModal, setShowDriftBotModal] = useState(false);
