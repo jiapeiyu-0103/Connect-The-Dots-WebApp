@@ -3,11 +3,11 @@ import Diary from './Diary';
 import Message from './Message';
 import Account from './Account';
 import * as DashboardStates from '../constants/DashboardStates';
-function DashboardMainView({dashboardState}) {
+function DashboardMainView({dashboardState, curUser}) {
     switch(dashboardState) {
         case DashboardStates.ACCOUNT:
             return (
-                <Account/>
+                <Account curUser={curUser}/>
             );
         case DashboardStates.MESSAGE:
             return (
