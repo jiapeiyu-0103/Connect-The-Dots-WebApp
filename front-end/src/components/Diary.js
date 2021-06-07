@@ -2,6 +2,9 @@ import React from 'react';
 import './Diary.css';
 
 function Diary() {
+    const imageUploader = React.useRef(null);
+    const uploadedImage = React.useRef(null);
+
     return (
         <div >
             <div className="title">
@@ -199,7 +202,21 @@ function Diary() {
                 <hr/>
             </div>
 
-
+            <div className="diary">
+                <div className="pic-upload" id="picture-upload">
+                    <input type="file" accept="image/*" multiple = "false"
+                           ref={imageUploader}
+                           style={{
+                               display: "none"
+                           }} />
+                    <div className="img-container"
+                         onClick={() => imageUploader.current.click()}>
+                        <img className="img-display" ref={uploadedImage}/>
+                    </div>
+                    Click to upload a Picture
+                </div>
+                <textarea name="diary-content" className="diary-input" rows="33"> </textarea>
+            </div>
         </div>
     );
 }
