@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import DriftBottle from './DriftBottle';
 import TreeHole from './TreeHole';
 import Chat from './Chat';
-import * as MessageStates from '../constants/MessageStates';
+import * as MessageStates from '../../constants/MessageStates';
 function MessageMainView(props) {
   switch(props.state) {
       case MessageStates.CHAT:
