@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Diary from './Diary';
+import Diary from './DiaryMainView';
 import Message from './Message';
 import Account from './Account';
 import * as DashboardStates from '../constants/DashboardStates';

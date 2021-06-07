@@ -1,8 +1,8 @@
 import './App.css';
 import Main from './components/Main';
-import Diary from './components/Diary';
-import { BrowserRouter } from "react-router-dom";
-import Routes from "./Routes";
+import Diary from './components/DiaryMainView';
+
+
 function App() {
   return (
     <div className="App">

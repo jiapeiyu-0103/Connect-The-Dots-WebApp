@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Diary from './Diary';
+import Diary from './DiaryMainView';
 import Message from './Message';
 import Account from './Account';
 function TabPanel(props) {
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    height: 3000,
+    height: 100+'vh',
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -80,7 +80,7 @@ export default function DashboardNavBar(props) {
         
       </Tabs>
       <TabPanel value={value} index={0}>
-      <Diary/>
+      <Diary />
       </TabPanel>
       <TabPanel value={value} index={1}>
       <Message/>
