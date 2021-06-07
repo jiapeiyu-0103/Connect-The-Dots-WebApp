@@ -1,5 +1,5 @@
 // Reference from: https://material-ui.com/components/tabs/
-import './Diary.css'
+import './DiaryMainView.css'
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Diary from './DiaryMainView';
+import DiaryMainView from './DiaryMainView';
 import Message from './Message';
 import Account from './Account';
 function TabPanel(props) {
@@ -45,6 +45,7 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'absolute',
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
@@ -80,7 +81,7 @@ export default function DashboardNavBar(props) {
         
       </Tabs>
       <TabPanel value={value} index={0}>
-      <Diary />
+      <DiaryMainView />
       </TabPanel>
       <TabPanel value={value} index={1}>
       <Message/>
@@ -101,5 +102,5 @@ DashboardNavBar.propTypes = {
     setDashboardViewToDiary: PropTypes.func, 
     setDashboardViewToMessage: PropTypes.func, 
     setDashboardViewToAccount: PropTypes.func
-}
+};
 

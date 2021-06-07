@@ -1,4 +1,4 @@
-import './Diary.css'
+import './DiaryMainView.css'
 // function Diary() {
 
 //     return (
@@ -28,6 +28,7 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import Message from './Message';
+import Diary from './Diary';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Diary() {
+export default function DiaryMainView() {
   const classes = useStyles();
   const [value, setValue] = React.useState('1');
 
@@ -47,7 +48,7 @@ export default function Diary() {
   return (
     <div className={classes.root}>
       <TabContext  value={value} >
-        <AppBar position="static"  > 
+        <AppBar position="relative"  >
           <TabList onChange={handleChange} aria-label="simple tabs example" className="tabwidth">
             <Tab label="Diary" value="1"  />
             <Tab label="Search" value="2" />
@@ -56,7 +57,7 @@ export default function Diary() {
           </TabList>
         </AppBar>
         {/* insert component into the tabpanel */}
-        <TabPanel value="1"  ><Message/></TabPanel>
+        <TabPanel value="1"  ><Diary/></TabPanel>
         <TabPanel value="2">Item Two</TabPanel>
         <TabPanel value="3">Item Three</TabPanel>
         <TabPanel value="4"> Draft</TabPanel>
