@@ -32,6 +32,7 @@ import Diary from './Diary';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'absolute',
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
