@@ -1,6 +1,6 @@
 import './Message.css';
 import { useState } from 'react';
-import * as MessageStates from '../../constants/MessageStates';
+import * as MessageStates from '../constants/MessageStates';
 import MessageMainView from './MessageMainView';
 function Message() {
 const [messageState, setMessageState] = useState(MessageStates.DRIFT_BOTTLE);
