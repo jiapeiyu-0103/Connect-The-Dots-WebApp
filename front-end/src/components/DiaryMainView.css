@@ -57,10 +57,11 @@ ul {
   }
 
   .tabwidth{
-      width:85vw;
-      text-align: center;
+      width:80vw;
+      
       position: relative;
-      left:20%;
+      /* left:20%; */
+      overflow:auto;
   }
 
   /* Style the tab */
@@ -68,6 +69,7 @@ ul {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+  
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -97,4 +99,5 @@ ul {
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+  font-size: 1vw;
 }

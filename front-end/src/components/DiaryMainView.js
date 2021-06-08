@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    
   },
 }));
 

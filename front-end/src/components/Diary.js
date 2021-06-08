@@ -4,6 +4,11 @@ import './Diary.css';
 function Diary() {
     const imageUploader = React.useRef(null);
     const uploadedImage = React.useRef(null);
+    const day = new Date().toLocaleString("en-US", { day : '2-digit'});
+    const month = new Date().toLocaleString("en-US", { month: "long" });
+    const year = new Date().getFullYear();
+    const separator = '';
+
 
     return (
         <div >
@@ -201,7 +206,9 @@ function Diary() {
                 <br/>
                 <hr/>
             </div>
-
+            <div>
+                <h3>Date: {month}{separator}{day},{year}{separator} </h3>
+                </div>
             <div className="diary">
                 <div className="pic-upload" id="picture-upload">
                     <input type="file" accept="image/*" multiple = "false"
@@ -212,11 +219,19 @@ function Diary() {
                     <div className="img-container"
                          onClick={() => imageUploader.current.click()}>
                         <img className="img-display" ref={uploadedImage}/>
+                        
                     </div>
-                    Click to upload a Picture
+                    
+                </div>
+                <div>
+                <input type="text" name="title" placeholder="Title.." className="diary-title"></input>
                 </div>
                 <textarea name="diary-content" className="diary-input" rows="33"> </textarea>
+                <div>
+                <button className="buttons" >Record</button> 
+                </div>
             </div>
+            
         </div>
     );
 }
