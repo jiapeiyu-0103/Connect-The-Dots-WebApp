@@ -46,7 +46,19 @@ function Account({curUser}) {
         setEditMode(false)
 
     }
+
+
+    const onDelete = () => {
+        setEditMode(false)
+        setName(curUser.name)
+        setPhotoURL(curUser.photo)
+        setSex(curUser.sex)
+        setYear(curUser.birthday.year)
+        setMonth(curUser.birthday.month)
+        setDay(curUser.birthday.day)
+    }
     
+
     
 
     if (!editMode) {
@@ -110,7 +122,7 @@ function Account({curUser}) {
                 </select><br/>
 
                 <button onClick={onSave}> Save </button>
-                <button onClick={() => {setEditMode(false)}}>Cancel</button>
+                <button onClick={onDelete}>Cancel</button>
             </div>
         )
     }
