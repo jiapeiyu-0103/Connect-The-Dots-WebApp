@@ -23,6 +23,9 @@ function Dashboard({setState, curUser}) {
             setDashboardState(DashboardStates.ACCOUNT);
         }
         
+        const setDashboardViewToData = ()=>{
+            setDashboardState(DashboardStates.DATA);
+        }
 
         return (
            <div>
@@ -31,7 +34,8 @@ function Dashboard({setState, curUser}) {
                 <DashboardNavBar 
                     setDashboardViewToDiary={setDashboardViewToDiary} 
                     setDashboardViewToMessage={setDashboardViewToMessage} 
-                    setDashboardViewToAccount={setDashboardViewToAccount} 
+                    setDashboardViewToAccount={setDashboardViewToAccount}
+                    setDashboardViewToData={setDashboardViewToData} 
                     setStateToLoginForm={setStateToLoginForm}
                 />
             

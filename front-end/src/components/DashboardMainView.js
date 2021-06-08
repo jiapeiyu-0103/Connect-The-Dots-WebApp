@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import Diary from './Diary';
 import Message from './Message';
 import Account from './Account';
+import Data from './Data'
 import * as DashboardStates from '../constants/DashboardStates';
 function DashboardMainView({dashboardState, curUser}) {
     switch(dashboardState) {
@@ -13,6 +14,10 @@ function DashboardMainView({dashboardState, curUser}) {
             return (
                 <Message/>
             );
+        case DashboardStates.DATA:
+            return (
+                <Data/>
+            );        
         default:
             return (
                 <Diary/>

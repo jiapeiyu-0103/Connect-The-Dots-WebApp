@@ -6,10 +6,10 @@ const Data = () => {
     let today = new Date()
     let curYr = today.getFullYear()
     let curMth = today.getMonth()
-    let availTimes = []
+    let initDate
     let options = []
 
-    // note: the range of month is [0, 11]
+    // note: the range of month is [0, 11] => (Jan ... Dec)
 
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 12; j++) {
@@ -19,7 +19,10 @@ const Data = () => {
                 year: year,
                 month: month
             }
-            availTimes.push(timeStamp)
+            if (i === 0 && j === 0) {
+                initDate = timeStamp
+            }
+
             options.push(
                 <option key = {"data_date_" + month + "_" + year} value = {JSON.stringify(timeStamp)} > {moment().month(month).format("MMM")} {year} </option>
             )
@@ -27,7 +30,7 @@ const Data = () => {
     }
 
 
-    const [date, setDate] = useState(JSON.stringify(availTimes[0]))
+    const [date, setDate] = useState(JSON.stringify(initDate))
 
     return (
         <div>

@@ -6,6 +6,7 @@ function DashboardNavBar(props) {
                  <button onClick = {props.setDashboardViewToDiary}> Diary </button>
                  <button onClick = {props.setDashboardViewToMessage}> Message </button>
                 <button onClick = {props.setDashboardViewToAccount}> Account </button>
+                <button onClick = {props.setDashboardViewToData}> Data </button>
                 <button onClick = {props.setStateToLoginForm}> Logout </button>
             </div>
             );
@@ -16,7 +17,8 @@ DashboardNavBar.propTypes = {
     setStateToLoginForm: PropTypes.func,
     setDashboardViewToDiary: PropTypes.func, 
     setDashboardViewToMessage: PropTypes.func, 
-    setDashboardViewToAccount: PropTypes.func
+    setDashboardViewToAccount: PropTypes.func,
+    setDashboardViewToData: PropTypes.func
 }
 
 export default DashboardNavBar;
