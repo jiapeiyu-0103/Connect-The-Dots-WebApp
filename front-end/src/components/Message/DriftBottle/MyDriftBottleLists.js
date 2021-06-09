@@ -17,12 +17,12 @@ if (!sentBottles || sentBottles.length === 0) {
 } else {
     
      sentBottlesList = sentBottles.map((bottle, index) =>    
-        <li idx={index} key={index}>
-      
+        <li  className="bottleListElem" key={index}>
+        <span onClick={(e)=>{props.deleteBottle(props.sent, index);}}  className="bottleClose">&times;</span>
         <img onClick={(e) => {props.setMyDriftBottleStateToInfoView(props.sent, index)}} src={bottleImage} width="150px" height="100px" />
             
             
-        <p>{`Sent bottle ${index}`}</p>
+        <p><b>{`${bottle.name}:`}</b> {`${bottle.content}`}</p>
 
         </li>  
     );
@@ -34,12 +34,12 @@ if (!collectedBottles || collectedBottles.length === 0) {
 } else {
 
    collectedBottlesList = collectedBottles.map((bottle, index) =>    
-        <li idx={index} key={index}>
-      
+        <li className="bottleListElem" key={index}>
+         <span onClick={(e)=>{props.deleteBottle(props.collected, index);}} className="bottleClose">&times;</span>
         <img onClick={(e) => {props.setMyDriftBottleStateToInfoView(props.collected, index)}} src={bottleImage} width="150px" height="100px" />
             
             
-        <p>{`Collected bottle ${index}`}</p>
+        <p><b>{`${bottle.name}:`}</b> {`${bottle.content}`}</p>
 
         </li>  
     );
@@ -64,6 +64,7 @@ MyDriftBottleLists.propTypes = {
     setMyDriftBottleStateToInfoView: PropTypes.func,
     collected: PropTypes.string,
     sent: PropTypes.string,
+    deleteBottle: PropTypes.func,
 }
 
 export default MyDriftBottleLists;

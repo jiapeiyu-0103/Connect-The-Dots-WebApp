@@ -2,22 +2,26 @@ import { useState } from 'react';
 import DriftBottleModal from './DriftBottleModal';
 import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
+import {COLLECTED, SENT} from '../../../constants/BottleStates';
 function DriftBottle() {
 const [showDriftBotModal, setShowDriftBotModal] = useState(false);
 const [driftBotModalState, setDriftBotModalState] = useState(null);
 const [collectBottleInfo, setCollectBottleInfo] = useState(null);
 
-const exampleBottleInfo = {
+const exampleCollectedBottle = {
     name: 'Stranger',
     location: 'Somewhere',
     content: 'Hi, wish you happiness wherever you are!',
     imageSrc: null,
+    replies:[],
 }
 
-const yourName = "You"
-const yourLocation = "Here"
 
-const sentBottles= [
+const yourName = "You"
+const yourLocation = "Here";
+const yourImageSrc = null;
+
+const [sentBottles, setSentBottles] = useState ([
     {
         name: yourName,
         location: yourLocation,
@@ -31,9 +35,9 @@ const sentBottles= [
                 imageSrc: null
             },
             {
-                name: 'Stranger2',
-                location: 'Someplace',
-                content: 'Cats > Dogs',
+                name: 'Stranger',
+                location: 'Somewhere',
+                content: 'Cats > Dogs tho',
                 imageSrc: null
             }
             
@@ -48,15 +52,15 @@ const sentBottles= [
         content: "I love cats!",
         replies: [
             {
-                name: 'Stranger',
-                location: 'Somewhere',
+                name: 'Stranger2',
+                location: 'Someplace',
                 content: 'I love cats too!',
                 imageSrc: null
             },
             {
                 name: 'Stranger2',
                 location: 'Someplace',
-                content: 'Dogs > Cats',
+                content: 'Dogs > Cats tho',
                 imageSrc: null
             }
             
@@ -64,11 +68,12 @@ const sentBottles= [
     },
     
     
-];
+]);
     
     
-    
-const collectedBottles = [
+const [collectedBottles, setCollectedBottles] = useState (
+
+[
     
     {
         name: "Stranger",
@@ -87,7 +92,7 @@ const collectedBottles = [
                 location: 'Somewhere',
                 content: "Have a great day!",
                 imageSrc: null
-            }
+            },
             
             
         ]
@@ -114,7 +119,65 @@ const collectedBottles = [
             
         ]
     },
-]
+]);
+
+const addSentBottle = (e) => {
+    const contentValue = e.target.parentElement.querySelector("#sendBottleTextField").value;
+    
+    // construct bottle to add
+    const bottleToAdd = new Object();
+    bottleToAdd.content = contentValue;
+    bottleToAdd.name = yourName;
+    bottleToAdd.location = yourLocation;
+    bottleToAdd.imageSrc = yourImageSrc;
+    bottleToAdd.replies = [];
+    
+    const newSentBottles = [...sentBottles];
+    newSentBottles.push(bottleToAdd);
+    
+    setSentBottles (newSentBottles);
+}
+
+const collectBottle = () => {
+    
+    // Get a random bottle in the sea, use example bottle for now.
+    
+    const newCollectedBottles = [...collectedBottles];
+    newCollectedBottles.push(exampleCollectedBottle);
+    
+    setCollectedBottles (newCollectedBottles);
+}
+
+const addCollectedBottleReply = (index, replyValue) => {
+    const newCollectedBottles = [...collectedBottles];
+    
+    //construct reply to add
+    const replyToAdd = new Object();
+    replyToAdd.content = replyValue;
+    replyToAdd.name = yourName;
+    replyToAdd.location = yourLocation;
+    replyToAdd.imageSrc = yourImageSrc;
+    
+    if(index === -1) {
+        newCollectedBottles[newCollectedBottles.length-1].replies.push(replyToAdd);
+    } else {
+        newCollectedBottles[index].replies.push(replyToAdd);
+    }
+    
+    setCollectedBottles(newCollectedBottles);
+}
+
+const deleteBottle = (type, index) => {
+    if (type === COLLECTED) {
+        const newCollectedBottles = [...collectedBottles];
+        newCollectedBottles.splice(index, 1);
+        setCollectedBottles(newCollectedBottles);
+    } else {
+        const newSentBottles = [...sentBottles];
+        newSentBottles.splice(index, 1);
+        setSentBottles(newSentBottles);
+    }
+}
 
 
 
@@ -129,8 +192,9 @@ const setModalToSend = () => {
 
 
 const setModalToCollect = () => {
+    collectBottle();
     setDriftBotModalState(DriftBottleStates.COLLECT);
-    setCollectBottleInfo(exampleBottleInfo);
+    setCollectBottleInfo(exampleCollectedBottle);
     setShowDriftBotModal(true);
 }
 
@@ -145,7 +209,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>

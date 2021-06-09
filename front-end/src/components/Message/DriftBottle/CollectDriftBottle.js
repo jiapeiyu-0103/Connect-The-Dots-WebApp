@@ -3,9 +3,10 @@ import defaultUserImage from '../img/Default_User_Logo.png';
 function CollectDriftBottle(props) {
 const handleReply = () => {
     //Do reply works
-    if (props.isNormal) {
-        props.closeModal();
-    }
+    const replyValue = document.getElementById("collectReplyField").value;
+    props.addCollectedBottleReply(-1, replyValue);
+    props.closeModal();
+  
     
 }
             return (
@@ -27,7 +28,7 @@ const handleReply = () => {
 
                     <div className="collectUserInfo" id="collectReplyTab">
                     
-                        <textarea placeholder="Type your reply..." id="collectReplyField" />
+                        <input type="text" placeholder="Type your reply..." id="collectReplyField" />
                     </div>
                     <button onClick={handleReply}>SEND</button>
                 </div>
@@ -38,10 +39,7 @@ const handleReply = () => {
 CollectDriftBottle.propTypes = {
     closeModal:PropTypes.func,
     collectBottleInfo: PropTypes.object,
+    addCollectedBottleReply: PropTypes.func,
 }
-
-CollectDriftBottle.defaultProps = {
-  isNormal: true,
-};
 
 export default CollectDriftBottle;

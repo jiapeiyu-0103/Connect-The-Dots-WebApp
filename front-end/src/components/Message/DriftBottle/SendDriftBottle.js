@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 function SendDriftBottle(props) {
-const handleSend = () => {
-    //Do send works
+const handleSend = (e) => {
+    props.addSentBottle(e);
     props.closeModal();
 }
             return (
                 <div id="sendBottleForm"> 
                     <textarea placeholder="Type your message here..." id="sendBottleTextField" />
                     
-                    <button onClick={handleSend}>Throw into the sea</button>
+                    <button onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
                 </div>
             );
  
@@ -17,6 +17,7 @@ const handleSend = () => {
 
 SendDriftBottle.propTypes = {
     closeModal:PropTypes.func,
+    addSentBottle: PropTypes.func,
 }
 
 export default SendDriftBottle;

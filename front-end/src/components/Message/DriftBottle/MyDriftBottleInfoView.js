@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import CollectDriftBottle from './CollectDriftBottle';
+import Thread from '../Thread/Thread';
 
 function MyDriftBottleInfoView(props) {
 
@@ -8,7 +8,7 @@ function MyDriftBottleInfoView(props) {
       
       <span id="exitBottleInfoView" onClick={props.setMyDriftBottleStateToLists}> &#8592; </span>
 
-      <CollectDriftBottle isNormal={false} collectBottleInfo={props.bottle} />
+      <Thread thread={props.bottle} />
     
     </div>);
 
