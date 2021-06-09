@@ -16,7 +16,7 @@ function DashboardMainView({dashboardState, curUser}) {
             );
         case DashboardStates.DATA:
             return (
-                <Data/>
+                <Data curUser={curUser}/>
             );        
         default:
             return (
