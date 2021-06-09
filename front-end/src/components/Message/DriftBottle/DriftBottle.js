@@ -3,6 +3,8 @@ import DriftBottleModal from './DriftBottleModal';
 import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
 import {COLLECTED, SENT} from '../../../constants/BottleStates';
+import * as YourInfo from '../../../constants/YourInfo';
+import {constructYourObj} from '../../../constants/Helpers';
 function DriftBottle() {
 const [showDriftBotModal, setShowDriftBotModal] = useState(false);
 const [driftBotModalState, setDriftBotModalState] = useState(null);
@@ -17,9 +19,9 @@ const exampleCollectedBottle = {
 }
 
 
-const yourName = "You"
-const yourLocation = "Here";
-const yourImageSrc = null;
+const yourName = YourInfo.YOUR_NAME;
+const yourLocation = YourInfo.YOUR_LOCATION;
+const yourImageSrc = YourInfo.YOUR_IMG_SRC;
 
 const [sentBottles, setSentBottles] = useState ([
     {
@@ -125,12 +127,7 @@ const addSentBottle = (e) => {
     const contentValue = e.target.parentElement.querySelector("#sendBottleTextField").value;
     
     // construct bottle to add
-    const bottleToAdd = new Object();
-    bottleToAdd.content = contentValue;
-    bottleToAdd.name = yourName;
-    bottleToAdd.location = yourLocation;
-    bottleToAdd.imageSrc = yourImageSrc;
-    bottleToAdd.replies = [];
+    const bottleToAdd = constructYourObj(contentValue);
     
     const newSentBottles = [...sentBottles];
     newSentBottles.push(bottleToAdd);
@@ -153,11 +150,7 @@ const addCollectedBottleReply = (index, replyValue) => {
     const newCollectedBottles = [...collectedBottles];
     
     //construct reply to add
-    const replyToAdd = new Object();
-    replyToAdd.content = replyValue;
-    replyToAdd.name = yourName;
-    replyToAdd.location = yourLocation;
-    replyToAdd.imageSrc = yourImageSrc;
+    const replyToAdd = constructYourObj(replyValue);
     
     if(index === -1) {
         newCollectedBottles[newCollectedBottles.length-1].replies.push(replyToAdd);
@@ -174,11 +167,7 @@ const addSentBottleReply = (index, replyValue) => {
     const newSentBottles = [...sentBottles];
     
     //construct reply to add
-    const replyToAdd = new Object();
-    replyToAdd.content = replyValue;
-    replyToAdd.name = yourName;
-    replyToAdd.location = yourLocation;
-    replyToAdd.imageSrc = yourImageSrc;
+    const replyToAdd = constructYourObj(replyValue);
     
     if(index === -1) {
         newSentBottles[newSentBottles.length-1].replies.push(replyToAdd);

@@ -55,3 +55,14 @@
    }
 
 }
+
+.threadList {
+    list-style-type: none;
+    min-width: 400px;
+    
+}
+
+.threadList li {
+    margin-bottom: 20px;
+    
+}
