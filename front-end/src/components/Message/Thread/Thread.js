@@ -6,8 +6,9 @@ const thread = props.thread;
 const replies = thread.replies;
 const handleEnter = (e) => {
     let key = e.keyCode || e.which;
-    if (key === 13) {
-        alert("key pressed");
+    if (key === 13 && e.target.value) {
+        props.handleReplySubmit(e.target.value);
+        e.target.value='';
     }
 }  
 
@@ -56,6 +57,7 @@ return (
 
 Thread.propTypes = {
     thread: PropTypes.object,
+    handleReplySubmit: PropTypes.func,
 }
 
 

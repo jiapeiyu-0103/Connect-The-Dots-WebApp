@@ -11,7 +11,7 @@ function DriftBottleModal(props) {
                 
                 <div className="modalContent">
                 
-                <DriftBottleModalMainView deleteBottle={props.deleteBottle} addCollectedBottleReply={props.addCollectedBottleReply} addSentBottle={props.addSentBottle} collectedBottles={props.collectedBottles}
+                <DriftBottleModalMainView addReply={props.addReply} deleteBottle={props.deleteBottle} addCollectedBottleReply={props.addCollectedBottleReply} addSentBottle={props.addSentBottle} collectedBottles={props.collectedBottles}
 sentBottles={props.sentBottles} collectBottleInfo={props.collectBottleInfo} closeModal={props.closeModal} state={props.state} />
                 
                 </div>
@@ -34,6 +34,7 @@ DriftBottleModal.propTypes = {
     addSentBottle: PropTypes.func,
     addCollectedBottleReply: PropTypes.func,
     deleteBottle: PropTypes.func,
+    addReply: PropTypes.func,
 }
 
 

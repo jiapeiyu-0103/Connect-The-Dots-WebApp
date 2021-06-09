@@ -4,7 +4,10 @@ function CollectDriftBottle(props) {
 const handleReply = () => {
     //Do reply works
     const replyValue = document.getElementById("collectReplyField").value;
-    props.addCollectedBottleReply(-1, replyValue);
+    if (replyValue) {
+        props.addCollectedBottleReply(-1, replyValue);
+    }
+    
     props.closeModal();
   
     

@@ -22,6 +22,8 @@ const setMyDriftBottleStateToInfoView = (type, index) => {
     } else {
         bottle = props.sentBottles[index];
     }
+    bottle.index = index;
+    bottle.type = type;
     setBottle(bottle);
     setMyDriftState(BOTTLE_INFO_VIEW);
 
@@ -29,7 +31,7 @@ const setMyDriftBottleStateToInfoView = (type, index) => {
       
 switch (myDriftState) {
     case BOTTLE_INFO_VIEW:
-        return <MyDriftBottleInfoView bottle={bottle} setMyDriftBottleStateToLists={setMyDriftBottleStateToLists} />
+        return <MyDriftBottleInfoView addReply={props.addReply}  bottle={bottle} setMyDriftBottleStateToLists={setMyDriftBottleStateToLists} />
     default:
         return <MyDriftBottleLists deleteBottle={props.deleteBottle} collected={COLLECTED} sent={SENT} setMyDriftBottleStateToInfoView={setMyDriftBottleStateToInfoView} sentBottles={props.sentBottles} collectedBottles={props.collectedBottles} />
 }
@@ -42,6 +44,7 @@ MyDriftBottle.propTypes = {
     sentBottles: PropTypes.array,
     collectedBottles: PropTypes.array,
     deleteBottle: PropTypes.func,
+    addReply: PropTypes.func,
 }
 
 export default MyDriftBottle;

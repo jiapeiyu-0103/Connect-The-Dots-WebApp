@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 function SendDriftBottle(props) {
 const handleSend = (e) => {
-    props.addSentBottle(e);
+    if (document.getElementById("sendBottleTextField").value) {
+         props.addSentBottle(e);
+    }
+   
     props.closeModal();
 }
             return (

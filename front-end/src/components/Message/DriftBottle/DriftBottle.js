@@ -148,6 +148,7 @@ const collectBottle = () => {
     setCollectedBottles (newCollectedBottles);
 }
 
+
 const addCollectedBottleReply = (index, replyValue) => {
     const newCollectedBottles = [...collectedBottles];
     
@@ -166,6 +167,36 @@ const addCollectedBottleReply = (index, replyValue) => {
     
     setCollectedBottles(newCollectedBottles);
 }
+
+
+
+const addSentBottleReply = (index, replyValue) => {
+    const newSentBottles = [...sentBottles];
+    
+    //construct reply to add
+    const replyToAdd = new Object();
+    replyToAdd.content = replyValue;
+    replyToAdd.name = yourName;
+    replyToAdd.location = yourLocation;
+    replyToAdd.imageSrc = yourImageSrc;
+    
+    if(index === -1) {
+        newSentBottles[newSentBottles.length-1].replies.push(replyToAdd);
+    } else {
+        newSentBottles[index].replies.push(replyToAdd);
+    }
+    
+    setSentBottles(newSentBottles);
+}
+
+const addReply = (type, index, replyValue) => {
+    if (type=== COLLECTED) {
+        addCollectedBottleReply(index, replyValue);
+    } else {
+        addSentBottleReply(index, replyValue);
+    }
+}
+
 
 const deleteBottle = (type, index) => {
     if (type === COLLECTED) {
@@ -209,7 +240,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>
