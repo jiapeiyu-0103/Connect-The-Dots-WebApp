@@ -37,3 +37,21 @@
    width: 100px;
    height: 30px;
 }
+
+@media only screen and (max-width: 1300px) {
+  #treeHoleForm input {
+    width: 96%;
+    height: 10vw;
+    
+}
+
+}
+    
+    
+@media only screen and (max-width: 800px) {
+  #treeHoleForm input {
+        height: 70px;
+    
+   }
+
+}

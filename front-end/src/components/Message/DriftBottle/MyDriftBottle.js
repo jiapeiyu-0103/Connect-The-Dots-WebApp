@@ -1,15 +1,47 @@
 import PropTypes from 'prop-types';
-function MyDriftBottle() {
+import {useState} from 'react';
+import bottleImage from '../img/bottleImage.png';
+import MyDriftBottleLists from './MyDriftBottleLists';
+import MyDriftBottleInfoView from './MyDriftBottleInfoView';
 
-            return (
-                <div> This is the MyDriftBottle page </div>
-            );
- 
- 
+function MyDriftBottle(props) {
+const BOTTLE_LISTS = "BOTTLE_LISTS"
+const BOTTLE_INFO_VIEW = "BOTTLE_INFO_VIEW";
+const [myDriftState, setMyDriftState] = useState(BOTTLE_LISTS);
+const [bottle, setBottle] = useState(null);  
+const COLLECTED = "COLLECTED";
+const SENT = "SENT";
+
+const setMyDriftBottleStateToLists = () => {
+    setMyDriftState(BOTTLE_LISTS);
+}
+
+const setMyDriftBottleStateToInfoView = (type, index) => {
+    let bottle;
+    if (type === COLLECTED) {
+        bottle = props.collectedBottles[index];
+    } else {
+        bottle = props.sentBottles[index];
+    }
+    setBottle(bottle);
+    setMyDriftState(BOTTLE_INFO_VIEW);
+
+}
+      
+switch (myDriftState) {
+    case BOTTLE_INFO_VIEW:
+        return <MyDriftBottleInfoView bottle={bottle} setMyDriftBottleStateToLists={setMyDriftBottleStateToLists} />
+    default:
+        return <MyDriftBottleLists collected={COLLECTED} sent={SENT} setMyDriftBottleStateToInfoView={setMyDriftBottleStateToInfoView} sentBottles={props.sentBottles} collectedBottles={props.collectedBottles} />
+}
+  
+
 }
 
 MyDriftBottle.propTypes = {
     closeModal:PropTypes.func,
+    sentBottles: PropTypes.array,
+    collectedBottles: PropTypes.array,
 }
 
 export default MyDriftBottle;

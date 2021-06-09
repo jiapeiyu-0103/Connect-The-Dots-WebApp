@@ -7,7 +7,7 @@ function DriftBottleModalMainView(props) {
     
     switch (props.state) {
         case DriftBottleStates.MY_BOTTLES:
-            return  <MyDriftBottle closeModal={props.closeModal} />
+            return  <MyDriftBottle sentBottles={props.sentBottles} collectedBottles={props.collectedBottles} closeModal={props.closeModal} />
         case DriftBottleStates.COLLECT:
             return  <CollectDriftBottle collectBottleInfo={props.collectBottleInfo} closeModal={props.closeModal} />
         default:
@@ -22,6 +22,8 @@ DriftBottleModalMainView.propTypes = {
     state: PropTypes.string,
     closeModal:PropTypes.func,
     collectBottleInfo:PropTypes.object,
+    collectedBottles: PropTypes.array,
+    sentBottles: PropTypes.array,
 }
 
 

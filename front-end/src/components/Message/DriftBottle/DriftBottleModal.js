@@ -7,10 +7,12 @@ function DriftBottleModal(props) {
 
                 <div className="driftBotModal"> 
                         
+                <span onClick={props.closeModal} className="closeModalBtn">&times;</span>
                 
                 <div className="modalContent">
                 
-                <DriftBottleModalMainView collectBottleInfo={props.collectBottleInfo} closeModal={props.closeModal} state={props.state} />
+                <DriftBottleModalMainView collectedBottles={props.collectedBottles}
+sentBottles={props.sentBottles} collectBottleInfo={props.collectBottleInfo} closeModal={props.closeModal} state={props.state} />
                 
                 </div>
     
@@ -27,6 +29,8 @@ DriftBottleModal.propTypes = {
     closeModal: PropTypes.func,
     state: PropTypes.string,
     collectBottleInfo: PropTypes.object,
+    collectedBottles: PropTypes.array,
+    sentBottles: PropTypes.array,
 }
 
 

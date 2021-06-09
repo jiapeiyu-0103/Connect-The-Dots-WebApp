@@ -6,7 +6,7 @@ const handleSend = () => {
 }
             return (
                 <div id="sendBottleForm"> 
-                    <textarea id="sendBottleTextField" />
+                    <textarea placeholder="Type your message here..." id="sendBottleTextField" />
                     
                     <button onClick={handleSend}>Throw into the sea</button>
                 </div>

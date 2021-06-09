@@ -10,8 +10,114 @@ const [collectBottleInfo, setCollectBottleInfo] = useState(null);
 const exampleBottleInfo = {
     name: 'Stranger',
     location: 'Somewhere',
-    content: 'Some content as example here. From Stranger'
+    content: 'Hi, wish you happiness wherever you are!',
+    imageSrc: null,
 }
+
+const yourName = "You"
+const yourLocation = "Here"
+
+const sentBottles= [
+    {
+        name: yourName,
+        location: yourLocation,
+        imageSrc: null,
+        content: "I love dogs!",
+        replies: [
+            {
+                name: 'Stranger',
+                location: 'Somewhere',
+                content: 'I love dogs too!',
+                imageSrc: null
+            },
+            {
+                name: 'Stranger2',
+                location: 'Someplace',
+                content: 'Cats > Dogs',
+                imageSrc: null
+            }
+            
+        ]
+    },
+    
+        {
+            
+        name: yourName,
+        location: yourLocation,
+        imageSrc: null,
+        content: "I love cats!",
+        replies: [
+            {
+                name: 'Stranger',
+                location: 'Somewhere',
+                content: 'I love cats too!',
+                imageSrc: null
+            },
+            {
+                name: 'Stranger2',
+                location: 'Someplace',
+                content: 'Dogs > Cats',
+                imageSrc: null
+            }
+            
+        ]
+    },
+    
+    
+];
+    
+    
+    
+const collectedBottles = [
+    
+    {
+        name: "Stranger",
+        location: "Somewhere",
+        content: "To someone, you are awesome!",
+        imageSrc: null,
+        replies: [
+            {
+                name: yourName,
+                location: yourLocation,
+                content: 'Hey, thank you, you too!',
+                imageSrc: null
+            },
+            {
+                name: 'Stranger',
+                location: 'Somewhere',
+                content: "Have a great day!",
+                imageSrc: null
+            }
+            
+            
+        ]
+    },
+    
+    {
+        name: "Stranger2",
+        location: "Someplace",
+        content: "You know about the up dog?",
+        imageSrc: null,
+        replies: [
+            {
+                name: yourName,
+                location: yourLocation,
+                content: "What's up dog?",
+                imageSrc: null
+            },
+            {
+                name: yourName,
+                location: yourLocation,
+                content: "Ahh you got me!",
+                imageSrc: null
+            }, 
+            
+        ]
+    },
+]
+
+
+
 const closeModal = () => {
     setShowDriftBotModal(false);
 }
@@ -39,7 +145,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>
