@@ -1,14 +1,25 @@
 import React from 'react';
 import './Diary.css';
+import AudioReactRecorder, { RecordState } from 'audio-react-recorder';
+import { useState,useEffect } from 'react';
+import UploadImage from './UploadImageModal';
+import UploadAudio from './UploadAudioModal';
+import UploadVideo from './UploadVideoModal';
 
 function Diary() {
-    const imageUploader = React.useRef(null);
-    const uploadedImage = React.useRef(null);
+    // const imageUploader = React.useRef(null);
+    // const audioUploader = React.useRef(null);
     const day = new Date().toLocaleString("en-US", { day : '2-digit'});
     const month = new Date().toLocaleString("en-US", { month: "long" });
     const year = new Date().getFullYear();
     const separator = '';
-
+    const [pics, setPics] = useState(null);
+    const [videos, setVideos] = useState(null);
+   
+    const [audioData, setAudioData]=useState(null);
+    const [isImageOpen, setIsImageOpen] = useState(false);
+    const [isAudioOpen, setIsAudioOpen] = useState(false);
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     return (
         <div >
@@ -209,28 +220,51 @@ function Diary() {
             <div>
                 <h3>Date: {month}{separator}{day},{year}{separator} </h3>
                 </div>
+           
+            <div>
             <div className="diary">
                 <div className="pic-upload" id="picture-upload">
-                    <input type="file" accept="image/*" multiple = "false"
-                           ref={imageUploader}
+                    {/* <input type="file" accept="image/*" multiple = "false"
                            style={{
                                display: "none"
-                           }} />
-                    <div className="img-container"
-                         onClick={() => imageUploader.current.click()}>
-                        <img className="img-display" ref={uploadedImage}/>
+                           }} ref={imageUploader} onChange={(e) => setPics(URL.createObjectURL(e.target.files[0]))}/> 
+                            onClick={() => imageUploader.current.click()}*/ }
+                     <div className="img-container" >
+                        <img className="img-display" />
                         
                     </div>
-                    
+                <div className="button-container" >
+                    <button className="buttons" onClick={()=>setIsImageOpen(true)}>Add image</button>
+                    {/* <button className="upload-button">View picture</button> */}
+                    <button className="buttons" onClick={()=>setIsAudioOpen(true)}>Add audio</button>
+                    {/* <button className="upload-button">View audio</button> */}
+                    <button className="buttons" onClick={()=>setIsVideoOpen(true)}>Add video</button>
+                    {/* <button className="upload-button">View video</button> */}
                 </div>
+                </div>
+               
                 <div>
-                <input type="text" name="title" placeholder="Title.." className="diary-title"></input>
+                  <input type="text" name="title" placeholder="Title.." className="diary-title"></input>
                 </div>
-                <textarea name="diary-content" className="diary-input" rows="33"> </textarea>
-                <div>
-                <button className="buttons" >Record</button> 
-                </div>
+                <textarea name="diary-content" className="diary-input" rows="33" placeholder="Tell me about your day..."></textarea>
             </div>
+
+            </div>
+                <button className="buttons" >Record</button> 
+                <div>
+                {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
+                </div>
+                <div>
+                {isAudioOpen && (<UploadAudio url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/>)}
+                </div>
+                <div>
+                {isVideoOpen && (<UploadVideo url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>)}
+                </div>
+
+            
+        
+                
+            
             
         </div>
     );
