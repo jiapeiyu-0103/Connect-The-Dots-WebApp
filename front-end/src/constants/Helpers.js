@@ -2,7 +2,7 @@ import * as YourInfo from './YourInfo';
 
 export const constructYourObj = (value) => {
     
-    const returnObj = new Object();
+    const returnObj = {};
     returnObj.content = value;
     returnObj.name = YourInfo.YOUR_NAME;
     returnObj.location = YourInfo.YOUR_LOCATION;

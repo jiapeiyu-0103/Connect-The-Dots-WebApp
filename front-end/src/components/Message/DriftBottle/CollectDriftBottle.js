@@ -16,7 +16,7 @@ const handleReply = () => {
                  <div id="collectBottleForm"> 
                     <div id="collectUserAccount" className="collectUserInfo">
                 
-                        <img width="50px" height="50px" src={props.collectBottleInfo.imageSrc || defaultUserImage} id="collectUserInfoImage" />
+                        <img alt="stuff" width="50px" height="50px" src={props.collectBottleInfo.imageSrc || defaultUserImage} id="collectUserInfoImage" />
                 
                         <div id="collectUserInfoDiv">
                             <p>{`NAME: ${props.collectBottleInfo.name}`}</p>

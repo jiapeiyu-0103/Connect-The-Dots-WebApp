@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
-import bottleImage from '../img/bottleImage.png';
 import MyDriftBottleLists from './MyDriftBottleLists';
 import MyDriftBottleInfoView from './MyDriftBottleInfoView';
 import {COLLECTED, SENT} from '../../../constants/BottleStates';

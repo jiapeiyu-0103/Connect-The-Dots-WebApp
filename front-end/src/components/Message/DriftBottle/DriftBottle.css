@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("../img/bottle.png");
-    justify-content: end;
+    justify-content: flex-end;
     flex-direction: column;
     display: flex;
     position: relative;

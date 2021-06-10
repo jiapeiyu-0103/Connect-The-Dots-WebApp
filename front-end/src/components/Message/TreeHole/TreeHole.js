@@ -1,15 +1,15 @@
 import './TreeHole.css'; 
-import {useState} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import treeHoleImage from '../img/treeHole.png';
 import * as YourInfo from '../../../constants/YourInfo';
 import {constructYourObj} from '../../../constants/Helpers';
 import Thread from '../Thread/Thread';
 function TreeHole() {
-    
+
+const isMounted = useRef(false);
 
 const yourName = YourInfo.YOUR_NAME;
 const yourLocation = YourInfo.YOUR_LOCATION;
-const yourImageSrc = YourInfo.YOUR_IMG_SRC;
 
 const [threads, setThreads] = useState(
 [
@@ -83,6 +83,27 @@ const [threads, setThreads] = useState(
 ]
 );
 
+    useEffect(() => {
+        if (isMounted.current) {
+            const threadListDiv = document.getElementById("treeHoleOuter");
+            if (threadListDiv) {
+                threadListDiv.scrollIntoView({
+                    block: "end",
+                    inline: "center",
+                    behavior: "smooth",
+                    alignToTop: false
+                });
+
+            }
+
+        } else {
+            isMounted.current = true;
+        }
+
+
+
+    }, [threads.length]);
+
     
 const handleSubmit = (index, replyValue) => {
     const newThreads = [...threads];
@@ -128,7 +149,7 @@ const handleSend = () => {
             return (
                 <div id="treeHoleOuter">
                     <div id="treeHoleImageFormWrapper">
-                        <img id="treeHoleImage" src={treeHoleImage} />
+                        <img alt="stuff" id="treeHoleImage" src={treeHoleImage} />
                         <div id="treeHoleForm">
                             <input type='text' id="treeHoleFormInput" placeholder="Tell me your concerns"/>
                             <button onClick={handleSend}>SEND</button>

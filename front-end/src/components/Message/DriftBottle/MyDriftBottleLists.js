@@ -19,7 +19,7 @@ if (!sentBottles || sentBottles.length === 0) {
      sentBottlesList = sentBottles.map((bottle, index) =>    
         <li  className="bottleListElem" key={index}>
         <span onClick={(e)=>{props.deleteBottle(props.sent, index);}}  className="bottleClose">&times;</span>
-        <img onClick={(e) => {props.setMyDriftBottleStateToInfoView(props.sent, index)}} src={bottleImage} width="150px" height="100px" />
+        <img alt="stuff" onClick={(e) => {props.setMyDriftBottleStateToInfoView(props.sent, index)}} src={bottleImage} width="150px" height="100px" />
             
             
         <p><b>{`${bottle.name}:`}</b> {`${bottle.content}`}</p>
@@ -36,7 +36,7 @@ if (!collectedBottles || collectedBottles.length === 0) {
    collectedBottlesList = collectedBottles.map((bottle, index) =>    
         <li className="bottleListElem" key={index}>
          <span onClick={(e)=>{props.deleteBottle(props.collected, index);}} className="bottleClose">&times;</span>
-        <img onClick={(e) => {props.setMyDriftBottleStateToInfoView(props.collected, index)}} src={bottleImage} width="150px" height="100px" />
+        <img alt="stuff" onClick={(e) => {props.setMyDriftBottleStateToInfoView(props.collected, index)}} src={bottleImage} width="150px" height="100px" />
             
             
         <p><b>{`${bottle.name}:`}</b> {`${bottle.content}`}</p>

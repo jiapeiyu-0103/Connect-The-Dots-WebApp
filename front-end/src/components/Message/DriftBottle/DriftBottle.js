@@ -2,7 +2,7 @@ import { useState } from 'react';
 import DriftBottleModal from './DriftBottleModal';
 import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
-import {COLLECTED, SENT} from '../../../constants/BottleStates';
+import {COLLECTED} from '../../../constants/BottleStates';
 import * as YourInfo from '../../../constants/YourInfo';
 import {constructYourObj} from '../../../constants/Helpers';
 function DriftBottle() {
@@ -21,7 +21,6 @@ const exampleCollectedBottle = {
 
 const yourName = YourInfo.YOUR_NAME;
 const yourLocation = YourInfo.YOUR_LOCATION;
-const yourImageSrc = YourInfo.YOUR_IMG_SRC;
 
 const [sentBottles, setSentBottles] = useState ([
     {
