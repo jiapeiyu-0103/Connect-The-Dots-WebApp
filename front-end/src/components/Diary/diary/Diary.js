@@ -22,7 +22,7 @@ function Diary() {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     return (
-        <div >
+        <div id="Diary" >
             <div className="title">
                 <h1>Hi, sweetie! Do you want to record your day?</h1>
                 <br/>
