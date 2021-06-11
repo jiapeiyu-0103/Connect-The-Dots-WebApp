@@ -1,0 +1,68 @@
+#treeHoleOuter {
+    min-height: 400px;
+    min-width: 400px;
+    max-width: 50%;
+    margin: auto;
+    text-align: left;
+    
+}
+
+
+#treeHoleImageFormWrapper {
+    position: relative;
+}
+
+#treeHoleImage {
+    width: 45%;
+    
+}
+
+#treeHoleForm {
+    width: 50%;
+    height: 100%;
+    float:right;
+    
+}
+
+#treeHoleForm input {
+    width: 98%;
+    height: 12vw;
+    
+}
+
+#treeHoleForm button {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   width: 100px;
+   height: 30px;
+}
+
+@media only screen and (max-width: 1300px) {
+  #treeHoleForm input {
+    width: 96%;
+    height: 10vw;
+    
+}
+
+}
+    
+    
+@media only screen and (max-width: 800px) {
+  #treeHoleForm input {
+        height: 70px;
+    
+   }
+
+}
+
+.threadList {
+    list-style-type: none;
+    min-width: 400px;
+    
+}
+
+.threadList li {
+    margin-bottom: 20px;
+    
+}
