@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import moment from 'moment'
 import * as Tags from '../constants/Tags'
+import BarChart from "./pieChart";
+import React from 'react';
 
 const Data = (props) => {
 
@@ -74,25 +76,32 @@ const Data = (props) => {
         }
     }
 
-    analyzeData()
+    analyzeData();
 
-    console.log(summary)
+    console.log(summary);
+
+    const fakeData = [
+        {id: "happy", value:9},
+        {id: "sad", value:1},
+        {id: "peaceful", value:17},
+        {id: "angry", value:3},
+    ];
     
 
     return (
         <div>
-            <label>Please select a date: </label>
-            <select value = {date} onChange = {(e) => setDate(e.target.value)}>
-                {options}
-            </select><br/><br/>
-
-            <div>
-                <h3>In {moment().month(JSON.parse(date).month).format("MMMM")} {JSON.parse(date).year}, you have written totally {total} {total === 1? "diary": "diaries"}: </h3><br/>
-                <h3>Below is the detail summary:</h3>
-            </div>
+            {/*<label>Please select a date: </label>*/}
+            {/*<select value = {date} onChange = {(e) => setDate(e.target.value)}>*/}
+            {/*    {options}*/}
+            {/*</select><br/><br/>*/}
+            <BarChart data={fakeData}/>
+            {/*<div>*/}
+            {/*    <h3>In {moment().month(JSON.parse(date).month).format("MMMM")} {JSON.parse(date).year}, you have written totally {total} {total === 1? "diary": "diaries"}: </h3><br/>*/}
+            {/*    <h3>Below is the detail summary:</h3>*/}
+            {/*</div>*/}
 
         </div>
     )
-}
+};
 
 export default Data
