@@ -4,7 +4,7 @@ import DashboardNavBar from './DashboardNavBar';
 import DashboardMainView from './DashboardMainView'
 import * as DashboardStates from '../constants/DashboardStates';
 import { useState } from 'react';
-function Dashboard({setState}) {
+function Dashboard({setState, curUser}) {
         const [dashboardState, setDashboardState] = useState(DashboardStates.DIARY);
     
         const setStateToLoginForm = ()=>{
@@ -23,18 +23,28 @@ function Dashboard({setState}) {
             setDashboardState(DashboardStates.ACCOUNT);
         }
         
+        const setDashboardViewToData = ()=>{
+            setDashboardState(DashboardStates.DATA);
+        }
 
         return (
            <div>
                 {/* <p>This is the dashboard nav bar with the following buttons: </p> */}
             
-                <DashboardNavBar setDashboardViewToDiary={setDashboardViewToDiary} setDashboardViewToMessage={setDashboardViewToMessage} setDashboardViewToAccount={setDashboardViewToAccount} setStateToLoginForm={setStateToLoginForm} />
+                <DashboardNavBar 
+                    setDashboardViewToDiary={setDashboardViewToDiary} 
+                    setDashboardViewToMessage={setDashboardViewToMessage} 
+                    setDashboardViewToAccount={setDashboardViewToAccount}
+                    setDashboardViewToData={setDashboardViewToData} 
+                    setStateToLoginForm={setStateToLoginForm}
+                    curUser={curUser} 
+                />
             
                 {/* <br/>
                 <br/>
                 <br/> */}
-            
                 {/* <DashboardMainView dashboardState={dashboardState} /> */}
+
                     
                 
             </div>

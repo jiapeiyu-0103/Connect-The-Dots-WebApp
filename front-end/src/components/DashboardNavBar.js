@@ -1,7 +1,8 @@
+
+import PropTypes from "prop-types";
 // Reference from: https://material-ui.com/components/tabs/
 import './Diary/DiaryMainView.css'
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -10,6 +11,7 @@ import Box from '@material-ui/core/Box';
 import DiaryMainView from './Diary/DiaryMainView';
 import Message from './Message/Message';
 import Account from './Account';
+import Data from './Data'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -78,8 +80,10 @@ export default function DashboardNavBar(props) {
         <Tab label="Message" {...a11yProps(1)} />
         <Tab label="Data" {...a11yProps(2)}  />
         <Tab label="Account" {...a11yProps(3)} />
+        {/* <Tab label="Logout" {...a11yProps(4)} /> */}
         
       </Tabs>
+
       <TabPanel value={value} index={0}>
       <DiaryMainView />
       </TabPanel>
@@ -87,11 +91,14 @@ export default function DashboardNavBar(props) {
       <Message/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <Message/>
+      <Data curUser={props.curUser}/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-      <Account/>
+      <Account curUser={props.curUser}/>
       </TabPanel>
+      {/* <TabPanel value={value} index={4}>
+      <Account curUser={props.curUser}/>
+      </TabPanel> */}
       
     </div>
   );
@@ -101,6 +108,9 @@ DashboardNavBar.propTypes = {
     setStateToLoginForm: PropTypes.func,
     setDashboardViewToDiary: PropTypes.func, 
     setDashboardViewToMessage: PropTypes.func, 
-    setDashboardViewToAccount: PropTypes.func
+
+    setDashboardViewToAccount: PropTypes.func,
+    setDashboardViewToData: PropTypes.func
 };
+
 
