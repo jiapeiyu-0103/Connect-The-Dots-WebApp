@@ -27,5 +27,16 @@
     margin-bottom: 20px;
 }
 
+#message button {
+
+	text-align: center;
+	background-color: #333;
+	border: none;
+	color: white;
+	border-radius: 15px;
+	opacity: 0.75;
+
+}
+
 /* Message CSS END */
 
