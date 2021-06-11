@@ -19,13 +19,12 @@ function UploadAudioModal(props){
                    <h2> Record what you heard!</h2>
                    <div>
                     {/* Reference from: https://www.npmjs.com/package/audio-react-recorder */}
-                    
                    <AudioReactRecorder state={recordState} onStop={(data) => props.setState(data)} backgroundColor='rgb(255,255,255)'/>
                    <audio id='audio'controls src={props.url ? props.url.url : null}></audio>
  
                    <button onClick={() => setRecordState(RecordState.START)}>Start</button>
                    <button onClick={() => setRecordState(RecordState.STOP)}>Stop</button>
-            </div>
+                  </div>
             
   
           
