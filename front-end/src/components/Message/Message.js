@@ -1,5 +1,5 @@
 import './Message.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import * as MessageStates from '../../constants/MessageStates';
 import MessageMainView from './MessageMainView';
 function Message() {
@@ -17,13 +17,14 @@ const [messageState, setMessageState] = useState(MessageStates.DRIFT_BOTTLE);
   }
             return (
                 <div id="message">
-                    <div id="messageNav">
-                        <button className="chosen" onClick={(e) => {onNavClick(e); setMessageState(MessageStates.DRIFT_BOTTLE); }}>Drift Bottle</button>
-                        <button onClick={(e) => {onNavClick(e); setMessageState(MessageStates.TREE_HOLE); }}>Tree Hole</button>
-                        <button onClick={(e) => {onNavClick(e); setMessageState(MessageStates.CHAT); }}>Chat</button>
-                    </div>
+                    {/*<div id="messageNav">*/}
+                    {/*    <button className="chosen" onClick={(e) => {onNavClick(e); setMessageState(MessageStates.DRIFT_BOTTLE); }}>Drift Bottle</button>*/}
+                    {/*    <button onClick={(e) => {onNavClick(e); setMessageState(MessageStates.TREE_HOLE); }}>Tree Hole</button>*/}
+                    {/*    <button onClick={(e) => {onNavClick(e); setMessageState(MessageStates.CHAT); }}>Chat</button>*/}
+                    {/*</div>*/}
                 
-                    <MessageMainView state={messageState} />
+                    {/*<MessageMainView state={messageState} />*/}
+                    <MessageMainView/>
                 
                 </div>
             );

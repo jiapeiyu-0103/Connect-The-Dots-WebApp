@@ -25,9 +25,9 @@
     background-color: #fefefe;
     background-image: url("https://i.postimg.cc/3xk4vr6p/Diary-Background-Pics.png");
     background-size: cover;
-    
-    font-family: "Papyrus";
-    font-size:1.5vw;
+
+      font-family: "Gill Sans", sans-serif;
+      font-size:1.5vw;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -41,8 +41,8 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family: "Papyrus";
-    font-size:2vw;
+      font-family: "Gill Sans", sans-serif;
+      font-size:2vw;
     /* display: inline-flex; */
     display: table-cell;
     padding: 0.5% 1%;

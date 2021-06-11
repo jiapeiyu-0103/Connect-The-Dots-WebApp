@@ -9,7 +9,7 @@
     line-height: 25px;
     width: 150px;
     border-radius: 10px;
-    border: gray 2px solid;
+    /*border: gray 2px solid;*/
     background: white;
 }
 
@@ -27,16 +27,16 @@
     margin-bottom: 20px;
 }
 
-#message button {
+/*#message button {*/
 
-	text-align: center;
-	background-color: #333;
-	border: none;
-	color: white;
-	border-radius: 15px;
-	opacity: 0.75;
+/*	text-align: center;*/
+/*	background-color: #333;*/
+/*	border: none;*/
+/*	color: white;*/
+/*	border-radius: 15px;*/
+/*	opacity: 0.75;*/
 
-}
+/*}*/
 
 /* Message CSS END */
 

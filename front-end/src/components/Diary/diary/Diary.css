@@ -1,3 +1,4 @@
+
 #Diary p{
     font-size: 1vw;
 }
@@ -9,7 +10,7 @@
 } */
 
 .title {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Gill Sans", sans-serif;
     font-size:1.5vw;
     
 }
@@ -24,6 +25,7 @@
 }
 
 .container {
+    font-family: "Gill Sans", sans-serif;
     position: relative;
 }
 
@@ -64,6 +66,7 @@
 }
 
 .diary-input {
+    font-family: "Gill Sans", sans-serif;
     position: relative;
     transform: translate(60%, -50%);
     
@@ -91,6 +94,11 @@
   text-align: center;
 }
 
+.date {
+    font-size: 1.5vw;
+    font-family: "Gill Sans", sans-serif;
+}
+
 .pic-upload {
     position: relative;
     display: flex;
@@ -114,16 +122,17 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Gill Sans", sans-serif;
     font-size:2vw;
     display: inline-flex;
     padding: 2% 4%;
+    margin-bottom: 2vh;
     /* margin: 2% 2%; */
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
     position: relative;
-    transform: translate(0%, -100%);
+    transform: translate(-50%, -20%);
   }
 
   .buttons:hover {
@@ -132,16 +141,13 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
-  h3{
-      font-size: 1.5vw;
-  }
-
   .diary-title{
-    position: relative;
-    transform: translate(60%, -1200%);
-    width: 40%;
-    height: 10%;
-    overflow: scroll;
+      font-family: "Gill Sans", sans-serif;
+      position: relative;
+      transform: translate(60%, -1200%);
+      width: 40%;
+      height: 10%;
+      overflow: scroll;
   }
 
   .button-container{
@@ -156,6 +162,7 @@
   }
 @media screen and (max-width: 1200px) {
     .diary-input {
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(60%, -50%);
         
@@ -165,6 +172,7 @@
     }
 
     .diary-title{
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(60%, -1000%);
         width: 40%;
@@ -187,6 +195,7 @@
   
   
     .diary-input {
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(60%, -50%);
         
@@ -196,6 +205,7 @@
     }
 
     .diary-title{
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(60%, -800%);
         width: 40%;
@@ -230,6 +240,7 @@
     }
 
     .diary-title{
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(60%, -600%);
         width: 38%;
@@ -257,6 +268,7 @@
   
   
     .diary-input {
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(70%, -75%);
         
@@ -281,6 +293,7 @@
   
   
     .diary-title{
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(65%, -500%);
         width: 36%;
@@ -303,6 +316,7 @@
   
   
     .diary-title{
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(70%, -450%);
         width: 34%;
@@ -349,6 +363,7 @@
         text-align: center;
     }
     .diary-title{
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(67%, -350%);
         width: 32%;
@@ -356,6 +371,7 @@
         overflow: scroll;
       }
     .diary-input {
+        font-family: "Gill Sans", sans-serif;
         position: relative;
         transform: translate(70%, -90%);
         

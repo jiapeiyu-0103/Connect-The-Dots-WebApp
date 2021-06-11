@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import {DASHBOARD} from '../constants/States';
 import RegisterForm from '../components/RegisterForm'
 import {useState} from 'react'
+import './LoginForm.css'
+
 function LoginForm({setState, user}) {
     
     const [name, setName] = useState('')
@@ -45,19 +47,26 @@ function LoginForm({setState, user}) {
 
     if(hideRgstForm) {
         return (
-            <div>
-                <label>User Name:</label>
-                <input type='text' placeholder='please enter your user name' value={name} onChange={(e) => {setName(e.target.value)}}/><br/>
-                <label>Password:</label>
-                <input type='password' placeholder='please enter your password' value={password} onChange={(e) => {setPassword(e.target.value)}}/><br/>
-                <button onClick = {onLogin}> Sign in </button>
-                <button onClick = {() => {setHideRgstForm(false)}}> Sign up </button>
+            <div className="body">
+                <h1 className="main-title">Connect the Dots</h1>
+                <div className="input-container">
+                    <div className="name-container">
+                        <label className="label">User Name:</label>
+                        <input type='text' placeholder='please enter your user name' value={name} onChange={(e) => {setName(e.target.value)}}/><br/>
+                    </div>
+                    <div className="password-container">
+                        <label className="label">Password:</label>
+                        <input type='password' placeholder='please enter your password' value={password} onChange={(e) => {setPassword(e.target.value)}}/><br/>
+                    </div>
+                    <button className="sign-in" onClick = {onLogin}> Sign in </button>
+                    <button onClick = {() => {setHideRgstForm(false)}}> Sign up </button>
+                </div>
             </div>
 
         )
     } else {
         return(
-            <div>
+            <div className="body">
                 <RegisterForm HideRegisterForm={setHideRgstForm}/>
             </div>
         )

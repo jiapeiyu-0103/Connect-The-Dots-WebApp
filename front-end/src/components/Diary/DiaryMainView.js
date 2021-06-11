@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    
   },
 }));
 
@@ -48,7 +47,7 @@ export default function DiaryMainView() {
 
   return (
     <div className={classes.root}>
-      <TabContext  value={value} >
+      <TabContext value={value} >
         <AppBar position="relative"  >
           <TabList onChange={handleChange} aria-label="simple tabs example" className="tabwidth">
             <Tab label="Diary" value="1"  />

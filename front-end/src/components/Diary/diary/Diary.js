@@ -218,7 +218,7 @@ function Diary() {
                 <hr/>
             </div>
             <div>
-                <h3>Date: {month}{separator}{day},{year}{separator} </h3>
+                <h3 className="date">Date: {month}{separator}{day},{year}{separator} </h3>
                 </div>
            
             <div>
