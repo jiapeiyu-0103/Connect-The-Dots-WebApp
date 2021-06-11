@@ -4,7 +4,7 @@ import AudioReactRecorder, { RecordState } from 'audio-react-recorder';
 import { useState,useEffect } from 'react';
 import UploadImage from './UploadImageModal';
 import UploadAudio from './UploadAudioModal';
-import UploadVideo from '../../UploadVideoModal';
+import UploadVideo from './UploadVideoModal';
 
 function Diary() {
     // const imageUploader = React.useRef(null);
