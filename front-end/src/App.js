@@ -1,6 +1,6 @@
 import './App.css';
 import Main from './components/Main';
-import Diary from './components/DiaryMainView';
+import Diary from './components/Diary/DiaryMainView';
 
 
 function App() {
