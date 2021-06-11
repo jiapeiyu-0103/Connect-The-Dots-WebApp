@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import defaultUserImage from '../img/Default_User_Logo.png';
+import './CollectDriftBottle.css'
 function CollectDriftBottle(props) {
 const handleReply = () => {
     //Do reply works

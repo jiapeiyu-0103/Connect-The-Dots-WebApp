@@ -3,6 +3,7 @@ import SendDriftBottle from './SendDriftBottle';
 import CollectDriftBottle from './CollectDriftBottle';
 import MyDriftBottle from './MyDriftBottle';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
+import React from "react";
 function DriftBottleModalMainView(props) {
     
     switch (props.state) {

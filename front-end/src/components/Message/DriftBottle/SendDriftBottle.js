@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './SendDriftBottle.css'
 function SendDriftBottle(props) {
 const handleSend = (e) => {
     if (document.getElementById("sendBottleTextField").value) {
@@ -11,7 +12,7 @@ const handleSend = (e) => {
                 <div id="sendBottleForm"> 
                     <textarea placeholder="Type your message here..." id="sendBottleTextField" />
                     
-                    <button onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
+                    <button className="throw-button" onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
                 </div>
             );
  
@@ -21,6 +22,6 @@ const handleSend = (e) => {
 SendDriftBottle.propTypes = {
     closeModal:PropTypes.func,
     addSentBottle: PropTypes.func,
-}
+};
 
 export default SendDriftBottle;
