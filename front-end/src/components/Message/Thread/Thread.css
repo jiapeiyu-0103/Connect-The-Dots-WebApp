@@ -1,0 +1,62 @@
+.thread {
+    text-align: left;
+}
+
+.threadInner {
+    margin: auto;
+    width: 50%;
+    border: 1px solid black;
+    padding: 5px;
+    overflow-y: scroll;
+
+}
+
+.threadMainInfo {
+    margin-bottom: -10px;
+}
+
+.threadMainInfo img {
+    display:inline-block;
+    position: relative;
+    top: 15px;
+}
+
+
+
+.threadUserName {
+    display:inline-block;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.threadMainContent {
+    text-align: left;
+}
+
+.threadReplies {
+    margin-top: 20px;
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+
+
+}
+
+.threadReplies li {
+    margin-top: 10px;  
+}
+
+.threadReplies li div b {
+    margin-left: 10px;
+}
+
+.threadReplies li img {
+    display: inline-block;
+}
+
+
+.threadReplies li p {
+    display: inline-block;
+    margin-left: 10px;
+}

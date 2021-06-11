@@ -1,0 +1,40 @@
+#chatTab {
+
+    min-height: 400px;
+    min-width: 400px;
+    max-width: 50%;
+    margin: auto;
+    text-align: center;
+
+
+
+}
+
+#chatScreen {
+    text-align: left;
+  
+}
+
+
+#mainChat {
+    height: 400px;
+    border: 1px gray solid;
+    padding: 5px;
+    overflow-y: scroll;
+}
+
+#mainChat span {
+    color: gray;
+    font-weight: bold;
+  
+}
+
+#chatList{
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+}
+
+#chatList li b{
+    color: blue;
+}
