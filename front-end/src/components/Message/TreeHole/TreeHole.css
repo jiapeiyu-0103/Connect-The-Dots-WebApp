@@ -26,7 +26,7 @@
 
 #treeHoleForm input {
     width: 98%;
-    height: 10vw;
+    height: 9vw;
     
 }
 
@@ -41,7 +41,7 @@
 @media only screen and (max-width: 1300px) {
   #treeHoleForm input {
     width: 96%;
-    height: 10vw;
+    height: 8vw;
     
 }
 
