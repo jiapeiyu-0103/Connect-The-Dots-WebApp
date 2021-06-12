@@ -11,16 +11,46 @@
     font-size:1.1vw;
 }
 
-.info-container {
+.info-display {
     position: absolute;
     width: 30vw;
-    margin-right: 0;
     transform: translate(100%, 20%);
     padding-top: 10vh;
     padding-bottom: 10vh;
     background-color: white;
     opacity: 0.7;
     border-radius: 3vh;
+    font-family:  "Optima", sans-serif;
+    text-align: left;
+}
+
+.display-info {
+    margin-bottom: 2vh;
+    margin-right: 2vh;
+    margin-left: 9vw;
+}
+
+.info-container {
+    position: absolute;
+    width: 30vw;
+    transform: translate(90%, 50%);
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    background-color: white;
+    opacity: 0.7;
+    border-radius: 3vh;
+    font-family:  "Optima", sans-serif;
+    text-align: left;
+}
+
+.info-input {
+    margin-bottom: 2vh;
+}
+
+.edit-info {
+    margin-bottom: 2vh;
+    margin-right: 2vh;
+    margin-left: 7vw;
 }
 
 .edit-button{
@@ -32,13 +62,11 @@
     font-size:1.2vw;
     display: inline-flex;
     padding: 2% 4%;
-    margin-bottom: 2vh;
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
     position: relative;
-    margin-right: 2vh;
-
+    margin-left: 13vw;
 }
 
 .edit-button:hover{
@@ -46,4 +74,29 @@
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     
+}
+
+.save-button{
+    text-align: center;
+    background-color:  #333;
+    border: none;
+    color:white;
+    font-family:  "Optima", sans-serif;
+    font-size:1.2vw;
+    display: inline-flex;
+    padding: 2% 4%;
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    opacity: 0.75;
+    position: relative;
+    margin-top: 2vh;
+    margin-right: 2vw;
+    margin-left: 6vw;
+}
+
+.save-button:hover{
+    background-color:#012b6e; /* Green */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
 }

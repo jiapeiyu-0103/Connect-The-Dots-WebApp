@@ -60,7 +60,7 @@ function LoginForm({setState, user}) {
                         <input type='password' placeholder='please enter your password' value={password} onChange={(e) => {setPassword(e.target.value)}}/><br/>
                     </div>
                     <button className="sign-in" onClick = {onLogin}> Sign in </button>
-                    <button onClick = {() => {setHideRgstForm(false)}}> Sign up </button>
+                    <button className="sign-up" onClick = {() => {setHideRgstForm(false)}}> Sign up </button>
                 </div>
                 <div className="logo-name">
                 <h1>Connect</h1>
