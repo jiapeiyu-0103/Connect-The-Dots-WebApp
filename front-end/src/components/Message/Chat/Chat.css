@@ -1,0 +1,64 @@
+#chatTab {
+
+    min-height: 80vh;
+    min-width: 70vw;
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+
+
+
+}
+
+#chatScreen {
+    text-align: left;
+  
+}
+
+
+#mainChat {
+    height: 400px;
+    border: 1px gray solid;
+    padding: 5px;
+    overflow-y: scroll;
+}
+
+#mainChat span {
+    color: gray;
+    font-weight: bold;
+  
+}
+
+#chatList{
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+}
+
+#chatList li b{
+    color: blue;
+}
+
+
+
+#chatTab button {
+    /*margin-left: 70px;*/
+    /*width: 100px;*/
+    /*height: 30px;*/
+    text-align: center;
+    background-color:  #333;
+    border: none;
+    color:white;
+    font-family: "Gill Sans", sans-serif;
+    font-size: 1.5vw;
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    opacity: 0.75;
+    padding: 5px;
+}
+
+#chatTab button:hover {
+    background-color:#012b6e; /* Green */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
