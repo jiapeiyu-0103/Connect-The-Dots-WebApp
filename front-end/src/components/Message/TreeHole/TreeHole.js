@@ -149,10 +149,10 @@ const handleSend = () => {
             return (
                 <div id="treeHoleOuter">
                     <div id="treeHoleImageFormWrapper">
-                        <img alt="stuff" id="treeHoleImage" src={treeHoleImage} />
+                        <img alt="stuff" id="treeHoleImage" src="https://i.postimg.cc/XqZ1Mmw4/tree-hole.jpg" />
                         <div id="treeHoleForm">
-                            <input type='text' id="treeHoleFormInput" placeholder="Tell me your concerns"/>
-                            <button onClick={handleSend}>SEND</button>
+                            <textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>
+                            <button className="send-button"onClick={handleSend}>SEND</button>
                         </div>
 
                     </div>

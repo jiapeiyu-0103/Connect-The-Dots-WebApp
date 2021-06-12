@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState} from 'react';
+import './Account.css';
 function Account({curUser}) {
 
     let years = []
@@ -63,19 +64,22 @@ function Account({curUser}) {
 
     if (!editMode) {
         return (
-            <div> 
+            <div className="account-body"> 
+            <div className="info-container">
                 <h3>Name: {curUser.name}</h3>
                 <h3>Unique ID: {curUser.unique_id}</h3>
                 <h3>Sex: {curUser.sex}</h3>
                 <h3>Photo:</h3>
-                <img src={curUser.photo} alt={curUser.name}/>
+                <img width="50vw" hight="50vh" src="https://i.postimg.cc/CKGz7xXV/sponge-Bob.jpg" alt={curUser.name}/>
                 <h3>Birthday: {curUser.birthday.year} {curUser.birthday.month} {curUser.birthday.day} </h3>
-                <button onClick={() => {setEditMode(true)}}>Edit</button>
+                <button className="edit-button" onClick={() => {setEditMode(true)}}>Edit</button>
+                </div>
             </div>
         )
     } else {
         return(
-            <div>
+            <div className="account-body">
+                <div className="info-container">
                 <label>Name: </label>
                 <input type="text" value={name} placeholder="please enter nickname" onChange={(e) => {setName(e.target.value)}}></input> <br/>
 
@@ -121,8 +125,9 @@ function Account({curUser}) {
                     </optgroup>    
                 </select><br/>
 
-                <button onClick={onSave}> Save </button>
-                <button onClick={onDelete}>Cancel</button>
+                <button className="edit-button" onClick={onSave}> Save </button>
+                <button className="edit-button" onClick={onDelete}>Cancel</button>
+                </div>
             </div>
         )
     }

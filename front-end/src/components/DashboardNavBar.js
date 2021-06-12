@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import DiaryMainView from './Diary/DiaryMainView';
 import Message from './Message/Message';
-import Account from './Account';
-import Data from './Data'
+import Account from './Account/Account';
+import Data from './Data/Data'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -80,7 +80,7 @@ export default function DashboardNavBar(props) {
         <Tab label="Message" {...a11yProps(1)} />
         <Tab label="Data" {...a11yProps(2)}  />
         <Tab label="Account" {...a11yProps(3)} />
-        {/* <Tab label="Logout" {...a11yProps(4)} /> */}
+        <Tab label="Logout" {...a11yProps(4)} onClick = {props.setStateToLoginForm}/>
         
       </Tabs>
 

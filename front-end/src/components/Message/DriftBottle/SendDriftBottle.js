@@ -9,8 +9,8 @@ const handleSend = (e) => {
     props.closeModal();
 }
             return (
-                <div id="sendBottleForm"> 
-                    <textarea placeholder="Type your message here..." id="sendBottleTextField" />
+                <div id="sendBottleForm" className="sendBottleForm"> 
+                    <textarea placeholder="Type your message here..." id="sendBottleTextField" rows="15" />
                     
                     <button className="throw-button" onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
                 </div>

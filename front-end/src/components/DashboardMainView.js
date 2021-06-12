@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import Diary from './Diary/DiaryMainView';
 import Message from './Message/Message';
-import Account from './Account';
-import Data from './Data'
+import Account from './Account/Account';
+import Data from './Data/Data'
 import * as DashboardStates from '../constants/DashboardStates';
 function DashboardMainView({dashboardState, curUser}) {
     switch(dashboardState) {

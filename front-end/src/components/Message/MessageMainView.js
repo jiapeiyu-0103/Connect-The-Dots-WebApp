@@ -10,7 +10,6 @@ import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import Diary from "../Diary/diary/Diary";
 import './MessageMainView.css';
 
 const useStyles = makeStyles((theme) => ({

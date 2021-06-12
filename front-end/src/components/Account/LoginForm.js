@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import {DASHBOARD} from '../constants/States';
-import RegisterForm from '../components/RegisterForm'
+import {DASHBOARD} from '../../constants/States';
+import RegisterForm from './RegisterForm'
 import {useState} from 'react'
 import './LoginForm.css'
 
@@ -47,26 +47,36 @@ function LoginForm({setState, user}) {
 
     if(hideRgstForm) {
         return (
-            <div className="body">
-                <h1 className="main-title">Connect the Dots</h1>
+            <div className="body-style">
+                {/* <h1 className="main-title">Connect the Dots</h1> */}
                 <div className="input-container">
                     <div className="name-container">
-                        <label className="label">User Name:</label>
+                        <h2>Welcome!</h2>
+                        <label className="label">Username:</label>
                         <input type='text' placeholder='please enter your user name' value={name} onChange={(e) => {setName(e.target.value)}}/><br/>
                     </div>
                     <div className="password-container">
-                        <label className="label">Password:</label>
+                        <label className="label">Password: </label>
                         <input type='password' placeholder='please enter your password' value={password} onChange={(e) => {setPassword(e.target.value)}}/><br/>
                     </div>
                     <button className="sign-in" onClick = {onLogin}> Sign in </button>
                     <button onClick = {() => {setHideRgstForm(false)}}> Sign up </button>
                 </div>
+                <div className="logo-name">
+                <h1>Connect</h1>
+                <h2> the</h2>
+                <h1> Dots</h1>
+                </div>
+                <div className="logo">
+                {/* <img src="https://i.postimg.cc/3rmkRPmJ/Dope-Daydreamer.gif" alt="web Logo" className="responsive"></img> */}
+                <img src="https://i.postimg.cc/0jMzxyD9/Were-Falling-To-Pieces.gif" alt="web Logo" className="responsive"></img>
+            </div>
             </div>
 
         )
     } else {
         return(
-            <div className="body">
+            <div className="body-style">
                 <RegisterForm HideRegisterForm={setHideRgstForm}/>
             </div>
         )

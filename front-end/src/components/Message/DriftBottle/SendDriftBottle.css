@@ -3,33 +3,37 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family: "Gill Sans", sans-serif;
-    font-size: 1.5vw;
+    font-family: "Optima", sans-serif;
+    font-size: 1.3vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
     margin-right: 2vh;
     transition-duration: 0.4s;
     border-radius: 15px;
-    opacity: 0.75;
+    opacity: 0.95;
     position: relative;
 }
 
 .throw-button:hover {
-    background-color:#012b6e; /* Green */
+    background-color:#56799d; /* Green */
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #sendBottleForm {
-    width: 100%;
-    height: 100%;
+    width: 50vw;
+    height: 70vh;
 }
 
 #sendBottleTextField {
-    font-family: "Gill Sans", sans-serif;
+    font-family: "Optima", sans-serif;
+    font-size: 1.3vw;
     margin: 2vh;
-    width: 80%;
-    height: 70%;
+    width: 40vw;
+    max-height: 45vh;
+    height: auto;
+    top:3%;
+    position: relative;
     resize:none;
 }

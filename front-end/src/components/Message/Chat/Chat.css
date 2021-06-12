@@ -1,8 +1,8 @@
 #chatTab {
 
-    min-height: 400px;
-    min-width: 400px;
-    max-width: 50%;
+    min-height: 80vh;
+    min-width: 70vw;
+    overflow: auto;
     margin: auto;
     text-align: center;
 
