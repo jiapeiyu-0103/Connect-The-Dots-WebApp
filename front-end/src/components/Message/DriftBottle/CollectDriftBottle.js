@@ -17,7 +17,7 @@ const handleReply = () => {
                  <div id="collectBottleForm"> 
                     <div id="collectUserAccount" className="collectUserInfo">
                 
-                        <img alt="stuff" width="50px" height="50px" src={props.collectBottleInfo.imageSrc || defaultUserImage} id="collectUserInfoImage" />
+                        <img alt="stuff" width="60vw" max-height="60vh" height="auto" src={props.collectBottleInfo.imageSrc || defaultUserImage} id="collectUserInfoImage" />
                 
                         <div id="collectUserInfoDiv">
                             <p>{`NAME: ${props.collectBottleInfo.name}`}</p>
@@ -26,13 +26,13 @@ const handleReply = () => {
 
                     </div>
 
-                    <div className="collectUserInfo">
+                    <div className="collectUserMsg">
                         <p>{props.collectBottleInfo.content}</p>
                     </div>
 
-                    <div className="collectUserInfo" id="collectReplyTab">
+                    <div className="collectReply" id="collectReplyTab">
                     
-                        <input type="text" placeholder="Type your reply..." id="collectReplyField" />
+                        <textarea placeholder="Type your reply..." id="collectReplyField" rows="8"></textarea>
                     </div>
                     <button onClick={handleReply}>SEND</button>
                 </div>

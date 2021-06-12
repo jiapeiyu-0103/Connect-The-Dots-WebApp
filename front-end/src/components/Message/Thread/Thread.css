@@ -1,11 +1,24 @@
 .thread {
     text-align: left;
+    min-height: 60vh;
+    min-width: 50vw;
+    overflow-y: scroll;
+    width: auto;
+    height: auto;
+    font-size: 1.2vw;
+    font-family: "Optima", sans-serif;
+    
 }
 
 .threadInner {
-    margin: auto;
-    width: 50%;
-    border: 1px solid black;
+    min-height: 60vh;
+    min-width: 50vw;
+    overflow-y: scroll;
+    margin-top: 5vh;
+    margin-left: 5vw;
+    width: auto;
+    height: auto;
+    /* border: 1px solid black; */
     padding: 5px;
     overflow-y: scroll;
 
@@ -31,16 +44,23 @@
 
 .threadMainContent {
     text-align: left;
+
 }
 
 .threadReplies {
-    margin-top: 20px;
+    margin-top: 3vh;
     text-align: left;
     list-style-type: none;
     padding: 0;
-    width: 100%;
+    width: 50vw;
+    height: 40vh;
+    overflow-y: scroll;
 
 
+}
+
+.threadNav{
+    width: 50vw;
 }
 
 .threadReplies li {
@@ -60,3 +80,10 @@
     display: inline-block;
     margin-left: 10px;
 }
+
+/* .reply{
+    resize:none;
+    max-width: 100px;
+
+
+} */

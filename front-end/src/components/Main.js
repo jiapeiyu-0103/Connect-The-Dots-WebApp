@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as States from '../constants/States';
-import LoginForm from './LoginForm';
+import LoginForm from './Account/LoginForm';
 import Dashboard from './Dashboard';
 function Main() {
 const [state, setState] = useState(States.LOGIN_PAGE);

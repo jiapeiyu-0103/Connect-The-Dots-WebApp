@@ -26,7 +26,7 @@
     background-image: url("https://i.postimg.cc/3xk4vr6p/Diary-Background-Pics.png");
     background-size: cover;
 
-      font-family: "Gill Sans", sans-serif;
+    font-family: "Optima", sans-serif;
       font-size:1.5vw;
     margin: auto;
     padding: 20px;
@@ -53,7 +53,7 @@
   }
 
   .modal-button:hover {
-    background-color:#012b6e; /* Green */
+    background-color:#56799d; /* Green */
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }

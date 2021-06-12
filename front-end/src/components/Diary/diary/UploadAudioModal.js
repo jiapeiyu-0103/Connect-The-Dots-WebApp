@@ -8,10 +8,7 @@ function UploadAudioModal(props){
 
     const showModal = props.show ? "audio-modal display-block" : "audio-modal display-none";
     const [recordState, setRecordState]=useState(null);
-
-
     {/* Audio Reference from: https://www.npmjs.com/package/audio-react-recorder */}
-
     return (
       <div className={showModal}>
           <button onClick={props.handleClose} className="modal-button">&times;</button>

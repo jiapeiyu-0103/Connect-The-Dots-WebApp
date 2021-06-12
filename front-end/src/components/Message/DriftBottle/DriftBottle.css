@@ -1,14 +1,18 @@
 
 /* Drift Bottle CSS BEGIN */
 #driftBotOuter {
-    min-height: 400px;
-    min-width: 400px;
-    max-width: 50%;
+    min-height: 80vh;
+    min-width: 70vw;
+    overflow: auto;
+    /* max-width: 50%; */
     margin: auto;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../img/bottle.png");
+    /* background-image: url("../img/bottle.png"); */
+    background-image: url("https://i.postimg.cc/R0Bpn345/drift-bottle2.jpg");
+    opacity: 70%;
+    border-radius: 10px;
     justify-content: flex-end;
     flex-direction: column;
     display: flex;
@@ -21,23 +25,21 @@
    display: flex;
 }
 #driftBotNav button {
-    /*margin-left: 70px;*/
-    /*width: 100px;*/
-    /*height: 30px;*/
+    
     text-align: center;
     background-color:  #333;
     border: none;
     color:white;
-    font-family: "Gill Sans", sans-serif;
-    font-size: 1.5vw;
+    font-family:  "Optima", sans-serif;
+    font-size:1.5vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
-    margin-right: 2vh;
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
     position: relative;
+    margin-right: 2vh;
 }
 
 #driftBotNav button:hover {
@@ -68,13 +70,22 @@
 .modalContent {
   margin: auto;
   display: block;
-  width: 80%;
-  min-width: 400px;
-  max-width: 700px;
-  background: white;
-  height: 90%;
+  text-align: center;
+  position: absolute;
+  left:15%;
+  /* width: 80%; */
+  min-width: 35vw;
+  min-height: 50vh;
+  height: auto;
+  /* background: white; */
+  /* height: 90%; */
   margin-top: 10px;
   overflow-y: scroll;
+  background-image: url("https://i.postimg.cc/TYczfMqD/Pngtree-retro-letter-paper-red-blue-1433239.png");
+  opacity: 90%;
+  /* border-radius: 10px; */
+  background-size:contain;
+  background-repeat: no-repeat;
 }
 
 .driftBotModal {
@@ -87,36 +98,10 @@
 }
 
 
-#bottleDisplay {
-    text-align: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 45%;
-    float:left;
 
 
-}
 
 
-#bottleDisplay img {
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-}
-
-#bottleDisplay img:hover {
-    cursor: pointer;
-
-}
-
-#bottleDisplay li {
-    width: 196px;
-    margin: auto;
-    position: relative;
-
-    
-}
 
 #driftBottleInfoView {
     overflow-y: scroll;

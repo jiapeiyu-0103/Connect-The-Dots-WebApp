@@ -39,7 +39,7 @@ return (
                         </div>
                         <p className="threadMainContent">{thread.content}</p>
                     </div>
-                    <div className="threadNav"> <input type="text" onKeyPress={(e) => {handleEnter(e);}} placeholder="Write a reply..."/> 
+                    <div className="threadNav"> <textarea className="reply" onKeyPress={(e) => {handleEnter(e);}} placeholder="Write a reply..." ></textarea>
                     </div>
 
 

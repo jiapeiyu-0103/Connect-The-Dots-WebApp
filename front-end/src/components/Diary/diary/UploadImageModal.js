@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import './UploadImageModal.css';
 
 
@@ -16,7 +15,7 @@ function UploadImageModal(props){
               
                    <h2> Record what you saw!</h2>
                      <div className="imges-container" >
-                        <img  src={props.url}/>    
+                        <img  src={props.url} alt=""/>    
                     </div>
                     
                     <div className="pics-upload" >

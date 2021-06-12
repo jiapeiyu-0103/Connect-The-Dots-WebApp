@@ -1,16 +1,12 @@
 
 #Diary p{
     font-size: 1vw;
+    font-family: "Optima", sans-serif;
 }
 
-/* h1{
-    font-size:3vw;
-    font-family: "Century Gothic", "CenturyGothic", "AppleGothic", sans-serif;
-
-} */
-
 .title {
-    font-family: "Gill Sans", sans-serif;
+    font-family: "Optima", sans-serif;
+    /* font-family: "Andale Mono"; */
     font-size:1.5vw;
     
 }
@@ -25,7 +21,7 @@
 }
 
 .container {
-    font-family: "Gill Sans", sans-serif;
+    /* font-family: "Gill Sans", sans-serif; */
     position: relative;
 }
 
@@ -66,7 +62,7 @@
 }
 
 .diary-input {
-    font-family: "Gill Sans", sans-serif;
+    font-family:  "Optima", sans-serif;
     position: relative;
     transform: translate(60%, -50%);
     
@@ -122,8 +118,9 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family: "Gill Sans", sans-serif;
-    font-size:2vw;
+    font-family:  "Optima", sans-serif;
+    /* font-family: "Andale Mono"; */
+    font-size:1.8vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
@@ -136,13 +133,13 @@
   }
 
   .buttons:hover {
-    background-color:#012b6e; /* Green */
+    background-color:#56799d; /* Green */
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
   .diary-title{
-      font-family: "Gill Sans", sans-serif;
+    font-family: "Optima", sans-serif;
       position: relative;
       transform: translate(60%, -1200%);
       width: 40%;

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import bottleImage from '../img/bottleImage.png';
+import './MyDriftBottleLists.css';
 
 function MyDriftBottleLists(props) {
 
@@ -47,10 +48,10 @@ if (!collectedBottles || collectedBottles.length === 0) {
 
   return (
 
-    <div>
+    <div className="bottleList">
 
-    <ul id="bottleDisplay">Sent bottles: {sentBottlesList}</ul>
-    <ul id="bottleDisplay">Collected bottles:{collectedBottlesList}</ul>
+    <ul id="bottleDisplay" className="bottle">Sent bottles: {sentBottlesList}</ul>
+    <ul id="bottleDisplay" className="bottle">Collected bottles:{collectedBottlesList}</ul>
 
     </div>
   );
