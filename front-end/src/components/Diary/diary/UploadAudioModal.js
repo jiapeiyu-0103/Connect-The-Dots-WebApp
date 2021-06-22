@@ -15,7 +15,7 @@ function UploadAudioModal(props){
           
           <div className="modal-content">
               
-                   <h2> Record what you heard!</h2>
+                   <h2> Record what you heard !</h2>
                    <div>
                        <AudioReactRecorder state={recordState} onStop={(data) => props.setState(data)} backgroundColor='rgb(255,255,255)'/>
                        <audio id='audio'controls src={props.url ? props.url.url : null}></audio>
