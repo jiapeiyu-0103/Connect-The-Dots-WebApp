@@ -7,6 +7,7 @@ import Thread from '../Thread/Thread';
 import MessageUploadAudioModal from '../MessageUploadAudioModal';
 import MessageUploadVideoModal from '../MessageUploadVideoModal';
 import MessageUploadImageModal from '../MessageUploadImageModal';
+import TextField from '@material-ui/core/TextField';
 function TreeHole() {
 
 const isMounted = useRef(false);
@@ -272,7 +273,16 @@ const handleSend = () => {
                     <div id="treeHoleImageFormWrapper">
                         <img alt="stuff" id="treeHoleImage" src="https://i.postimg.cc/XqZ1Mmw4/tree-hole.jpg" />
                         <div id="treeHoleForm">
-                            <textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>
+                {/*<textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>*/}
+                   
+                    <TextField
+                            variant='filled'
+                            id="treeHoleFormInput" 
+                            color='primary'
+                            label='Tell me your concerns:'
+                            multiline
+                            className="treeHoleInput"/>
+                
                             <br/>
                             <button className="send-button"onClick={handleSend}>SEND</button>
                             <button className="send-button" onClick={()=>openAudioModal()}>ADD AUDIO</button>
