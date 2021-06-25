@@ -41,7 +41,8 @@
 .sendBottleModalOuter {
     position: relative;
     margin: auto;
-    top: 100%;
+    top: 110%;
     left: -30%;
+    width: 50vw;
     min-width: 1200px;
 }

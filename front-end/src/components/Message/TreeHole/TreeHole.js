@@ -16,8 +16,8 @@ const yourLocation = YourInfo.YOUR_LOCATION;
     
 const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
-
 const [audioData, setAudioData]=useState(null);
+    
 const [isImageOpen, setIsImageOpen] = useState(false);
 const [isAudioOpen, setIsAudioOpen] = useState(false);
 const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -273,6 +273,7 @@ const handleSend = () => {
                         <img alt="stuff" id="treeHoleImage" src="https://i.postimg.cc/XqZ1Mmw4/tree-hole.jpg" />
                         <div id="treeHoleForm">
                             <textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>
+                            <br/>
                             <button className="send-button"onClick={handleSend}>SEND</button>
                             <button className="send-button" onClick={()=>openAudioModal()}>ADD AUDIO</button>
                             <button className="send-button" onClick={()=>openImageModal()}>ADD IMAGE</button>
@@ -293,13 +294,13 @@ const handleSend = () => {
                         
                     </ul>
 
-                {isAudioOpen && (<MessageUploadAudioModal url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/>)}
+                {isAudioOpen && (<div className="treeHoleModalOuter"><MessageUploadAudioModal url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/> </div>)}
              
          
-                {isImageOpen && (<MessageUploadImageModal url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
+                {isImageOpen && (<div className="treeHoleModalOuter"><MessageUploadImageModal url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/> </div>)}
 
 
-                {isVideoOpen && (<MessageUploadVideoModal url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>)}
+                {isVideoOpen && (<div className="treeHoleModalOuter"><MessageUploadVideoModal url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/> </div>)}
 
 
             
