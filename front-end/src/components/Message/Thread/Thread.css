@@ -35,19 +35,6 @@
 }
 
 
-.images-container {
-    position: relative;
-    width: 400px;
-    height: 250px;;
-    border: 2px dashed black;
-    text-align: center;
-}
-
-.images-container img {
-      width: 400px;
-    height: 250px;
-}
-
 
 .threadUserName {
     display:inline-block;

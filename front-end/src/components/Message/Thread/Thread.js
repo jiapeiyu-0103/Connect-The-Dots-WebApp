@@ -37,21 +37,7 @@ return (
                         <div className="threadMainInfo"><img alt="stuff" src={thread.imageSrc || defaultUserImage} width="50px" height="50px" />
                         <p className="threadUserName">{thread.name}</p> 
                         </div>
-                        <br/>
-                        <br/>
-                        {thread.audioUrl ? <audio controls src={thread.audioUrl.url}></audio> : null}
-                        
-                        {thread.imageUrl ? <div className="images-container" >
-                        <img  src={thread.imageUrl} alt="stuff"/>    </div> : null}
-                        
-                        {thread.videoUrl ?   <div className="images-container" >
-                        <video width="400" controls src={thread.videoUrl}/>  
-                        </div> : null}
-                    
-                        
                         <p className="threadMainContent">{thread.content}</p>
-                        
-                        
                     </div>
                     <div className="threadNav"> <textarea className="reply" onKeyPress={(e) => {handleEnter(e);}} placeholder="Write a reply..." ></textarea>
                     </div>

@@ -85,6 +85,7 @@
   opacity: 90%;
   /* border-radius: 10px; */
   background-size:contain;
+  background-repeat: no-repeat;
 }
 
 .driftBotModal {

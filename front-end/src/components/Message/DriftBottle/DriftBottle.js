@@ -18,9 +18,6 @@ const exampleCollectedBottle = {
     replies:[],
 }
 
-const [pics, setPics] = useState(null);
-const [videos, setVideos] = useState(null);
-const [audioData, setAudioData]=useState(null);
 
 const yourName = YourInfo.YOUR_NAME;
 const yourLocation = YourInfo.YOUR_LOCATION;
@@ -131,15 +128,10 @@ const addSentBottle = (e) => {
     // construct bottle to add
     const bottleToAdd = constructYourObj(contentValue);
     
-    bottleToAdd.audioUrl = audioData;
-    bottleToAdd.imageUrl = pics;
-    bottleToAdd.videoUrl = videos;
-    
     const newSentBottles = [...sentBottles];
     newSentBottles.push(bottleToAdd);
     
     setSentBottles (newSentBottles);
-
 }
 
 const collectBottle = () => {
@@ -210,10 +202,6 @@ const deleteBottle = (type, index) => {
 
 const closeModal = () => {
     setShowDriftBotModal(false);
-        
-    setAudioData(null);
-    setPics(null);
-    setVideos(null);
 }
 
 const setModalToSend = () => {
@@ -240,7 +228,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal  videos={videos} setVideos={setVideos} pics={pics} setPics={setPics} audioData={audioData} setAudioData={setAudioData} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>
