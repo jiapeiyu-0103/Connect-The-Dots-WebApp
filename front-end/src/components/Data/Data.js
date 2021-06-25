@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import moment from 'moment'
-import * as Tags from '../constants/Tags'
-import BarChart from "./pieChart";
+import BarChart from "./PieChart";
 import React from 'react';
+import * as Tags from '../../constants/Tags'
 
 const Data = (props) => {
 
@@ -40,7 +40,7 @@ const Data = (props) => {
     // fetch data based on the timestamp and user
     // require implement of DB
     const fetchData = (curUser, date) => {
-        let data = require('../constants/DairyData.json')
+        let data = require('../../constants/DairyData.json')
         let ret = []
         for(const d of data) {
             if (d.date.year === JSON.parse(date).year && d.date.month === moment().month(JSON.parse(date).month).format("MMM")) {
