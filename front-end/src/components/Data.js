@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import moment from 'moment'
 import * as Tags from '../constants/Tags'
-import BarChart from "./pieChart";
+import PieChart from "./PieChart";
 import React from 'react';
 
 const Data = (props) => {
@@ -78,30 +78,74 @@ const Data = (props) => {
 
     analyzeData();
 
-    console.log(summary);
-
-    const fakeData = [
-        {id: "happy", value:9},
-        {id: "sad", value:1},
-        {id: "peaceful", value:17},
-        {id: "angry", value:3},
+    const weather = [
+        {id: "sunny", value:2},
+        {id: "cloudy", value:8},
+        {id: "rain", value:12},
+        {id: "snow", value:1},
+        {id: "thundershower", value:1},
+        {id: "overcast", value:2}
     ];
-    
+
+    const activity = [
+        {id: "writing", value:3},
+        {id: "dancing", value:12},
+        {id: "party", value:20},
+        {id: "show", value:1},
+        {id: "travel", value:1},
+        {id: "park", value:9},
+        {id: "delicacy", value:29},
+        {id: "sport", value:16},
+        {id: "game", value:9}
+    ];
+
+    const feeling = [
+        {id: "grinning", value:19},
+        {id: "grin-squint", value:10},
+        {id: "touched", value:25},
+        {id: "angry", value:8},
+        {id: "weary", value:3},
+        {id: "crying", value:2},
+        {id: "exploding", value:20},
+        {id: "fearful", value:4},
+        {id: "woozy", value:1}
+    ];
+
+
+    const weatherRange = ["#03045E", "#023E8A", "#0077B6", "#0096C7", "#48CAE4", "#90E0EF"];
+    const weatherDomain = ["sunny", "cloudy", "rain", "snow", "thundershower", "overcast"];
+    const weatherX = [20, 120, 250, 20, 120, 250];
+    const weatherY = [18, 18, 18, 48, 48, 48];
+
+    const activityRange = ["#000000", "#1B4332", "#2D6A4F", "#40916C", "#52B788", "#74C69D", "#95D5B2", "#B7E4C7", "#D8F3DC"];
+    const activityDomain = ["writing", "dancing", "party", "show", "travel", "park", "delicacy", "sport", "game"];
+    const activityX = [20, 120, 250, 20, 120, 250, 20, 120, 250];
+    const activityY= [18, 18, 18, 48, 48, 48, 78, 78, 78];
+
+    const feelingRange = ["#774936", "#8A5A44", "#9D6B53", "#B07D62", "#C38E70", "#CD9777", "#D69F7E", "#DEAB90", "#EDC4B3"];
+    const feelingDomain = ["grinning", "grin-squint", "touched", "angry", "weary", "crying", "exploding", "fearful", "woozy"];
+
 
     return (
-        <div>
-            {/*<label>Please select a date: </label>*/}
-            {/*<select value = {date} onChange = {(e) => setDate(e.target.value)}>*/}
-            {/*    {options}*/}
-            {/*</select><br/><br/>*/}
-            <BarChart data={fakeData}/>
-            {/*<div>*/}
-            {/*    <h3>In {moment().month(JSON.parse(date).month).format("MMMM")} {JSON.parse(date).year}, you have written totally {total} {total === 1? "diary": "diaries"}: </h3><br/>*/}
-            {/*    <h3>Below is the detail summary:</h3>*/}
-            {/*</div>*/}
-
+        <div className="App">
+            <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain} legendX={weatherX} legendY={weatherY}/>
+            <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain} legendX={activityX} legendY={activityY}/>
+            <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain} legendX={activityX} legendY={activityY}/>
         </div>
     )
 };
 
 export default Data
+
+{/*<div>*/}
+{/*    <label>Please select a date: </label>*/}
+{/*    /!*<select value = {date} onChange = {(e) => setDate(e.target.value)}>*!/*/}
+{/*    /!*    {options}*!/*/}
+{/*    /!*</select><br/><br/>*!/*/}
+{/*    <PieChart data={fakeData}/>*/}
+{/*    /!*<div>*!/*/}
+{/*    /!*    <h3>In {moment().month(JSON.parse(date).month).format("MMMM")} {JSON.parse(date).year}, you have written totally {total} {total === 1? "diary": "diaries"}: </h3><br/>*!/*/}
+{/*    /!*    <h3>Below is the detail summary:</h3>*!/*/}
+{/*    /!*</div>*!/*/}
+
+{/*</div>*/}
