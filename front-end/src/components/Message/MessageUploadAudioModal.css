@@ -5,6 +5,7 @@
     display:block;
     padding-top:100px;
     position: relative;
+    transform: translate(-10%, -150%);
     left:25%;
     top:0;
     width:60%;

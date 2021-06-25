@@ -37,3 +37,11 @@
     position: relative;
     resize:none;
 }
+
+.sendBottleModalOuter {
+    position: relative;
+    margin: auto;
+    top: 100%;
+    left: -30%;
+    min-width: 1200px;
+}

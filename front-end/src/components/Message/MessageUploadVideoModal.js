@@ -1,5 +1,5 @@
 import React from 'react';
-import './MessageUploadModal.css';
+//import './MessageUploadModal.css';
 
 
 function MessageUploadVideoModal(props){
