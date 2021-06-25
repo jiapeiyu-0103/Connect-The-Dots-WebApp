@@ -13,6 +13,9 @@ const handleSend = (e) => {
                     <textarea placeholder="Type your message here..." id="sendBottleTextField" rows="15" />
                     
                     <button className="throw-button" onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
+                    <button className="throw-button" >Add Audio</button>
+                    <button className="throw-button" >Add Image</button>
+                    <button className="throw-button" >Add Video</button>
                 </div>
             );
  
