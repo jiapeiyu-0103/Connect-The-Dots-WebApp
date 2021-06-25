@@ -1,5 +1,6 @@
 import './Thread.css';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
 import defaultUserImage from '../img/Default_User_Logo.png';
 function Thread(props) {
 const thread = props.thread;
@@ -53,7 +54,17 @@ return (
                         
                         
                     </div>
-                    <div className="threadNav"> <textarea className="reply" onKeyPress={(e) => {handleEnter(e);}} placeholder="Write a reply..." ></textarea>
+                    <div className="threadNav">  
+                    <TextField
+                            variant='filled'
+                            id="treeHoleFormInput" 
+                            color='primary'
+                            label='Write a reply...'
+                            className="reply"
+                            onKeyPress={(e) => {handleEnter(e);}} 
+                        />
+                        
+                        {/*<textarea className="reply" onKeyPress={(e) => {handleEnter(e);}} placeholder="Write a reply..." ></textarea>*/}
                     </div>
 
 

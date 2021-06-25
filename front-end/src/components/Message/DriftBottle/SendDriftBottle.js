@@ -4,6 +4,8 @@ import './SendDriftBottle.css'
 import MessageUploadAudioModal from "../MessageUploadAudioModal"
 import MessageUploadImageModal from "../MessageUploadImageModal"
 import MessageUploadVideoModal from "../MessageUploadVideoModal"
+import TextField from '@material-ui/core/TextField';
+
 function SendDriftBottle(props) {
     
 
@@ -92,7 +94,19 @@ const handleSend = (e) => {
 }
             return (
                 <div id="sendBottleForm" className="sendBottleForm"> 
-                    <textarea placeholder="Type your message here..." id="sendBottleTextField" rows="15" />
+                {/*<textarea placeholder="Type your message here..." id="sendBottleTextField" rows="15" />*/}
+                 
+                    <TextField
+                            variant='filled'
+                            id="sendBottleTextField" 
+                            color='primary'
+                            label='Type your message here...'
+                            multiline
+                            style={{
+                                'height': '400px',
+                            }}
+                            />
+                <br/><br/>
                     
                     <button className="throw-button" onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
                     <button className="throw-button" onClick={()=>setIsAudioOpen(true)} >Add Audio</button>
