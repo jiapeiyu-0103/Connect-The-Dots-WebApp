@@ -136,16 +136,3 @@ const Data = (props) => {
 };
 
 export default Data
-
-{/*<div>*/}
-{/*    <label>Please select a date: </label>*/}
-{/*    /!*<select value = {date} onChange = {(e) => setDate(e.target.value)}>*!/*/}
-{/*    /!*    {options}*!/*/}
-{/*    /!*</select><br/><br/>*!/*/}
-{/*    <PieChart data={fakeData}/>*/}
-{/*    /!*<div>*!/*/}
-{/*    /!*    <h3>In {moment().month(JSON.parse(date).month).format("MMMM")} {JSON.parse(date).year}, you have written totally {total} {total === 1? "diary": "diaries"}: </h3><br/>*!/*/}
-{/*    /!*    <h3>Below is the detail summary:</h3>*!/*/}
-{/*    /!*</div>*!/*/}
-
-{/*</div>*/}
