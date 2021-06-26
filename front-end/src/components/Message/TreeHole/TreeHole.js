@@ -284,10 +284,12 @@ const handleSend = () => {
                             className="treeHoleInput"/>
                 
                             <br/>
+                            <div className="send-container">
                             <button className="send-button"onClick={handleSend}>SEND</button>
                             <button className="send-button" onClick={()=>openAudioModal()}>ADD AUDIO</button>
                             <button className="send-button" onClick={()=>openImageModal()}>ADD IMAGE</button>
                             <button className="send-button" onClick={()=>openVideoModal()}>ADD VIDEO</button>
+                            </div>
                         </div>
 
   
