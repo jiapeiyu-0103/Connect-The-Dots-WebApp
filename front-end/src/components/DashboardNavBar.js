@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    
   },
 }));
 
@@ -73,8 +74,10 @@ export default function DashboardNavBar(props) {
         variant="scrollable"
         value={value}
         onChange={handleChange}
+        inkBarStyle={{background: 'blue'}}
         aria-label="Vertical tabs example"
         className={classes.tabs}
+
       >
         <Tab label="Diary" {...a11yProps(0)} />
         <Tab label="Message" {...a11yProps(1)} />

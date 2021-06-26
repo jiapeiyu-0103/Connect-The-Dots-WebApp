@@ -14,7 +14,7 @@ function MessageUploadVideoModal(props){
               
                    <h2> Record what you saw!</h2>
                      <div className="imges-container" >
-                        <video width="400" controls src={props.url}/>  
+                        <video width="75%" controls src={props.url}/>  
                     </div>
                     
                     <div className="pics-upload" >
