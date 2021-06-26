@@ -70,7 +70,7 @@ function Account({curUser}) {
                     <h3 className="display-info">Unique ID: {curUser.unique_id}</h3>
                     <h3 className="display-info">Sex: {curUser.sex}</h3>
                     <h3 className="display-info">Photo:</h3>
-                    <img className="display-info" width="50vw" hight="50vh" src="https://i.postimg.cc/CKGz7xXV/sponge-Bob.jpg" alt={curUser.name}/>
+                    <img className="display-img"  src="https://i.postimg.cc/CKGz7xXV/sponge-Bob.jpg" alt={curUser.name}/>
                     <h3 className="display-info">Birthday: {curUser.birthday.year} {curUser.birthday.month} {curUser.birthday.day} </h3>
                     <button className="edit-button" onClick={() => {setEditMode(true)}}>Edit</button>
                 </div>

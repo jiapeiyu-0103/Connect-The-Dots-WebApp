@@ -1,20 +1,17 @@
 import React from 'react';
-import './Diary.css';
+import './EditModal.css';
 import { useState} from 'react';
-import UploadImage from './UploadImageModal';
-import UploadAudio from './UploadAudioModal';
-import UploadVideo from './UploadVideoModal';
+import UploadImage from '../diary/UploadImageModal';
+import UploadAudio from '../diary/UploadAudioModal';
+import UploadVideo from '../diary/UploadVideoModal';
 
-function Diary() {
+function EditModal(props) {
     // const imageUploader = React.useRef(null);
     // const audioUploader = React.useRef(null);
     const day = new Date().toLocaleString("en-US", { day : '2-digit'});
-    // const month = new Date().toLocaleString("en-US", { month: "long" });
-    
-    const month =new Date().getMonth()+1;
-
+    const month = new Date().toLocaleString("en-US", { month: "long" });
     const year = new Date().getFullYear();
-    const separator = '/';
+    const separator = '';
     const [pics, setPics] = useState(null);
     const [videos, setVideos] = useState(null);
    
@@ -22,11 +19,16 @@ function Diary() {
     const [isImageOpen, setIsImageOpen] = useState(false);
     const [isAudioOpen, setIsAudioOpen] = useState(false);
     const [isVideoOpen, setIsVideoOpen] = useState(false);
+    const showModal = props.show ? "edit-modal display-block" : "edit-modal display-none";
 
     return (
+        <div className={showModal}>
+        <button onClick={props.handleClose} className="modal-button">&times;</button>
+        
+        <div className="modal-content">
         <div id="Diary" >
             <div className="title">
-                <h1>Hi, sweetie! Do you want to record your day?</h1>
+                <h2>Edit Diary</h2>
                 <br/>
                 <hr/>
             </div>
@@ -220,11 +222,11 @@ function Diary() {
                 <hr/>
             </div>
             <div>
-                <h3 >Date: {month}{separator}{day},{year} </h3>
+                <h3 >Date: {month}{separator}{day},{year}{separator} </h3>
                 </div>
            
             <div>
-            <div className="diary">
+            <div className="edit-diary">
                 <div className="pic-upload" id="picture-upload">
                     {/* <input type="file" accept="image/*" multiple = "false"
                            style={{
@@ -235,12 +237,12 @@ function Diary() {
                         <img className="img-display" />
                         
                     </div>
-                <div className="button-container" >
-                    <button className="buttons" onClick={()=>setIsImageOpen(true)}>Add image</button>
+                <div className="edit-button-container" >
+                    <button className="edit-buttons" onClick={()=>setIsImageOpen(true)}>Add image</button>
                     {/* <button className="upload-button">View picture</button> */}
-                    <button className="buttons" onClick={()=>setIsAudioOpen(true)}>Add audio</button>
+                    <button className="edit-buttons" onClick={()=>setIsAudioOpen(true)}>Add audio</button>
                     {/* <button className="upload-button">View audio</button> */}
-                    <button className="buttons" onClick={()=>setIsVideoOpen(true)}>Add video</button>
+                    <button className="edit-buttons" onClick={()=>setIsVideoOpen(true)}>Add video</button>
                     {/* <button className="upload-button">View video</button> */}
                 </div>
                 </div>
@@ -252,7 +254,7 @@ function Diary() {
             </div>
 
             </div>
-            
+            <button className="buttons" >Save as Draft</button> 
                 <button className="buttons" >Record</button> 
                 <div>
                 {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
@@ -270,7 +272,9 @@ function Diary() {
             
             
         </div>
+        </div>
+        </div>
     );
 }
 
-export default Diary;
+export default EditModal;
