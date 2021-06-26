@@ -30,6 +30,14 @@
     margin-left: 9vw;
 }
 
+.display-img {
+    margin-bottom: 2vh;
+    margin-right: 2vh;
+    margin-left: 9vw;
+    width:10vw;
+    height: 15vh;
+}
+
 .info-container {
     position: absolute;
     width: 30vw;

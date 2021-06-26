@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import {useEffect} from 'react';
+import TextField from '@material-ui/core/TextField';
 function ChatScreen(props) {
 const handleKeyPress = (e) => {
     const key = e.keyCode || e.which;
@@ -54,7 +55,15 @@ if(chatLog && chatLog.length !== 0) {
                      
                   <div id="chatNav">
                       <button onClick= {props.endConnection}> Disconnect </button>
-                      <input onKeyPress={(e)=>handleKeyPress(e)} type="text" id="yourChat" />
+                      {/*<input onKeyPress={(e)=>handleKeyPress(e)} type="text" id="yourChat" />*/}
+                      <TextField
+                            variant='outlined'
+                            color='primary'
+                            id="yourChat"
+                            onKeyPress={(e)=>handleKeyPress(e)}
+                        
+                            
+                        />
                       <button onClick={handleSend}> SEND </button>
                   </div>
             </div>

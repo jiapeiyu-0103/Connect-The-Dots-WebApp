@@ -1,16 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
-import './UploadAudioModal.css';
+//import './MessageUploadAudioModal.css';
 import AudioReactRecorder, { RecordState } from 'audio-react-recorder'
 
 
-function UploadAudioModal(props){
+function MessageUploadAudioModal(props){
 
     const showModal = props.show ? "audio-modal display-block" : "audio-modal display-none";
     const [recordState, setRecordState]=useState(null);
     {/* Audio Reference from: https://www.npmjs.com/package/audio-react-recorder */}
     return (
-      <div className={showModal}>
+      <div id= "messageAudioModal" className={showModal}>
           <button onClick={props.handleClose} className="modal-button">&times;</button>
           
           <div className="modal-content">
@@ -32,4 +32,4 @@ function UploadAudioModal(props){
       );
 }
 
-export default UploadAudioModal;
+export default MessageUploadAudioModal;
