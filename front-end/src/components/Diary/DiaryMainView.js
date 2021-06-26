@@ -28,7 +28,9 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import Diary from './diary/Diary';
-
+import Search from './search/Search';
+import Favorite from './favorite/FavoriteDiary';
+import Manage from './manage/Manage';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'absolute',
@@ -53,14 +55,14 @@ export default function DiaryMainView() {
             <Tab label="Diary" value="1"  />
             <Tab label="Search" value="2" />
             <Tab label="Favorite" value="3" />
-            <Tab label="Draft" value="4" />
+            <Tab label="Manage" value="4" />
           </TabList>
         </AppBar>
         {/* insert component into the tabpanel */}
         <TabPanel value="1"><Diary/></TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-        <TabPanel value="4"> Draft</TabPanel>
+        <TabPanel value="2"><Search/></TabPanel>
+        <TabPanel value="3"><Favorite/></TabPanel>
+        <TabPanel value="4"><Manage/></TabPanel>
       </TabContext>
     </div>
   );
