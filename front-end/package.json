@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.1.10",
     "audio-react-recorder": "^1.0.4",
     "bootstrap": "^5.0.2",
+    "d3": "^7.0.0",
     "infinite-react-carousel": "^1.2.11",
     "moment": "^2.29.1",
     "react": "^17.0.2",

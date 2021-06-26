@@ -18,12 +18,12 @@
 }
 
   /* Add rounded corners to the top left and the top right corner of the image */
-  img {
+  /* img {
     border-radius: 5px 5px 0 0;
     width: 28vw;
     height: 30vh;
    
-}
+} */
 
   /* On mouse-over, add a deeper shadow */
   /* card shrink animantion reference from: https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users/ */
