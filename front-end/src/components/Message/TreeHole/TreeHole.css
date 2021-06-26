@@ -17,9 +17,12 @@
 }
 
 
+
+
 #treeHoleImageFormWrapper {
     position: relative;
 }
+
 
 #treeHoleImage {
     width: 45%;
@@ -45,14 +48,17 @@
     border: none;
     color:white;
     font-family:  "Optima", sans-serif;
-    font-size:1.2vw;
+    font-size:1vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
+    margin-right: 10px;
+    margin-top: 0vh;
     position: relative;
+    transform: translate(0%,-200%);
 }
 
 #treeHoleForm button:hover{
@@ -61,7 +67,16 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
  }
 
+/* .send-button{
+    position: relative; 
+
+
+ } */
 @media only screen and (max-width: 1300px) {
+    
+    .treeHoleInput {
+        height: 28vh;
+    }
   #treeHoleForm input {
     width: 96%;
     height: 8vw;
@@ -69,15 +84,56 @@
 }
 
 }
+
+
+@media only screen and (max-width: 1200px) {
+    
+    .treeHoleInput {
+        height: 25vh;
+    }
+
+
+}
+
+@media only screen and (max-width: 1100px) {
+    
+    .treeHoleInput {
+        height: 20vh;
+    }
+
+
+}
+
+
+
     
     
 @media only screen and (max-width: 800px) {
-  #treeHoleForm input {
+  .treeHoleInput {
+        height: 15vh;
+    }
+    #treeHoleForm input {
         height: 70px;
     
    }
 
 }
+
+@media only screen and (max-width: 700px) {
+  .treeHoleInput {
+        height: 10vh;
+    }
+    #treeHoleForm input {
+        height: 70px;
+    
+   }
+
+}
+
+.treeHoleModalOuter{
+    min-width: 600px;
+}
+
 
 .threadList {
     list-style-type: none;

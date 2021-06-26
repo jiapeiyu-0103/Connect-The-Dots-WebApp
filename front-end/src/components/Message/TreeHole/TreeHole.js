@@ -4,12 +4,24 @@ import treeHoleImage from '../img/treeHole.png';
 import * as YourInfo from '../../../constants/YourInfo';
 import {constructYourObj} from '../../../constants/Helpers';
 import Thread from '../Thread/Thread';
+import MessageUploadAudioModal from '../MessageUploadAudioModal';
+import MessageUploadVideoModal from '../MessageUploadVideoModal';
+import MessageUploadImageModal from '../MessageUploadImageModal';
+import TextField from '@material-ui/core/TextField';
 function TreeHole() {
 
 const isMounted = useRef(false);
 
 const yourName = YourInfo.YOUR_NAME;
 const yourLocation = YourInfo.YOUR_LOCATION;
+    
+const [pics, setPics] = useState(null);
+const [videos, setVideos] = useState(null);
+const [audioData, setAudioData]=useState(null);
+    
+const [isImageOpen, setIsImageOpen] = useState(false);
+const [isAudioOpen, setIsAudioOpen] = useState(false);
+const [isVideoOpen, setIsVideoOpen] = useState(false);
 
 const [threads, setThreads] = useState(
 [
@@ -103,6 +115,75 @@ const [threads, setThreads] = useState(
 
 
     }, [threads.length]);
+    
+    
+    useEffect(() => {
+        if (isMounted.current) {
+                const messageAudioModal = document.getElementById("messageAudioModal");
+            if (messageAudioModal) {
+                messageAudioModal.scrollIntoView({
+                    block: "end",
+                    inline: "center",
+                    behavior: "smooth",
+                    alignToTop: false
+                });
+
+    }
+
+        } else {
+            isMounted.current = true;
+        }
+
+
+
+    }, [isAudioOpen]);
+    
+    
+       useEffect(() => {
+        if (isMounted.current) {
+                const messageVideoModal = document.getElementById("messageVideoModal");
+            if (messageVideoModal) {
+                messageVideoModal.scrollIntoView({
+                    block: "end",
+                    inline: "center",
+                    behavior: "smooth",
+                    alignToTop: false
+                });
+
+    }
+
+        } else {
+            isMounted.current = true;
+        }
+
+
+
+    }, [isVideoOpen]);
+    
+    
+    
+       useEffect(() => {
+        if (isMounted.current) {
+                const messageImageModal = document.getElementById("messageImageModal");
+            if (messageImageModal) {
+                messageImageModal.scrollIntoView({
+                    block: "end",
+                    inline: "center",
+                    behavior: "smooth",
+                    alignToTop: false
+                });
+
+    }
+
+        } else {
+            isMounted.current = true;
+        }
+
+
+
+    }, [isImageOpen]);
+    
+    
 
     
 const handleSubmit = (index, replyValue) => {
@@ -116,10 +197,14 @@ const handleSubmit = (index, replyValue) => {
 }
 
 
-const addThread = (value) => {
+const addThread = (value, audio, img, vid) => {
     const newThreads = [...threads];
     
     const threadToAdd = constructYourObj(value);
+    
+    threadToAdd.audioUrl = audio;
+    threadToAdd.imageUrl = img;
+    threadToAdd.videoUrl = vid;
     
     newThreads.push(threadToAdd);
     
@@ -138,31 +223,99 @@ if (threads && threads.length !== 0) {
     );
 }
 
+const openAudioModal = () => {
+    setIsAudioOpen(true);
+    
+
+    
+}
+
+
+const openImageModal = () => {
+    setIsImageOpen(true);
+    
+
+    
+}
+
+
+const openVideoModal = () => {
+    setIsVideoOpen(true);
+    
+
+    
+}
+
 
 const handleSend = () => {
     const value = document.getElementById("treeHoleFormInput").value;
-    if (value) {
-        addThread(value);
-    } 
+    
+    if (value || audioData || pics || videos) {
+         addThread(value, audioData, pics, videos);
+    }
+   
+    
     document.getElementById("treeHoleFormInput").value = '';
+    setAudioData(null);
+    setPics(null);
+    setVideos(null);
+    
+    setIsAudioOpen(false);
+    setIsImageOpen(false);
+    setIsVideoOpen(false);
 }
             return (
                 <div id="treeHoleOuter">
+              
+                
+                
+                
                     <div id="treeHoleImageFormWrapper">
                         <img alt="stuff" id="treeHoleImage" src="https://i.postimg.cc/XqZ1Mmw4/tree-hole.jpg" />
                         <div id="treeHoleForm">
-                            <textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>
+                {/*<textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>*/}
+                   
+                    <TextField
+                            variant='filled'
+                            id="treeHoleFormInput" 
+                            color='primary'
+                            label='Tell me your concerns:'
+                            multiline
+                            className="treeHoleInput"/>
+                
+                            <br/>
+                            <div className="send-container">
                             <button className="send-button"onClick={handleSend}>SEND</button>
+                            <button className="send-button" onClick={()=>openAudioModal()}>ADD AUDIO</button>
+                            <button className="send-button" onClick={()=>openImageModal()}>ADD IMAGE</button>
+                            <button className="send-button" onClick={()=>openVideoModal()}>ADD VIDEO</button>
+                            </div>
                         </div>
+
+  
+
+            
 
                     </div>
                     <br/>
                     <hr/>
+       
                 
                     <ul className="threadList"> 
                         {threadList}
                         
                     </ul>
+
+                {isAudioOpen && (<div className="treeHoleModalOuter"><MessageUploadAudioModal url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/> </div>)}
+             
+         
+                {isImageOpen && (<div className="treeHoleModalOuter"><MessageUploadImageModal url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/> </div>)}
+
+
+                {isVideoOpen && (<div className="treeHoleModalOuter"><MessageUploadVideoModal url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/> </div>)}
+
+
+            
                     
                 </div>
             );

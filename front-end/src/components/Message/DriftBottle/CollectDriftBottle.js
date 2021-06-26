@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import defaultUserImage from '../img/Default_User_Logo.png';
 import './CollectDriftBottle.css'
+import TextField from '@material-ui/core/TextField';
+
 function CollectDriftBottle(props) {
 const handleReply = () => {
     //Do reply works
@@ -32,7 +34,19 @@ const handleReply = () => {
 
                     <div className="collectReply" id="collectReplyTab">
                     
-                        <textarea placeholder="Type your reply..." id="collectReplyField" rows="8"></textarea>
+                      { /* <textarea placeholder="Type your reply..." id="collectReplyField" rows="8"></textarea>*/}
+                        
+                        
+                    <TextField
+                            variant='filled'
+                            id="collectReplyField" 
+                            color='primary'
+                            label='Type your reply...'
+                            multiline
+                            style={{
+                                'width': '100%',
+                            }}
+                            />
                     </div>
                     <button onClick={handleReply}>SEND</button>
                 </div>
