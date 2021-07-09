@@ -1,0 +1,7 @@
+In your terminal, input:
+
+mongo "mongodb+srv://connectthedotscluster.ottrl.mongodb.net/myFirstDatabase" --username ConnectTheDotsDbAdmin
+
+When prompted for password, type: readandwrite
+
+
