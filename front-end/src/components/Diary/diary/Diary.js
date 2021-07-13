@@ -4,6 +4,7 @@ import { useState} from 'react';
 import UploadImage from './UploadImageModal';
 import UploadAudio from './UploadAudioModal';
 import UploadVideo from './UploadVideoModal';
+import { addDiary } from '../../../services/api';
 
 function Diary() {
     // const imageUploader = React.useRef(null);
