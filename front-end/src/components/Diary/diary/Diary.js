@@ -253,7 +253,7 @@ function Diary() {
 
             </div>
             
-                <button className="buttons" >Record</button> 
+                <button className="buttons" onClick={()=> setRecord}>Record</button> 
                 <div>
                 {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
                 </div>
