@@ -1,6 +1,22 @@
 .app {
     height: 100vh;
-    width: 100vw;
+    width: 80vw;
     overflow: auto;
     background-size: cover;
+    position: relative;
+}
+
+.select {
+    margin-bottom: 5vh;
+}
+
+.summary-title {
+    font-size: 2vw;
+    font-family: "Optima", sans-serif;
+    color: black;
+
+}
+
+.pie-chart {
+    background-color: rgba(86, 121, 157, 0.6);
 }

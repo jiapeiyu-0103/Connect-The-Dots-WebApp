@@ -14,10 +14,11 @@ const schema = mongoose.Schema({
 	activity: String,
 	act_emoji: String,
 	like: Boolean,
-	date: {type: Date, default: Date.now()},
+	date: String,
+    month: Number,
 	audio: Array,
 	pics: Array,
 	video: Array,
-});
+}, {collection: "diary"});
 
 module.exports = mongoose.model("DiaryEntry", schema);
