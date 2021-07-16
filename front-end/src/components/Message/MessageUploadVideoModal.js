@@ -18,7 +18,7 @@ function MessageUploadVideoModal(props){
                     </div>
                     
                     <div className="pics-upload" >
-                     <input type="file" accept="video/*" multiple = "true" onChange={(e) => props.setState(URL.createObjectURL(e.target.files[0]))} /> 
+                     <input type="file" accept="video/*" multiple = {"true"} onChange={(e) => props.setState(URL.createObjectURL(e.target.files[0]), e.target.files[0])}  /> 
                     </div>
                     
           </div>          

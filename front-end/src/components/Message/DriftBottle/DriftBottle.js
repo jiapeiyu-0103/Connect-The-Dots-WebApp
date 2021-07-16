@@ -20,6 +20,7 @@ const exampleCollectedBottle = {
 
 
 const [imageFileInfo, setImageFileInfo] = useState(null);
+const [videoFileInfo, setVideoFileInfo] = useState(null);
 
 const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
@@ -119,6 +120,9 @@ const addSentBottle = (e) => {
                 if (imageFileInfo) {
                     postImageDriftBottle(data.bottleId);
                 }
+                if(videoFileInfo) {
+                    postVideoDriftBottle(data.bottleId);
+                }
                 fetchSendBottles();
 
             } else {
@@ -126,6 +130,31 @@ const addSentBottle = (e) => {
             }
      })
 
+}
+
+
+const postVideoDriftBottle = (bottleId) => {
+    const formData = new FormData();
+    formData.append('bottleId', bottleId);
+    formData.append('userId', userId);
+    formData.append('videoFile', videoFileInfo.videoFile);
+    formData.append('videoFileName', videoFileInfo.videoFileName);
+    
+     fetch(SERVER_URL+'messageApi/addDriftBottlesVideos', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'AddDriftBottlesVideos SUCCESS') {
+                
+                fetchSendBottles();
+                setVideoFileInfo(null);
+
+            } else {
+                console.error("Error when ADD a Send Drift Bottle VIDEO!");
+            }
+     })
 }
 
 const postImageDriftBottle = (bottleId) => {
@@ -136,13 +165,13 @@ const postImageDriftBottle = (bottleId) => {
     formData.append('imageFile', imageFileInfo.imageFile);
     formData.append('imageFileName', imageFileInfo.imageFileName);
     
-     fetch(SERVER_URL+'messageApi/addDriftBottlesImage', {
+     fetch(SERVER_URL+'messageApi/addDriftBottlesImages', {
             method: 'POST',
             body: formData,
         })
         .then(response => response.json())
         .then((data) => {
-            if (data === 'AddDriftBottlesImage SUCCESS') {
+            if (data === 'AddDriftBottlesImages SUCCESS') {
                 
                 fetchSendBottles();
                 setImageFileInfo(null);
@@ -273,6 +302,16 @@ const handleImageUpload = (url, file) => {
     
 }
 
+const handleVideoUpload = (url, file) => {
+    setVideos(url);
+    const videoFileInfo = {
+        videoFile: file,
+        videoFileName: file.name,
+    }
+    setVideoFileInfo(videoFileInfo);
+    
+}
+
 
 const setModalToMy = () => {
     setDriftBotModalState(DriftBottleStates.MY_BOTTLES);
@@ -284,7 +323,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal  videos={videos} setVideos={setVideos} pics={pics} setPics={handleImageUpload} audioData={audioData} setAudioData={setAudioData} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal  videos={videos} setVideos={handleVideoUpload} pics={pics} setPics={handleImageUpload} audioData={audioData} setAudioData={setAudioData} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>
