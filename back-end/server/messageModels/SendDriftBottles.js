@@ -12,6 +12,7 @@ const schema = mongoose.Schema({
     videoUrl: String,
     content:  String,
     imageFileName: String,
+    videoFileName: String,
     replies: [
         
         {   
