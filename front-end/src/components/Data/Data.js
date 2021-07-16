@@ -12,133 +12,189 @@ function Data() {
 
     const { Option } = Select;
     const [month, setMonth] = useState(1);
-
     // how to reduce duplication
-    const [sunny, setSunny] = useState(0);
-    const [cloudy, setCloudy] = useState(0);
-    const [rain, setRain] = useState(0);
-    const [snow, setSnow] = useState(0);
-    const [thundershower, setThundershower] = useState(0);
-    const [overcast, setOvercast] = useState(0);
+    // const [sunny, setSunny] = useState(0);
+    // const [cloudy, setCloudy] = useState(0);
+    // const [rain, setRain] = useState(0);
+    // const [snow, setSnow] = useState(0);
+    // const [thundershower, setThundershower] = useState(0);
+    // const [overcast, setOvercast] = useState(0);
+    //
+    // const [writing, setWriting] = useState(0);
+    // const [dancing, setDancing] = useState(0);
+    // const [party, setParty] = useState(0);
+    // const [show, setShow] = useState(0);
+    // const [travel, setTravel] = useState(0);
+    // const [park, setPark] = useState(0);
+    // const [delicacy, setDelicacy] = useState(0);
+    // const [sport, setSport] = useState(0);
+    // const [game, setGame] = useState(0);
+    //
+    // const [grinning, setGrinning] = useState(0);
+    // const [grin_squint, setGrin_squint] = useState(0);
+    // const [touched, setTouched] = useState(0);
+    // const [angry, setAngry] = useState(0);
+    // const [weary, setWeary] = useState(0);
+    // const [crying, setCrying] = useState(0);
+    // const [exploding, setExploding] = useState(0);
+    // const [fearful, setFearful] = useState(0);
+    // const [woozy, setWoozy] = useState(0);
+    const [tags, setTags] = useState({
+        sunny: 0,
+        cloudy: 0,
+        rain: 0,
+        snow: 0,
+        thundershower: 0,
+        overcast: 0,
+        writing: 0,
+        dancing: 0,
+        party: 0,
+        show: 0,
+        travel: 0,
+        park: 0,
+        delicacy: 0,
+        sport: 0,
+        game: 0,
+        grinning: 0,
+        grin_squint: 0,
+        touched: 0,
+        angry: 0,
+        weary: 0,
+        crying: 0,
+        exploding: 0,
+        fearful: 0,
+        woozy: 0
+    });
 
-    const [writing, setWriting] = useState(0);
-    const [dancing, setDancing] = useState(0);
-    const [party, setParty] = useState(0);
-    const [show, setShow] = useState(0);
-    const [travel, setTravel] = useState(0);
-    const [park, setPark] = useState(0);
-    const [delicacy, setDelicacy] = useState(0);
-    const [sport, setSport] = useState(0);
-    const [game, setGame] = useState(0);
+    const weather = [tags.sunny, tags.cloudy, tags.rain, tags.snow, tags.thundershower, tags.overcast];
 
-    const [grinning, setGrinning] = useState(0);
-    const [grin_squint, setGrin_squint] = useState(0);
-    const [touched, setTouched] = useState(0);
-    const [angry, setAngry] = useState(0);
-    const [weary, setWeary] = useState(0);
-    const [crying, setCrying] = useState(0);
-    const [exploding, setExploding] = useState(0);
-    const [fearful, setFearful] = useState(0);
-    const [woozy, setWoozy] = useState(0);
+    const activity = [tags.writing, tags.dancing, tags.party, tags.show, tags.travel, tags.park, tags.delicacy, tags.sport, tags.game];
 
-    const weather = [sunny, cloudy, rain, snow, thundershower, overcast];
-
-    const activity = [writing, dancing, party, show, travel, park, delicacy, sport, game];
-
-    const feeling = [grinning, grin_squint, touched, angry, weary, crying, exploding, fearful, woozy];
+    const feeling = [tags.grinning, tags.grin_squint, tags.touched, tags.angry, tags.weary, tags.crying, tags.exploding, tags.fearful, tags.woozy];
 
 
     const handleChange = (value) => {
         let month = value.value;
-        setSunny(0);
-        setCloudy(0);
-        setRain(0);
-        setSnow(0);
-        setThundershower(0);
-        setOvercast(0);
-        setWriting(0);
-        setDancing(0);
-        setParty(0);
-        setShow(0);
-        setTravel(0);
-        setPark(0);
-        setDelicacy(0);
-        setSport(0);
-        setGame(0);
-        setGrinning(0);
-        setGrin_squint(0);
-        setTouched(0);
-        setAngry(0);
-        setWeary(0);
-        setCrying(0);
-        setExploding(0);
-        setFearful(0);
-        setWoozy(0);
+        // setSunny(0);
+        // setCloudy(0);
+        // setRain(0);
+        // setSnow(0);
+        // setThundershower(0);
+        // setOvercast(0);
+        // setWriting(0);
+        // setDancing(0);
+        // setParty(0);
+        // setShow(0);
+        // setTravel(0);
+        // setPark(0);
+        // setDelicacy(0);
+        // setSport(0);
+        // setGame(0);
+        // setGrinning(0);
+        // setGrin_squint(0);
+        // setTouched(0);
+        // setAngry(0);
+        // setWeary(0);
+        // setCrying(0);
+        // setExploding(0);
+        // setFearful(0);
+        // setWoozy(0);
+
+        //reset the obj once we select an another month
+        setTags({
+            sunny: 0,
+            cloudy: 0,
+            rain: 0,
+            snow: 0,
+            thundershower: 0,
+            overcast: 0,
+            writing: 0,
+            dancing: 0,
+            party: 0,
+            show: 0,
+            travel: 0,
+            park: 0,
+            delicacy: 0,
+            sport: 0,
+            game: 0,
+            grinning: 0,
+            grin_squint: 0,
+            touched: 0,
+            angry: 0,
+            weary: 0,
+            crying: 0,
+            exploding: 0,
+            fearful: 0,
+            woozy: 0
+        });
         setMonth(month);
         calculateSummary(month);
+        // get the right month
         console.log("month " + month);
         console.log("weather " + weather);
-    }
+    };
 
 
     const calculateSummary = (month) => {
         api.getOneMonthDairies(month).then(function (res) {
+            // print data get from back-end(database) -> get the right data
             console.log(res.data);
             res.data.map(function (dairy) {
                 console.log(dairy.weather);
                 if (dairy.weather === "sunny") {
-                    setSunny(sunny + 1);
-                    console.log("sunny " + sunny);
+                    setTags(tags.sunny + 1);
+                    // cannot really update the corresponding fields. The output is undefined.
+                    console.log("sunny " + tags.sunny);
                 } else if (dairy.weather === "cloudy") {
-                    setCloudy(cloudy + 1);
+                    setTags(tags.cloudy + 1);
                 } else if (dairy.weather === "rain") {
-                    setRain(rain + 1);
+                    setTags(tags.rain + 1);
                 } else if (dairy.weather === "snow") {
-                    setSnow(snow + 1);
+                    setTags(tags.snow + 1);
                 } else if (dairy.weather === "thundershower") {
-                    setThundershower(thundershower + 1);
+                    setTags(tags.thundershower + 1);
                 } else if (dairy.weather === "overcast") {
-                    setOvercast(overcast + 1);
+                    setTags(tags.overcast + 1);
                 }
 
                 if (dairy.activity === "writing") {
-                    setWriting(writing + 1);
+                    setTags(tags.writing + 1);
                 } else if (dairy.activity === "dancing") {
-                    setDancing(dancing + 1);
+                    setTags(tags.dancing + 1);
                 } else if (dairy.activity === "party") {
-                    setParty(party + 1);
+                    setTags(tags.party + 1);
                 } else if (dairy.activity === "show") {
-                    setShow(show + 1);
+                    setTags(tags.show + 1);
                 } else if (dairy.activity === "travel") {
-                    setTravel(travel + 1);
+                    setTags(tags.travel + 1);
                 } else if (dairy.activity === "park") {
-                    setPark(park + 1);
+                    setTags(tags.park + 1);
                 } else if (dairy.activity === "delicacy") {
-                    setDelicacy(delicacy + 1);
+                    setTags(tags.delicacy + 1);
                 } else if (dairy.activity === "sport") {
-                    setSport(sport + 1);
+                    setTags(tags.sport + 1);
                 } else if (dairy.activity === "game") {
-                    setGame(game + 1);
+                    setTags(tags.game + 1);
                 }
 
                 if (dairy.emotion === "grinning") {
-                    setGrinning(grinning + 1);
+                    setTags(tags.grinning + 1);
                 } else if (dairy.emotion === "grin-squint") {
-                    setGrin_squint(grin_squint + 1);
+                    setTags(tags.grin_squint + 1);
                 } else if (dairy.emotion === "touched") {
-                    setTouched(touched + 1);
+                    setTags(tags.touched + 1);
                 } else if (dairy.emotion === "angry") {
-                    setAngry(angry + 1);
+                    setTags(tags.angry + 1);
                 } else if (dairy.emotion === "weary") {
-                    setWeary(weary + 1);
+                    setTags(tags.weary + 1);
                 } else if (dairy.emotion === "crying") {
-                    setCrying(crying + 1);
+                    setTags(tags.crying + 1);
                 } else if (dairy.emotion === "exploding") {
-                    setExploding(exploding + 1);
+                    setTags(tags.exploding + 1);
                 } else if (dairy.emotion === "fearful") {
-                    setFearful(fearful + 1);
+                    setTags(tags.fearful + 1);
                 } else if (dairy.emotion === "woozy") {
-                    setWoozy(woozy + 1);
+                    setTags(tags.woozy + 1);
                 }
             });
 
