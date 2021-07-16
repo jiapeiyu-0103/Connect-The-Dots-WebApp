@@ -7,7 +7,7 @@ import {filterDate,getAll } from '../../../actions';
 import 'react-day-picker/lib/style.css';
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
-function Search() {
+function Search(props) {
   const diaries = useSelector(state => state.diaries);
 //   const isModalOpen = useSelector(state => state.addModal);
   const dispatch = useDispatch();

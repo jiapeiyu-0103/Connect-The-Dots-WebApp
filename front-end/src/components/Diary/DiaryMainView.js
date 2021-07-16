@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DiaryMainView() {
+export default function DiaryMainView(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState('1');
 
@@ -59,10 +59,10 @@ export default function DiaryMainView() {
           </TabList>
         </AppBar>
         {/* insert component into the tabpanel */}
-        <TabPanel value="1"><Diary/></TabPanel>
-        <TabPanel value="2"><Search/></TabPanel>
-        <TabPanel value="3"><Favorite/></TabPanel>
-        <TabPanel value="4"><Manage/></TabPanel>
+        <TabPanel value="1"><Diary curUser={props.curUser}/></TabPanel>
+        <TabPanel value="2"><Search curUser={props.curUser}/></TabPanel>
+        <TabPanel value="3"><Favorite curUser={props.curUser}/></TabPanel>
+        <TabPanel value="4"><Manage curUser={props.curUser}/></TabPanel>
       </TabContext>
     </div>
   );

@@ -88,7 +88,7 @@ export default function DashboardNavBar(props) {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-      <DiaryMainView />
+      <DiaryMainView curUser={props.curUser}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <Message/>

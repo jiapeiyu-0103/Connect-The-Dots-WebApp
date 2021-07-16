@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 // import {add} from './../actions';
 import DiaryEntry from '../search/DiaryEntry';
 
-function FavoriteDiary() {
+function FavoriteDiary(props) {
   const diaries = useSelector(state => state.diaries);
   const favList = useSelector(state => state.favList);
 //   const isModalOpen = useSelector(state => state.addModal);
