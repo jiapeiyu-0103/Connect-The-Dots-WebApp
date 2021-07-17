@@ -9,20 +9,22 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import {makeStyles, ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
+import {makeStyles, ThemeProvider} from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
 
 const RegisterForm = (props) => {
 
-     const useStyles = makeStyles({
-         root: {
-             background: 'linear-gradient(45deg, #333, #999)',
-             border: 0,
-             borderRadius: 15,
-             padding: '0 30px'
-         }
-     })
+    //  const useStyles = makeStyles({
+    //      root: {
+    //          background: 'linear-gradient(45deg, #333, #999)',
+    //          border: 0,
+    //          borderRadius: 15,
+    //          padding: '0 30px'
+    //      }
+    //  })
 
 
     const [name, setName] = useState('')
@@ -34,14 +36,43 @@ const RegisterForm = (props) => {
 
     // check if the user name has been used before if not then return true
     // require the implement of database
-    const checkUserID = (name) => {
-        return true
+    const checkNameAndCreate = (username) => {
+        axios.get(`http://localhost:3000/userApi/checkUserName/${username}`)
+            .then((response) => {
+                console.log("retrieve data from database and wait for username duplication check")
+                console.log(response)
+                if (response.data === "") {
+                    createUserAndStore(name, pswd, sex, date)
+                    setName('')
+                    setPswd('')
+                    setRePswd('')
+                    setSex('')
+                    setDate('')
+                    props.HideRegisterForm(true)
+                } else {
+                    alert("user name has been registered, please try another one")
+                }
+            })
+            .catch((err) => {
+                console.log("error when check if username is used")
+            })
     }
 
     // create a user instance and store into database
     // require: 1) back implement of user class 2) implement of database
-    const createUserAndStore = (name, pswd, sex, year, month, day) => {
-        return {}
+    const createUserAndStore = (name, pswd, sex, date) => {
+        axios.post('http://localhost:3000/userApi/users', {
+            userID: uuidv4(),
+            username: name,
+            password: pswd,
+            sex: sex,
+            birthday: date,
+            photo: "some default path in public folder"
+        }).then((response) => {
+            console.log(">> New user is added successfully.")
+        }).catch((err) => {
+            console.log(err)
+        })
     }
     
     
@@ -53,23 +84,12 @@ const RegisterForm = (props) => {
             return
         }
 
-        if(!checkUserID(name)) {
-            alert("user name has been registered, please try another one")
-            return
-        }
-
         if(pswd !== rePswd) {
             alert("passwords do not match")
             return
         }
 
-        createUserAndStore(name, pswd, sex, date)
-        setName('')
-        setPswd('')
-        setRePswd('')
-        setSex('')
-        setDate('')
-        props.HideRegisterForm(true)
+        checkNameAndCreate(name)
     }
     
 
