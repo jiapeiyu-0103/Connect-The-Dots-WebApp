@@ -107,6 +107,40 @@ router.post ("/addDriftBottlesVideos", (req, res) => {
 
 })
 
+router.post ("/addDriftBottlesAudios", (req, res) => {
+    const fullServerUrl = req.protocol + '://' + req.get('host');
+    const form = new multiparty.Form();
+    form.parse(req, async (err,fields, files) => {
+        const audioFileName = fields.audioFileName[0];
+        const userId = fields.userId[0];
+        const bottleId = fields.bottleId[0];
+        let hashAudioName = null;
+        
+        
+        hashAudioName = getHashFileName(userId, audioFileName);
+        //The file itself
+        const uploadAudioFile = files.audioFile[0];
+        const path_temp = uploadAudioFile.path;
+        //Move uploaded file with unique name to server public/files folder
+        await fs.rename(path_temp,`${__dirname}/public/driftBottleAudios/${hashAudioName}`, (err) => {
+            if (err) console.error(err);
+        });
+        
+        const query = {_id: bottleId},
+        update = {audioFileName: hashAudioName, audioUrl: fullServerUrl+"/messageApi/getDriftBottleAudios/"+hashAudioName},
+        options = { upsert: true, new: true, setDefaultsOnInsert: true };
+        await SendDriftBottles.findOneAndUpdate(query, update, options, (error, result) => {
+            if (error) console.log("Failed to update audio file name and url. Error: " + error.stack);
+            else console.log("Update audio name and url successfully");
+        });
+        
+        res.json("AddDriftBottlesAudios SUCCESS")
+        
+    
+    });
+
+})
+
 // Add individual send drift bottles.
 router.post("/addSendDriftBottles", async (req, res) => {
 	const sendDriftBottles = new SendDriftBottles({
@@ -175,6 +209,30 @@ router.get('/getDriftBottleVideos/:videoName', function (req, res, next) {
 
 });
 
+router.get('/getDriftBottleAudios/:audioName', function (req, res, next) {
+
+    const options = {
+        root: __dirname + '/public/driftBottleAudios/',
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+    const fileName = req.params.audioName;
+
+
+       //Send request file name
+    res.sendFile(fileName, options, (err) => {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Send Drift Bottle Audio: ', fileName);
+        }
+    })
+
+});
+
 router.delete("/deleteSendDriftBottles/:id", async (req, res) => {
 	try {
         
@@ -193,6 +251,16 @@ router.delete("/deleteSendDriftBottles/:id", async (req, res) => {
         
         if (bottleToDeleteVideo && bottleToDeleteVideo[0].videoFileName) {
            let filePath = `${__dirname}/public/driftBottleVideos/${bottleToDeleteVideo[0].videoFileName}`;
+            await fs.unlink(filePath, (error) => {
+                if(error) console.error(error);
+            }) 
+        }
+        
+        // Delete audio if any
+        const bottleToDeleteAudio = await SendDriftBottles.find({_id:req.params.id}, 'audioFileName');
+        
+        if (bottleToDeleteAudio && bottleToDeleteAudio[0].audioFileName) {
+           let filePath = `${__dirname}/public/driftBottleAudios/${bottleToDeleteAudio[0].audioFileName}`;
             await fs.unlink(filePath, (error) => {
                 if(error) console.error(error);
             }) 

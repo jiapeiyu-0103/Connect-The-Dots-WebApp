@@ -21,6 +21,7 @@ const exampleCollectedBottle = {
 
 const [imageFileInfo, setImageFileInfo] = useState(null);
 const [videoFileInfo, setVideoFileInfo] = useState(null);
+const [audioFileInfo, setAudioFileInfo] = useState(null);
 
 const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
@@ -123,6 +124,9 @@ const addSentBottle = (e) => {
                 if(videoFileInfo) {
                     postVideoDriftBottle(data.bottleId);
                 }
+                if(audioFileInfo) {
+                    postAudioDriftBottle(data.bottleId);
+                }
                 fetchSendBottles();
 
             } else {
@@ -178,6 +182,33 @@ const postImageDriftBottle = (bottleId) => {
 
             } else {
                 console.error("Error when ADD a Send Drift Bottle IMAGE!");
+            }
+     })
+        
+    
+}
+
+const postAudioDriftBottle = (bottleId) => {
+    
+    const formData = new FormData();
+    formData.append('bottleId', bottleId);
+    formData.append('userId', userId);
+    formData.append('audioFile', audioFileInfo.audioFile);
+    formData.append('audioFileName', audioFileInfo.audioFileName);
+    
+     fetch(SERVER_URL+'messageApi/addDriftBottlesAudios', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'AddDriftBottlesAudios SUCCESS') {
+                
+                fetchSendBottles();
+                setAudioFileInfo(null);
+
+            } else {
+                console.error("Error when ADD a Send Drift Bottle AUDIO!");
             }
      })
         
@@ -274,6 +305,9 @@ const closeModal = () => {
     setAudioData(null);
     setPics(null);
     setVideos(null);
+    setImageFileInfo(null);
+    setVideoFileInfo(null);
+    setAudioFileInfo(null);
 }
 
 const setModalToSend = () => {
@@ -313,6 +347,17 @@ const handleVideoUpload = (url, file) => {
 }
 
 
+const handleAudioUpload = (url) => {
+    setAudioData(url.url);
+    const audioFileInfo = {
+        audioFile: url.blob,
+        audioFileName: url.blob.size+"."+url.type.split("/")[1]
+    }
+    setAudioFileInfo(audioFileInfo);
+    
+}
+
+
 const setModalToMy = () => {
     setDriftBotModalState(DriftBottleStates.MY_BOTTLES);
     setShowDriftBotModal(true);
@@ -323,7 +368,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal  videos={videos} setVideos={handleVideoUpload} pics={pics} setPics={handleImageUpload} audioData={audioData} setAudioData={setAudioData} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal  videos={videos} setVideos={handleVideoUpload} pics={pics} setPics={handleImageUpload} audioData={audioData} setAudioData={handleAudioUpload} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>

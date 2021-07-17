@@ -40,7 +40,7 @@ return (
                         </div>
                         <br/>
                         <br/>
-                        {thread.audioUrl ? <audio controls src={thread.audioUrl.url}></audio> : null}
+                        {thread.audioUrl ? <audio controls src={thread.audioUrl}></audio> : null}
                         
                         {thread.imageUrl ? <div className="images-container" >
                         <img  src={thread.imageUrl} alt="stuff"/>    </div> : null}
