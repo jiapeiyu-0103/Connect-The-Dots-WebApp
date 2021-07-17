@@ -5,8 +5,9 @@ import {useState} from 'react'
 import './LoginForm.css'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import axios from 'axios'
 
-function LoginForm({setState, user}) {
+function LoginForm({setState, setUser}) {
     
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
@@ -15,36 +16,36 @@ function LoginForm({setState, user}) {
 
     // match name with password, if match return true, else false;
     // require the implement of database
-    const checkPswd = (name, password) => {
-        return true;
-    }
-
-    const SearchUser = (name) => {
-        return {
-            name: 'default name',
-            sex: 'Female',
-            birthday: {
-                year: '1992',
-                month:'Feb',
-                day:'2',
-            },
-            password: 'default password',
-            unique_id: name,
-            photo: 'default link',
-        }
+    const checkAccess = (username, password) => {
+        axios.get(`http://localhost:3000/userApi/checkUserName/${username}`)
+            .then((response) => {
+                console.log(response.data)
+                let user = response.data
+                if (user !== "" && user.username === username && user.password === password) {
+                    setState(DASHBOARD);
+                    setUser({
+                        username: user.username,
+                        unique_id: user.userID,
+                        sex: user.sex,
+                        birthday: user.birthday,
+                        password: user.password,
+                        photo: user.photo
+                    });
+                } else {
+                    alert("Invaild username or password")
+                }
+                setPassword('');
+                setName('');
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
     
     const onLogin = (e) => {
         e.preventDefault()
 
-        if (checkPswd) {
-            setState(DASHBOARD);
-            user(SearchUser(name));
-        } else {
-            alert("password do not match user id.")
-        }
-        setPassword('');
-        setName('');
+        checkAccess(name, password)
     }
 
     if(hideRgstForm) {
