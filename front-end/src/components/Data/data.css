@@ -11,6 +11,7 @@
 }
 
 .summary-title {
+    background-color: rgba(86, 121, 157, 0.6);
     font-size: 2vw;
     font-family: "Optima", sans-serif;
     color: black;
@@ -18,5 +19,6 @@
 }
 
 .pie-chart {
-    background-color: rgba(86, 121, 157, 0.6);
+    margin-left: 12vw;
+    width: 55vw;
 }
