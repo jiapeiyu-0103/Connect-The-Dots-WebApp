@@ -19,6 +19,6 @@ const schema = mongoose.Schema({
 	audio: Array,
 	pics: Array,
 	video: Array,
-});
+}, {collection: 'diary'});
 
 module.exports = mongoose.model("DiaryEntry", schema);

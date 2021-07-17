@@ -12,7 +12,7 @@ function DiaryInfoModal(props){
         <button onClick={props.handleClose} className="modal-button">&times;</button>
         
         <div className="info-modal-content">
-
+        
           <h2>Title: {props.entry.title} </h2>  
           <h3>Date: {props.entry.date}</h3>
           <h5>Weather: {props.entry.weather}</h5>
@@ -20,11 +20,11 @@ function DiaryInfoModal(props){
           <h5>Activity: {props.entry.activity}</h5>
           
           <h3 className="diary-text">Dear Diary: </h3>
-          <h3 className="diary-text">{props.entry.text}</h3>
+          <h3 className="diary-text">{props.entry.content}</h3>
           
           {/* <img src={props.entry.image}></img> */}
           <Slider dots className="carousel-image">
-                    {props.entry.image.map(ig => (
+                    {props.entry.pics.map(ig => (
                     
                     <img src={ig} alt="diary-image"></img>
                     

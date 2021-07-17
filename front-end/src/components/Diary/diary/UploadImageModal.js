@@ -1,7 +1,7 @@
 import React from 'react';
 import './UploadImageModal.css';
 import Slider from 'infinite-react-carousel';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import useStorage from '../../../hook/useStorage';
 
 function UploadImageModal(props){
@@ -13,23 +13,24 @@ function UploadImageModal(props){
   const types = ['image/png', 'image/jpeg','image/jpg','image/gif'];
   const { url } = useStorage(file);
 
-  // useEffect(() => {
-  //   if (url) {
-  //     setFile(null);
-  //   }
-  // }, [url, setFile]);
+  useEffect(() => {
+    if (url) {
+      props.setState([...props.url,url]);
+      console.log(props.url);
+    }
+  }, [url]);
 
   const handleChange = async (e) => {
     let selected = e.target.files[0];
 
     if (selected) {
-      await setFile(selected);
+      setFile(selected);
       
 
       console.log(selected);
       console.log(file)
       console.log(url);
-      props.setState([...props.url,url]);
+      // props.setState([...props.url,url]);
       setError('');
     } else {
       setFile(null);
@@ -51,6 +52,7 @@ function UploadImageModal(props){
                     {props.url.map(ig => (
                     
                     <img src={ig} alt="diary-image"></img>
+                    
                     
                   ))}  
 

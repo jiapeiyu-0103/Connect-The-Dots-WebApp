@@ -7,24 +7,35 @@ import {filterDate,getAll } from '../../../actions';
 import 'react-day-picker/lib/style.css';
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
+import { getAllDiaries} from '../../../services/diaryApi';
+
+
 function Search(props) {
   const diaries = useSelector(state => state.diaries);
 //   const isModalOpen = useSelector(state => state.addModal);
   const dispatch = useDispatch();
-  const [diary, setDiary] = useState(diaries);
+  const [diary, setDiary] = useState([]);
   const [date, setDate] = useState('');
   const selectDate = (date.year + "-" + date.month + "-" +date.day).toString();
-useEffect(() => {
-  setDiary(diaries);
-  dispatch(filterDate(selectDate));
+
+  useEffect(() => {
+    getAllDiaries()
+      .then(function(res) {
+        setDiary(res);
+          })
+    },[]);  
+
+// useEffect(() => {
+//   setDiary(diaries);
+//   dispatch(filterDate(selectDate));
   
-   console.log(selectDate); 
-    // console.log(selectDate);
-    // console.log(diaries);
-    // console.log(diary);
-    // console.log("hhh");
+//    console.log(selectDate); 
+//     // console.log(selectDate);
+//     // console.log(diaries);
+//     // console.log(diary);
+//     // console.log("hhh");
     
-    });
+//     });
     
 const handleClick=(e)=> {
       setDate('');

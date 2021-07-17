@@ -21,13 +21,13 @@ function DiaryEntry(props){
   const favList = useSelector(state => state.favList);
   const diaries = useSelector(state => state.diaries);
   const [list, setList] = useState(favList);
-  const [like, setLike] = useState(props.entry.favorite);
+  const [like, setLike] = useState(props.entry.like);
   const [favorites, setFavorites]=useState(localStorage.getItem("favorites"));
 //   const favList = localStorage.getItem('favorites') || '0';
  
     return (
         
-        <div className="card" key={props.entry.id}>
+        <div className="card" key={props.entry._id}>
            
             {/* <Slider dots>
                     {props.entry.image.map(ig => (
@@ -36,23 +36,23 @@ function DiaryEntry(props){
                     
                   ))}     
                 </Slider>     */}
-            <img className= "card-image" src={props.entry.image[0]} alt="diary-image"></img>
+            <img className= "card-image" src={props.entry.pics[0]} alt="diary-image"></img>
             <div className="card-container">
                 <h3 className="intro"> Date: {props.entry.date}</h3>
                 <h3 className="intro"> Title: {props.entry.title}</h3>
-                <img alt="" className="checkbox-img" src={props.entry.weatherimg}/>
-                <img alt="" className="checkbox-img" src={props.entry.emoimg}/>
-                <img alt="" className="checkbox-img" src={props.entry.actimg}/>
+                <img alt="" className="checkbox-img" src={props.entry.wea_emoji}/>
+                <img alt="" className="checkbox-img" src={props.entry.emo_emoji}/>
+                <img alt="" className="checkbox-img" src={props.entry.act_emoji}/>
                 <br/>
                  {/* unfinished edit part, save for project4 */}
                 {/* <button className="card-button">edit</button> */}
                 <button className="card-button" onClick={()=>dispatch(remove(props.entry))}>delete</button> 
                 <div>
-                {like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry.id, false)); }}  aria-label="delete" color="primary">
+                {like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry._id, false)); }}  aria-label="delete" color="primary">
                 
                           <Favorite></Favorite>
                         </IconButton>}
-                {!like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry.id, true));}} aria-label="delete" color="primary">
+                {!like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry._id, true));}} aria-label="delete" color="primary">
                           <FavoriteBorderIcon></FavoriteBorderIcon>
                        
                         </IconButton>}

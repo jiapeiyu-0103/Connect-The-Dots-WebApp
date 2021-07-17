@@ -1,10 +1,10 @@
 import React from 'react';
 import './Diary.css';
-import { useState} from 'react';
+import { useState, useRef} from 'react';
 import UploadImage from './UploadImageModal';
 import UploadAudio from './UploadAudioModal';
 import UploadVideo from './UploadVideoModal';
-import { addDiary } from '../../../services/api';
+import { addDiary } from '../../../services/diaryApi';
 
 import useStorage from '../../../hook/useStorage';
 
@@ -30,8 +30,8 @@ function Diary(props) {
     const [actEmoji, setActEmoji] = useState('');
     const [like, setLike] = useState(false);
     const [pics, setPics] = useState(["https://i.postimg.cc/d06GR0sH/diary-covers-2133724.jpg"]);
-    const [videos, setVideos] = useState([]);
-    const [audioData, setAudioData]=useState([]);
+    const [videos, setVideos] = useState([""]);
+    const [audioData, setAudioData]=useState([""]);
 
     const [isImageOpen, setIsImageOpen] = useState(false);
     const [isAudioOpen, setIsAudioOpen] = useState(false);
@@ -56,26 +56,28 @@ function Diary(props) {
         pics: pics,
         video: videos};
 
-
-   
-
     const handleRecord = (e) => {
         e.preventDefault();
+        newDiary.pics.shift();
+        newDiary.audio.shift();
+        newDiary.video.shift();
+
         addDiary(newDiary).then(function(){
               window.alert("Record succussfully!");
-            //   clearInput();
+              //refresh the page==clear input
+              window.location.reload();
            
         });
       };
 
     return (
-        <div id="Diary" >
+        <div id="Diary">
             <div className="title">
                 <h1>Hi, sweetie! Do you want to record your day?</h1>
                 <br/>
                 <hr/>
             </div>
-
+            {/* <form ref={inputEl}> */}
             <div className="container">
                 <div>
                     <img className="greet" src="https://i.postimg.cc/j5mMTYvX/IMG-0488.jpg"/>
@@ -513,12 +515,12 @@ function Diary(props) {
                 <div>
                   <input type="text" name="title" placeholder="Title.." className="diary-title" onChange={(e)=>{setTitle(e.target.value)}}></input>
                 </div>
-                <textarea name="diary-content" className="diary-input" rows="33" placeholder="Tell me about your day..." onChange={(e)=>{setContent(e.target.value)}} ></textarea>
+                <textarea name="diary-content" id="diary-content" className="diary-input" rows="33" placeholder="Tell me about your day..." onChange={(e)=>{setContent(e.target.value)}} ></textarea>
             </div>
 
             </div>
             
-                <button className="buttons" onClick={(e)=>{handleRecord(e);}}>Record</button> 
+                
                 <div>
                 {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
         
@@ -530,9 +532,9 @@ function Diary(props) {
                 {isVideoOpen && (<UploadVideo url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>)}
                 </div>
 
-            
+                {/* </form> */}
         
-                
+                <button className="buttons" onClick={(e)=>{handleRecord(e);}}>Record</button> 
             
             
         </div>
