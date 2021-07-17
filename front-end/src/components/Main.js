@@ -12,7 +12,7 @@ const [curUser, setCurUser] = useState({})
           );
       default:
         return (
-            <LoginForm setState={setState} user={setCurUser}/>
+            <LoginForm setState={setState} setUser={setCurUser}/>
         );
   }
  
