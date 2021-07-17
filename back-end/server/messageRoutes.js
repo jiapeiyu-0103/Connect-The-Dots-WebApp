@@ -12,6 +12,31 @@ router.get("/getSendDriftBottles/:userId", async (req, res) => {
 	res.send(sendDriftBottles)
 })
 
+// Get all collected drift bottles
+router.get("/getCollectedDriftBottles/:userId", async (req, res) => {
+	const collectedDriftBottles = await SendDriftBottles.find({collectorUserId: req.params.userId})
+	res.send(collectedDriftBottles)
+})
+
+// Collect a random  drift bottles
+router.get("/getARandomDriftBottle/:userId", async (req, res) => {
+	const collectedDriftBottle = await SendDriftBottles.findOne({ "userId": { "$ne": req.params.userId }, collectorUserId:  null});
+    
+    if(collectedDriftBottle) {
+        const query = {_id: collectedDriftBottle._id},
+        update = {collectorUserId: req.params.userId},
+        options = { upsert: true, new: true, setDefaultsOnInsert: true };
+        await SendDriftBottles.findOneAndUpdate(query, update, options, (error, result) => {
+            if (error) console.log("Failed to update collectorID when getting a random bottle " + error.stack);
+            else res.send(result)
+        });
+
+    } else {
+        res.json("none");
+    }
+	
+})
+
 
 const getDateString = () => {
         const date_ob = new Date();
@@ -249,6 +274,24 @@ router.get('/getDriftBottleAudios/:audioName', function (req, res, next) {
 
 });
 
+
+
+router.delete("/deleteCollectedDriftBottles/:id", async (req, res) => {
+    const query = {_id: req.params.id},
+    update = {collectorUserId: null},
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    await SendDriftBottles.findOneAndUpdate(query, update, options, (error, result) => {
+        if (error) console.log("Failed to throw a collected bottle. Error: " + error.stack);
+        else 
+            res.json('DELETE COLLECTED BOTTLE success');
+
+    });
+    
+    
+    
+    
+})
+
 router.delete("/deleteSendDriftBottles/:id", async (req, res) => {
 	try {
         
@@ -283,7 +326,6 @@ router.delete("/deleteSendDriftBottles/:id", async (req, res) => {
         }
         
 		await SendDriftBottles.deleteOne({ _id: req.params.id })
-        fs
 		res.json("DELETE SEND BOTTLE success");
 	} catch {
 		res.status(404)

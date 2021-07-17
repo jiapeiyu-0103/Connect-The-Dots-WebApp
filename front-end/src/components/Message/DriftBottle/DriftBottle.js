@@ -33,60 +33,14 @@ const userId = YourInfo.YOUR_USER_ID;
     
 useEffect(() => {
   fetchSendBottles();
+  fetchCollectedBottles();
 }, []);
 
 const [sentBottles, setSentBottles] = useState ([]);
     
     
 const [collectedBottles, setCollectedBottles] = useState (
-
-[
-    
-    {
-        name: "Stranger",
-        location: "Somewhere",
-        content: "To someone, you are awesome!",
-        imageSrc: null,
-        replies: [
-            {
-                name: yourName,
-                location: yourLocation,
-                content: 'Hey, thank you, you too!',
-                imageSrc: null
-            },
-            {
-                name: 'Stranger',
-                location: 'Somewhere',
-                content: "Have a great day!",
-                imageSrc: null
-            },
-            
-            
-        ]
-    },
-    
-    {
-        name: "Stranger2",
-        location: "Someplace",
-        content: "You know about the up dog?",
-        imageSrc: null,
-        replies: [
-            {
-                name: yourName,
-                location: yourLocation,
-                content: "What's up dog?",
-                imageSrc: null
-            },
-            {
-                name: yourName,
-                location: yourLocation,
-                content: "Ahh you got me!",
-                imageSrc: null
-            }, 
-            
-        ]
-    },
-]);
+[]);
 
 const addSentBottle = (e) => {
     const contentValue = e.target.parentElement.querySelector("#sendBottleTextField").value;
@@ -214,21 +168,48 @@ const postAudioDriftBottle = (bottleId) => {
 }
 
 const fetchSendBottles = () => {
-       //Fetch card array
+       //Fetch sent bottles
     fetch(SERVER_URL+'messageApi/getSendDriftBottles/' + userId)
         .then(response => response.json())
         .then(data => {setSentBottles( [...data])})
         .catch(err=> console.error("Error when RETRIEVING Send Drift Bottles array"));
 }
 
+const fetchCollectedBottles = () => {
+       //Fetch collected bottles
+    fetch(SERVER_URL+'messageApi/getCollectedDriftBottles/' + userId)
+        .then(response => response.json())
+        .then(data => {setCollectedBottles( [...data])})
+        .catch(err=> console.error("Error when RETRIEVING Collected Drift Bottles array"));
+}
 const collectBottle = () => {
     
     // Get a random bottle in the sea, use example bottle for now.
+    fetch(SERVER_URL+'messageApi/getARandomDriftBottle/' + userId)
+        .then(response => response.json())
+        .then(data => {
+        
+            if (data !== 'none') {
+                fetchCollectedBottles();
+                const newCollectedBottles = [...collectedBottles];
+                newCollectedBottles.push(data);
     
-    const newCollectedBottles = [...collectedBottles];
-    newCollectedBottles.push(exampleCollectedBottle);
+                setCollectedBottles (newCollectedBottles);
     
-    setCollectedBottles (newCollectedBottles);
+                setDriftBotModalState(DriftBottleStates.COLLECT);
+                setCollectBottleInfo(data);
+                setShowDriftBotModal(true);
+                
+                
+            } else {
+                alert("Sorry no bottle to retrieve");
+            }
+            
+        
+        })
+        .catch(err=> console.error("Error when RETRIEVING A RANDOM  Drift Bottle"));
+    
+  
 }
 
 
@@ -237,14 +218,34 @@ const addCollectedBottleReply = (index, replyValue) => {
     
     //construct reply to add
     const replyToAdd = constructYourObj(replyValue);
+    let i = index;
+    if(i === -1) {
+        i = newCollectedBottles.length-1;
+        
+    } 
     
-    if(index === -1) {
-        newCollectedBottles[newCollectedBottles.length-1].replies.push(replyToAdd);
-    } else {
-        newCollectedBottles[index].replies.push(replyToAdd);
-    }
+    
+    newCollectedBottles[i].replies.push(replyToAdd);
+    
     
     setCollectedBottles(newCollectedBottles);
+    
+    fetch(SERVER_URL+'messageApi/addSendDriftBottlesReplies', {
+        method: 'PUT',
+        body: JSON.stringify(newCollectedBottles[i]),
+        headers: {
+        'Content-Type': 'application/json'
+        }
+
+    })
+    .then(response => response.json())
+    .then((data) => {
+        if (data === 'ADD SEND BOTTLE REPLIES success') {  
+
+        } else {
+            console.error("Error when ADD a Send Drift Bottle REPLY!");
+        }
+    })
 }
 
 
@@ -275,7 +276,7 @@ const addSentBottleReply = (index, replyValue) => {
     .then(response => response.json())
     .then((data) => {
         if (data === 'ADD SEND BOTTLE REPLIES success') {  
-//            fetchSendBottles();
+            
 
         } else {
             console.error("Error when ADD a Send Drift Bottle REPLY!");
@@ -300,9 +301,19 @@ const addReply = (type, index, replyValue) => {
 
 const deleteBottle = (type, index) => {
     if (type === COLLECTED) {
-        const newCollectedBottles = [...collectedBottles];
-        newCollectedBottles.splice(index, 1);
-        setCollectedBottles(newCollectedBottles);
+        const bottleToDelete = collectedBottles[index];
+         fetch(SERVER_URL+'messageApi/deleteCollectedDriftBottles/' + bottleToDelete._id, {
+            method: 'DELETE',
+         })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'DELETE COLLECTED BOTTLE success') {
+                fetchCollectedBottles();
+
+            } else {
+                console.error("Error when DELETE a COLLECTED Drift Bottle!");
+            }
+     })
     } else {
          const bottleToDelete = sentBottles[index];
          fetch(SERVER_URL+'messageApi/deleteSendDriftBottles/' + bottleToDelete._id, {
@@ -341,9 +352,6 @@ const setModalToSend = () => {
 
 const setModalToCollect = () => {
     collectBottle();
-    setDriftBotModalState(DriftBottleStates.COLLECT);
-    setCollectBottleInfo(exampleCollectedBottle);
-    setShowDriftBotModal(true);
 }
 
 
