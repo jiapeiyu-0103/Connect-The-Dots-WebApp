@@ -374,7 +374,7 @@ function Diary(props) {
                 </div>
                 </div>
                
-                <div>
+                <div >
                   <input type="text" name="title" placeholder="Title.." className="diary-title" value={title} onChange={(e)=>{setTitle(e.target.value)}}></input>
                 </div>
                 <textarea name="diary-content" id="diary-content" className="diary-input" rows="33" placeholder="Tell me about your day..." value={content} onChange={(e)=>{setContent(e.target.value)}} ></textarea>
