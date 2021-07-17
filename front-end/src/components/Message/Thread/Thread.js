@@ -1,5 +1,6 @@
 import './Thread.css';
 import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import defaultUserImage from '../img/Default_User_Logo.png';
 function Thread(props) {
@@ -14,10 +15,12 @@ const handleEnter = (e) => {
 }  
 
 
+
+
 let repliesList;
     
-    // Collected bottles
 if (replies && replies.length !== 0) {
+    
 
    repliesList = replies.map((reply, index) =>    
         <li key={index}>
@@ -29,7 +32,16 @@ if (replies && replies.length !== 0) {
         </li>  
     );
 }
+    
 
+ 
+
+
+    
+    
+    
+                          
+                
 
 return (
                 <div className="thread">
@@ -40,7 +52,7 @@ return (
                         </div>
                         <br/>
                         <br/>
-                        {thread.audioUrl ? <audio controls src={thread.audioUrl.url}></audio> : null}
+                        {thread.audioUrl ? <audio controls src={thread.audioUrl}></audio> : null}
                         
                         {thread.imageUrl ? <div className="images-container" >
                         <img  src={thread.imageUrl} alt="stuff"/>    </div> : null}

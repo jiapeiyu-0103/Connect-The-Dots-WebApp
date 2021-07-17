@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DriftBottleModal from './DriftBottleModal';
 import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
 import {COLLECTED} from '../../../constants/BottleStates';
 import * as YourInfo from '../../../constants/YourInfo';
 import {constructYourObj} from '../../../constants/Helpers';
+import {SERVER_URL} from '../../../constants/ServerUrl';
 function DriftBottle() {
 const [showDriftBotModal, setShowDriftBotModal] = useState(false);
 const [driftBotModalState, setDriftBotModalState] = useState(null);
 const [collectBottleInfo, setCollectBottleInfo] = useState(null);
-
 const exampleCollectedBottle = {
     name: 'Stranger',
     location: 'Somewhere',
@@ -18,112 +18,29 @@ const exampleCollectedBottle = {
     replies:[],
 }
 
+
+const [imageFileInfo, setImageFileInfo] = useState(null);
+const [videoFileInfo, setVideoFileInfo] = useState(null);
+const [audioFileInfo, setAudioFileInfo] = useState(null);
+
 const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
 const [audioData, setAudioData]=useState(null);
 
 const yourName = YourInfo.YOUR_NAME;
 const yourLocation = YourInfo.YOUR_LOCATION;
+const userId = YourInfo.YOUR_USER_ID;
+    
+useEffect(() => {
+  fetchSendBottles();
+  fetchCollectedBottles();
+}, []);
 
-const [sentBottles, setSentBottles] = useState ([
-    {
-        name: yourName,
-        location: yourLocation,
-        imageSrc: null,
-        content: "I love dogs!",
-        replies: [
-            {
-                name: 'Stranger',
-                location: 'Somewhere',
-                content: 'I love dogs too!',
-                imageSrc: null
-            },
-            {
-                name: 'Stranger',
-                location: 'Somewhere',
-                content: 'Cats > Dogs tho',
-                imageSrc: null
-            }
-            
-        ]
-    },
-    
-        {
-            
-        name: yourName,
-        location: yourLocation,
-        imageSrc: null,
-        content: "I love cats!",
-        replies: [
-            {
-                name: 'Stranger2',
-                location: 'Someplace',
-                content: 'I love cats too!',
-                imageSrc: null
-            },
-            {
-                name: 'Stranger2',
-                location: 'Someplace',
-                content: 'Dogs > Cats tho',
-                imageSrc: null
-            }
-            
-        ]
-    },
-    
-    
-]);
+const [sentBottles, setSentBottles] = useState ([]);
     
     
 const [collectedBottles, setCollectedBottles] = useState (
-
-[
-    
-    {
-        name: "Stranger",
-        location: "Somewhere",
-        content: "To someone, you are awesome!",
-        imageSrc: null,
-        replies: [
-            {
-                name: yourName,
-                location: yourLocation,
-                content: 'Hey, thank you, you too!',
-                imageSrc: null
-            },
-            {
-                name: 'Stranger',
-                location: 'Somewhere',
-                content: "Have a great day!",
-                imageSrc: null
-            },
-            
-            
-        ]
-    },
-    
-    {
-        name: "Stranger2",
-        location: "Someplace",
-        content: "You know about the up dog?",
-        imageSrc: null,
-        replies: [
-            {
-                name: yourName,
-                location: yourLocation,
-                content: "What's up dog?",
-                imageSrc: null
-            },
-            {
-                name: yourName,
-                location: yourLocation,
-                content: "Ahh you got me!",
-                imageSrc: null
-            }, 
-            
-        ]
-    },
-]);
+[]);
 
 const addSentBottle = (e) => {
     const contentValue = e.target.parentElement.querySelector("#sendBottleTextField").value;
@@ -135,21 +52,164 @@ const addSentBottle = (e) => {
     bottleToAdd.imageUrl = pics;
     bottleToAdd.videoUrl = videos;
     
+ 
+    
     const newSentBottles = [...sentBottles];
     newSentBottles.push(bottleToAdd);
-    
-    setSentBottles (newSentBottles);
+
+//    setSentBottles (newSentBottles);
+           //add post request
+    fetch(SERVER_URL+'messageApi/addSendDriftBottles', {
+            method: 'POST',
+            body: JSON.stringify(bottleToAdd),
+            headers: {
+            'Content-Type': 'application/json'
+            }
+
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if (data.message === 'ADD SEND BOTTLE success') {
+                if (imageFileInfo) {
+                    postImageDriftBottle(data.bottleId);
+                }
+                if(videoFileInfo) {
+                    postVideoDriftBottle(data.bottleId);
+                }
+                if(audioFileInfo) {
+                    postAudioDriftBottle(data.bottleId);
+                }
+                fetchSendBottles();
+
+            } else {
+                console.error("Error when ADD a Send Drift Bottle!");
+            }
+     })
 
 }
 
+
+const postVideoDriftBottle = (bottleId) => {
+    const formData = new FormData();
+    formData.append('bottleId', bottleId);
+    formData.append('userId', userId);
+    formData.append('videoFile', videoFileInfo.videoFile);
+    formData.append('videoFileName', videoFileInfo.videoFileName);
+    
+     fetch(SERVER_URL+'messageApi/addDriftBottlesVideos', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'AddDriftBottlesVideos SUCCESS') {
+                
+                fetchSendBottles();
+                setVideoFileInfo(null);
+
+            } else {
+                console.error("Error when ADD a Send Drift Bottle VIDEO!");
+            }
+     })
+}
+
+const postImageDriftBottle = (bottleId) => {
+    
+    const formData = new FormData();
+    formData.append('bottleId', bottleId);
+    formData.append('userId', userId);
+    formData.append('imageFile', imageFileInfo.imageFile);
+    formData.append('imageFileName', imageFileInfo.imageFileName);
+    
+     fetch(SERVER_URL+'messageApi/addDriftBottlesImages', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'AddDriftBottlesImages SUCCESS') {
+                
+                fetchSendBottles();
+                setImageFileInfo(null);
+
+            } else {
+                console.error("Error when ADD a Send Drift Bottle IMAGE!");
+            }
+     })
+        
+    
+}
+
+const postAudioDriftBottle = (bottleId) => {
+    
+    const formData = new FormData();
+    formData.append('bottleId', bottleId);
+    formData.append('userId', userId);
+    formData.append('audioFile', audioFileInfo.audioFile);
+    formData.append('audioFileName', audioFileInfo.audioFileName);
+    
+     fetch(SERVER_URL+'messageApi/addDriftBottlesAudios', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'AddDriftBottlesAudios SUCCESS') {
+                
+                fetchSendBottles();
+                setAudioFileInfo(null);
+
+            } else {
+                console.error("Error when ADD a Send Drift Bottle AUDIO!");
+            }
+     })
+        
+    
+}
+
+const fetchSendBottles = () => {
+       //Fetch sent bottles
+    fetch(SERVER_URL+'messageApi/getSendDriftBottles/' + userId)
+        .then(response => response.json())
+        .then(data => {setSentBottles( [...data])})
+        .catch(err=> console.error("Error when RETRIEVING Send Drift Bottles array"));
+}
+
+const fetchCollectedBottles = () => {
+       //Fetch collected bottles
+    fetch(SERVER_URL+'messageApi/getCollectedDriftBottles/' + userId)
+        .then(response => response.json())
+        .then(data => {setCollectedBottles( [...data])})
+        .catch(err=> console.error("Error when RETRIEVING Collected Drift Bottles array"));
+}
 const collectBottle = () => {
     
     // Get a random bottle in the sea, use example bottle for now.
+    fetch(SERVER_URL+'messageApi/getARandomDriftBottle/' + userId)
+        .then(response => response.json())
+        .then(data => {
+        
+            if (data !== 'none') {
+                fetchCollectedBottles();
+                const newCollectedBottles = [...collectedBottles];
+                newCollectedBottles.push(data);
     
-    const newCollectedBottles = [...collectedBottles];
-    newCollectedBottles.push(exampleCollectedBottle);
+                setCollectedBottles (newCollectedBottles);
     
-    setCollectedBottles (newCollectedBottles);
+                setDriftBotModalState(DriftBottleStates.COLLECT);
+                setCollectBottleInfo(data);
+                setShowDriftBotModal(true);
+                
+                
+            } else {
+                alert("Sorry no bottle to retrieve");
+            }
+            
+        
+        })
+        .catch(err=> console.error("Error when RETRIEVING A RANDOM  Drift Bottle"));
+    
+  
 }
 
 
@@ -158,14 +218,34 @@ const addCollectedBottleReply = (index, replyValue) => {
     
     //construct reply to add
     const replyToAdd = constructYourObj(replyValue);
+    let i = index;
+    if(i === -1) {
+        i = newCollectedBottles.length-1;
+        
+    } 
     
-    if(index === -1) {
-        newCollectedBottles[newCollectedBottles.length-1].replies.push(replyToAdd);
-    } else {
-        newCollectedBottles[index].replies.push(replyToAdd);
-    }
+    
+    newCollectedBottles[i].replies.push(replyToAdd);
+    
     
     setCollectedBottles(newCollectedBottles);
+    
+    fetch(SERVER_URL+'messageApi/addSendDriftBottlesReplies', {
+        method: 'PUT',
+        body: JSON.stringify(newCollectedBottles[i]),
+        headers: {
+        'Content-Type': 'application/json'
+        }
+
+    })
+    .then(response => response.json())
+    .then((data) => {
+        if (data === 'ADD SEND BOTTLE REPLIES success') {  
+
+        } else {
+            console.error("Error when ADD a Send Drift Bottle REPLY!");
+        }
+    })
 }
 
 
@@ -175,14 +255,39 @@ const addSentBottleReply = (index, replyValue) => {
     
     //construct reply to add
     const replyToAdd = constructYourObj(replyValue);
+    let i = index;
+    if(i === -1) {
+        i = newSentBottles.length-1;
+        
+    } 
     
-    if(index === -1) {
-        newSentBottles[newSentBottles.length-1].replies.push(replyToAdd);
-    } else {
-        newSentBottles[index].replies.push(replyToAdd);
-    }
+    newSentBottles[i].replies.push(replyToAdd);
     
     setSentBottles(newSentBottles);
+    
+    fetch(SERVER_URL+'messageApi/addSendDriftBottlesReplies', {
+        method: 'PUT',
+        body: JSON.stringify(newSentBottles[i]),
+        headers: {
+        'Content-Type': 'application/json'
+        }
+
+    })
+    .then(response => response.json())
+    .then((data) => {
+        if (data === 'ADD SEND BOTTLE REPLIES success') {  
+            
+
+        } else {
+            console.error("Error when ADD a Send Drift Bottle REPLY!");
+        }
+    })
+    
+        
+   
+    
+    
+    
 }
 
 const addReply = (type, index, replyValue) => {
@@ -196,13 +301,33 @@ const addReply = (type, index, replyValue) => {
 
 const deleteBottle = (type, index) => {
     if (type === COLLECTED) {
-        const newCollectedBottles = [...collectedBottles];
-        newCollectedBottles.splice(index, 1);
-        setCollectedBottles(newCollectedBottles);
+        const bottleToDelete = collectedBottles[index];
+         fetch(SERVER_URL+'messageApi/deleteCollectedDriftBottles/' + bottleToDelete._id, {
+            method: 'DELETE',
+         })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'DELETE COLLECTED BOTTLE success') {
+                fetchCollectedBottles();
+
+            } else {
+                console.error("Error when DELETE a COLLECTED Drift Bottle!");
+            }
+     })
     } else {
-        const newSentBottles = [...sentBottles];
-        newSentBottles.splice(index, 1);
-        setSentBottles(newSentBottles);
+         const bottleToDelete = sentBottles[index];
+         fetch(SERVER_URL+'messageApi/deleteSendDriftBottles/' + bottleToDelete._id, {
+            method: 'DELETE',
+         })
+        .then(response => response.json())
+        .then((data) => {
+            if (data === 'DELETE SEND BOTTLE success') {
+                fetchSendBottles();
+
+            } else {
+                console.error("Error when DELETE a Send Drift Bottle!");
+            }
+     })
     }
 }
 
@@ -214,6 +339,9 @@ const closeModal = () => {
     setAudioData(null);
     setPics(null);
     setVideos(null);
+    setImageFileInfo(null);
+    setVideoFileInfo(null);
+    setAudioFileInfo(null);
 }
 
 const setModalToSend = () => {
@@ -224,9 +352,40 @@ const setModalToSend = () => {
 
 const setModalToCollect = () => {
     collectBottle();
-    setDriftBotModalState(DriftBottleStates.COLLECT);
-    setCollectBottleInfo(exampleCollectedBottle);
-    setShowDriftBotModal(true);
+}
+
+
+
+
+const handleImageUpload = (url, file) => {
+    setPics(url);
+    const imageFileInfo = {
+        imageFile: file,
+        imageFileName: file.name,
+    }
+    setImageFileInfo(imageFileInfo);
+    
+}
+
+const handleVideoUpload = (url, file) => {
+    setVideos(url);
+    const videoFileInfo = {
+        videoFile: file,
+        videoFileName: file.name,
+    }
+    setVideoFileInfo(videoFileInfo);
+    
+}
+
+
+const handleAudioUpload = (url) => {
+    setAudioData(url.url);
+    const audioFileInfo = {
+        audioFile: url.blob,
+        audioFileName: url.blob.size+"."+url.type.split("/")[1]
+    }
+    setAudioFileInfo(audioFileInfo);
+    
 }
 
 
@@ -240,7 +399,7 @@ const setModalToMy = () => {
                 <div id="driftBotOuter">
                 
                 {showDriftBotModal ?
-                <DriftBottleModal  videos={videos} setVideos={setVideos} pics={pics} setPics={setPics} audioData={audioData} setAudioData={setAudioData} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
+                <DriftBottleModal  videos={videos} setVideos={handleVideoUpload} pics={pics} setPics={handleImageUpload} audioData={audioData} setAudioData={handleAudioUpload} addReply={addReply} deleteBottle={deleteBottle} addCollectedBottleReply={addCollectedBottleReply} addSentBottle={addSentBottle} collectedBottles={collectedBottles} sentBottles={sentBottles} collectBottleInfo={collectBottleInfo} state={driftBotModalState} closeModal={closeModal} /> : null}
                 
                     <div id="driftBotNav">
                     <button onClick = {setModalToSend}> Send </button>

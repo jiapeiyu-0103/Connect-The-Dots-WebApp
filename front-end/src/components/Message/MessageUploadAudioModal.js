@@ -18,7 +18,7 @@ function MessageUploadAudioModal(props){
                    <h2> Record what you heard !</h2>
                    <div>
                        <AudioReactRecorder state={recordState} onStop={(data) => props.setState(data)} backgroundColor='rgb(255,255,255)'/>
-                       <audio id='audio'controls src={props.url ? props.url.url : null}></audio>
+                       <audio id='audio'controls src={props.url ? props.url : null}></audio>
                        <div className="button-diary">
                            <button className="start" onClick={() => setRecordState(RecordState.START)}>Start</button>
                            <button onClick={() => setRecordState(RecordState.STOP)}>Stop</button>
