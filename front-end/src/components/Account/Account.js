@@ -34,12 +34,12 @@ function Account({curUser}) {
     const saveToDB = () => {
 
 
-        axios.get(`http://localhost:3000/userApi/checkUserName/${name}`)
+        axios.get(`http://localhost:3001/userApi/checkUserName/${name}`)
             .then((response) => {
                 console.log("retrieve data from database and wait for username duplication check")
                 console.log(response)
                 if (name === curUser.username || response.data === "") {
-                    axios.patch(`http://localhost:3000/userApi/users/${curUser.unique_id}`, 
+                    axios.patch(`http://localhost:3001/userApi/users/${curUser.unique_id}`, 
                                 {
                                     username: name,
                                     sex: sex,
