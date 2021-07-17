@@ -1,17 +1,36 @@
 const express = require("express")
-const DataEntry = require("./dataModels/dataModelExample")
+const DataModel = require("./diaryModels/diaryModelExample")
 const router = express.Router()
 
 /* SOURCE: https://rahmanfadhil.com/express-rest-api/ */
 
-// Get all data entries
+// Get all dairy entries
 router.get("/data", async (req, res) => {
-	const data = await DataEntry.find()
+	const data = await DataModel.find()
 	res.send(data)
 })
 
+// get all entries for specific month
+router.get("/getOneMonthDairies", async (req, res) => {
+	const mon = parseInt(req.query.month);
+	console.log("dd " + mon);
+	if (mon !== null && mon !== undefined) {
+		await DataModel.find({
+			month: mon
+		}).then(doc => {
+			console.log(doc);
+			res.send(doc);
+		}).catch(err => {
+			console.log(err);
+			return res.status(400).send({
+				message: err,
+			});
+		})
+	}
+});
+
 router.post("/data", async (req, res) => {
-	const data = new DataEntry({
+	const data = new DataModel({
 		title: req.body.title,
 		content: req.body.content,
 	})
@@ -20,7 +39,7 @@ router.post("/data", async (req, res) => {
 })
 
 router.get("/data/:id", async (req, res) => {
-	const data = await DataEntry.findOne({ _id: req.params.id })
+	const data = await DataModel.findOne({ _id: req.params.id })
 	res.send(data)
 })
 
