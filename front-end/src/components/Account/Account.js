@@ -1,6 +1,11 @@
 import {useState} from 'react';
 import './Account.css';
+import axios from 'axios'
+
+
 function Account({curUser}) {
+
+    console.log(curUser)
 
     let years = []
 
@@ -17,22 +22,53 @@ function Account({curUser}) {
     }
 
     const [editMode, setEditMode] = useState(false)
-    const [name, setName] = useState(curUser.name)
+    const [name, setName] = useState(curUser.username)
     const [photoURL, setPhotoURL] = useState(curUser.photo)
     const [sex, setSex] = useState(curUser.sex)
-    const [year, setYear] = useState(curUser.birthday.year)
-    const [month, setMonth] = useState(curUser.birthday.month)
-    const [day, setDay] = useState(curUser.birthday.day)
+    const [date, setDate] = useState(curUser.birthday)
+    const [pswd, setPswd] = useState(curUser.password)
+    const [rePswd, setRePswd] = useState(curUser.password)
 
 
     // require implement of database
     const saveToDB = () => {
-        curUser.name = name
-        curUser.photo = photoURL
-        curUser.sex = sex
-        curUser.birthday.year = year
-        curUser.birthday.month = month
-        curUser.birthday.day = day
+
+
+        axios.get(`http://localhost:3000/userApi/checkUserName/${name}`)
+            .then((response) => {
+                console.log("retrieve data from database and wait for username duplication check")
+                console.log(response)
+                if (name === curUser.username || response.data === "") {
+                    axios.patch(`http://localhost:3000/userApi/users/${curUser.unique_id}`, 
+                                {
+                                    username: name,
+                                    sex: sex,
+                                    password: pswd,
+                                    photo: photoURL,
+                                    birthday: curUser.birthday,
+                                })
+                        .then((response) => {
+                            curUser.username = name
+                            curUser.photo = photoURL
+                            curUser.sex = sex
+                            curUser.password = pswd
+                            console.log(`user with userID: ${curUser.unique_id} has been updated successfully`)
+                            setEditMode(false)
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+
+                } 
+                
+                else {
+                    alert("user name has been registered, please try another one")
+                }
+            })
+            .catch((err) => {
+                console.log("error when check if username is used")
+            })
+
     }
     
 
@@ -43,20 +79,22 @@ function Account({curUser}) {
             return
         }
 
-        saveToDB()
-        setEditMode(false)
+        if(pswd !== rePswd) {
+            alert("password does not match")
+            return
+        }
 
+        saveToDB()
     }
 
 
     const onDelete = () => {
         setEditMode(false)
-        setName(curUser.name)
+        setName(curUser.username)
+        setPswd(curUser.password)
+        setRePswd(curUser.password)
         setPhotoURL(curUser.photo)
         setSex(curUser.sex)
-        setYear(curUser.birthday.year)
-        setMonth(curUser.birthday.month)
-        setDay(curUser.birthday.day)
     }
     
 
@@ -66,12 +104,11 @@ function Account({curUser}) {
         return (
             <div className="account-body">
                 <div className="info-display">
-                    <h3 className="display-info">Name: {curUser.name}</h3>
-                    <h3 className="display-info">Unique ID: {curUser.unique_id}</h3>
+                    <h3 className="display-info">Name: {curUser.username}</h3>
                     <h3 className="display-info">Sex: {curUser.sex}</h3>
                     <h3 className="display-info">Photo:</h3>
                     <img className="display-img"  src="https://i.postimg.cc/CKGz7xXV/sponge-Bob.jpg" alt={curUser.name}/>
-                    <h3 className="display-info">Birthday: {curUser.birthday.year} {curUser.birthday.month} {curUser.birthday.day} </h3>
+                    <h3 className="display-info">Birthday:  {curUser.birthday}</h3>
                     <button className="edit-button" onClick={() => {setEditMode(true)}}>Edit</button>
                 </div>
             </div>
@@ -84,10 +121,17 @@ function Account({curUser}) {
                         <label className="edit-info">Name: </label>
                         <input type="text" value={name} placeholder="please enter nickname" onChange={(e) => {setName(e.target.value)}}></input> <br/>
                     </div>
+                    
+                    <div className="info-input">
+                        <label className="edit-info">Password: </label>
+                        <input type="password" value={pswd} placeholder="please enter password" onChange={(e) => {setPswd(e.target.value)}}></input> <br/>
+                    </div>
 
                     <div className="info-input">
-                        <label className="edit-info">Unique ID: {curUser.unique_id} </label> <br/>
+                        <label className="edit-info">Re-enter Password: </label>
+                        <input type="password" value={rePswd} placeholder="please re-enter password" onChange={(e) => {setRePswd(e.target.value)}}></input> <br/>
                     </div>
+
 
                     <div className="info-input">
                         <label className="edit-info">Sex:</label>
@@ -105,33 +149,6 @@ function Account({curUser}) {
                     <div className="info-input">
                         <label className="edit-info">Birthday:</label>
 
-                        <select value={year} onChange={(e) => {setYear(e.target.value)}} >
-                            <optgroup label="Year" >
-                                {years}
-                            </optgroup>
-                        </select>
-
-                        <select value={month} onChange={(e) => {setMonth(e.target.value)}} >
-                            <optgroup label="Month" >
-                                <option value="Jan">Jan</option>
-                                <option value="Feb">Feb</option>
-                                <option value="Mar">Mar</option>
-                                <option value="Apr">Apr</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="Aug">Aug</option>
-                                <option value="Sep">Sep</option>
-                                <option value="Oct">Oct</option>
-                                <option value="Nov">Nov</option>
-                                <option value="Dec">Dec</option>
-                            </optgroup>
-                        </select>
-                        <select value={day} onChange={(e) => {setDay(e.target.value)}}>
-                            <optgroup label="Day" >
-                                {days}
-                            </optgroup>
-                        </select><br/>
 
                     </div>
 
