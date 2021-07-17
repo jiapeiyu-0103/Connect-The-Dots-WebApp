@@ -141,6 +141,22 @@ router.post ("/addDriftBottlesAudios", (req, res) => {
 
 })
 
+router.put("/addSendDriftBottlesReplies", async(req,res) => {
+    const query = {_id: req.body._id},
+    update = {replies: req.body.replies},
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    await SendDriftBottles.findOneAndUpdate(query, update, options, (error, result) => {
+        if (error) console.log("Failed to update send drift bottles replies. Error: " + error.stack);
+        else 
+            console.log("Update send drift bottles replies successfully");
+
+    });
+    
+    
+    res.json("ADD SEND BOTTLE REPLIES success");
+    
+})
+
 // Add individual send drift bottles.
 router.post("/addSendDriftBottles", async (req, res) => {
 	const sendDriftBottles = new SendDriftBottles({

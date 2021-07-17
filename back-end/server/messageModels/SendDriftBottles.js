@@ -17,11 +17,12 @@ const schema = mongoose.Schema({
     replies: [
         
         {   
-            userId: String,
+            userId: mongoose.Schema.Types.ObjectId,
             name: String,
             location: String,
             content: String,
             imageSrc: String,
+            replies: Array,
         }
 
     ]

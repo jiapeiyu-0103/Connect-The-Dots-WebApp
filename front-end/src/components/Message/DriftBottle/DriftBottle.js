@@ -102,11 +102,9 @@ const addSentBottle = (e) => {
     
     const newSentBottles = [...sentBottles];
     newSentBottles.push(bottleToAdd);
-//    
+
 //    setSentBottles (newSentBottles);
-    
-    
-       //add post request
+           //add post request
     fetch(SERVER_URL+'messageApi/addSendDriftBottles', {
             method: 'POST',
             body: JSON.stringify(bottleToAdd),
@@ -219,7 +217,7 @@ const fetchSendBottles = () => {
        //Fetch card array
     fetch(SERVER_URL+'messageApi/getSendDriftBottles/' + userId)
         .then(response => response.json())
-        .then(data => {setSentBottles(data)})
+        .then(data => {setSentBottles( [...data])})
         .catch(err=> console.error("Error when RETRIEVING Send Drift Bottles array"));
 }
 
@@ -256,14 +254,39 @@ const addSentBottleReply = (index, replyValue) => {
     
     //construct reply to add
     const replyToAdd = constructYourObj(replyValue);
+    let i = index;
+    if(i === -1) {
+        i = newSentBottles.length-1;
+        
+    } 
     
-    if(index === -1) {
-        newSentBottles[newSentBottles.length-1].replies.push(replyToAdd);
-    } else {
-        newSentBottles[index].replies.push(replyToAdd);
-    }
+    newSentBottles[i].replies.push(replyToAdd);
     
     setSentBottles(newSentBottles);
+    
+    fetch(SERVER_URL+'messageApi/addSendDriftBottlesReplies', {
+        method: 'PUT',
+        body: JSON.stringify(newSentBottles[i]),
+        headers: {
+        'Content-Type': 'application/json'
+        }
+
+    })
+    .then(response => response.json())
+    .then((data) => {
+        if (data === 'ADD SEND BOTTLE REPLIES success') {  
+//            fetchSendBottles();
+
+        } else {
+            console.error("Error when ADD a Send Drift Bottle REPLY!");
+        }
+    })
+    
+        
+   
+    
+    
+    
 }
 
 const addReply = (type, index, replyValue) => {
