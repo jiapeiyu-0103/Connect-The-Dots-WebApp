@@ -71,9 +71,11 @@
     transform: translate(10%, 0%);
     
     width: 80%;
-    height: 120%;
+    /* height: 60vh; */
+    height:120%;
     border: 2px dashed black;
     text-align: center;
+    overflow-y: scroll;
 }
 
 
@@ -87,3 +89,4 @@
     align-items: center;
     justify-content: center;
 }
+

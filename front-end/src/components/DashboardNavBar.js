@@ -12,6 +12,7 @@ import DiaryMainView from './Diary/DiaryMainView';
 import Message from './Message/Message';
 import Account from './Account/Account';
 import Data from './Data/Data'
+import { Link } from "react-router-dom";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -79,8 +80,13 @@ export default function DashboardNavBar(props) {
         className={classes.tabs}
 
       >
+       
+          
         <Tab label="Diary" {...a11yProps(0)} />
+       
+       
         <Tab label="Message" {...a11yProps(1)} />
+       
         <Tab label="Data" {...a11yProps(2)}  />
         <Tab label="Account" {...a11yProps(3)} />
         <Tab label="Logout" {...a11yProps(4)} onClick = {props.setStateToLoginForm}/>
@@ -88,7 +94,7 @@ export default function DashboardNavBar(props) {
       </Tabs>
 
       <TabPanel value={value} index={0}>
-      <DiaryMainView />
+      <DiaryMainView curUser={props.curUser}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <Message/>

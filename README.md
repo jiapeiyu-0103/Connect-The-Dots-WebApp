@@ -27,7 +27,7 @@ We are aiming to allow users to play mini games as well as having video/audio ca
 
 1. Allow users to create accounts.
 2. Allow users to modify their accounts (profile pictures, description, etc.)
-3. Allow users to write and edit and store diary entries in the form of pictures, text, videos, etc.
+3. Allow users to write and store diary entries in the form of pictures, text, videos, etc.
 4. Allow users to send messages, pictures, videos to random strangers and get their responses.
 5. Allow users to send messages, pictures, videos into a public space where all users can see and respond.
 
@@ -36,13 +36,13 @@ We are aiming to allow users to play mini games as well as having video/audio ca
 1. Allow users to search for the diary entry by dates, key words and weather, emotion, activite tags that they added to their diaries.
 2. Allow users to view the diary-related data, which includes the user emotion report and the charts that will reflect users' emotional change.(For example, showcase the most frequent emotion user pick for their diary entry and their emotion distribution in a month.)
 3. Allow users to favorite their preferred diaries.
-4. Allow users to save unfinished diary in the draft box.
+4. Allow users to edit their diary entries.
+5. Allow users to delete their diary entries.
 
 *Stretch requirements (plan to complete at least 1!)*
 1. Allow users to add friends through search or 'add' button beside user name.;
 2. Allow users to connect via video and/or audio call to a random stranger.
-3. Allow users to play mini games with a random stranger on this call (tic-tac-toe, collaborative drawing, etc.)
-4. Allow users to connect to a random stranger and have a text-based chat.
+3. Allow users to connect to a random stranger and have a text-based chat.
 
 ### Minimal requirements task breakdown:
 1. Allow users to create accounts.

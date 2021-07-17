@@ -3,27 +3,30 @@ import './FavoriteDiary.css';
 import {useSelector, useDispatch} from 'react-redux';
 // import {add} from './../actions';
 import DiaryEntry from '../search/DiaryEntry';
+import { getAllDiaries} from '../../../services/diaryApi';
 
-function FavoriteDiary() {
+function FavoriteDiary(props) {
   const diaries = useSelector(state => state.diaries);
   const favList = useSelector(state => state.favList);
 //   const isModalOpen = useSelector(state => state.addModal);
   const dispatch = useDispatch();
-  const [diary, setDiary] = useState(diaries);
+  const [diary, setDiary] = useState([]);
 //   const favList = localStorage.getItem("favorites");
 useEffect(() => {
-    setDiary(diaries);
-    
-    },[diaries]);
+  getAllDiaries()
+    .then(function(res) {
+      setDiary(res);
+        })
+  },[]);  
     
     return (
     <div className="main-body">
 
        <div className="cardbox">
         
-        {diaries.map(entry => (
+        {diary.map(entry => (
           
-           entry.favorite && <DiaryEntry entry={entry}></DiaryEntry>
+           entry.like && <DiaryEntry entry={entry} setDiary={setDiary}></DiaryEntry>
                    
                 ))
             }

@@ -4,6 +4,31 @@
     font-family: "Optima", sans-serif;
 }
 
+.input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px 3px #56799d;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type=radio] + label>img {
+  border: 1px dashed #444;
+  width: 150px;
+  height: 150px;
+  transition: 500ms all;
+}
+
+/* input[type=radio]:checked + label>img {
+  transform: 
+    rotateZ(-10deg) 
+    rotateX(10deg);
+} */
+
+
 .title {
     font-family: "Optima", sans-serif;
     /* font-family: "Andale Mono"; */
@@ -138,16 +163,16 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
-  .diary-title{
+.diary-title{
     font-family: "Optima", sans-serif;
       position: relative;
-      transform: translate(60%, -1200%);
+      transform: translate(60%, -1000%);
       width: 40%;
       height: 10%;
       overflow: scroll;
   }
 
-  .button-container{
+.button-container{
     position: absolute;
     transform: translate(-330%, -60%);
     
@@ -204,7 +229,7 @@
     .diary-title{
         font-family: "Gill Sans", sans-serif;
         position: relative;
-        transform: translate(60%, -800%);
+        transform: translate(60%, -900%);
         width: 40%;
         height: 10%;
         overflow: scroll;

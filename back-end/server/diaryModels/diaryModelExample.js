@@ -15,10 +15,10 @@ const schema = mongoose.Schema({
 	act_emoji: String,
 	like: Boolean,
 	date: String,
-    month: Number,
+	month: Number,
 	audio: Array,
 	pics: Array,
 	video: Array,
-}, {collection: "diary"});
+}, {collection: 'diary'});
 
 module.exports = mongoose.model("DiaryEntry", schema);

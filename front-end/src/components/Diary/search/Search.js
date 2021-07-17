@@ -7,29 +7,48 @@ import {filterDate,getAll } from '../../../actions';
 import 'react-day-picker/lib/style.css';
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
-function Search() {
+import { getAllDiaries, searchByDate} from '../../../services/diaryApi';
+
+
+function Search(props) {
   const diaries = useSelector(state => state.diaries);
 //   const isModalOpen = useSelector(state => state.addModal);
   const dispatch = useDispatch();
-  const [diary, setDiary] = useState(diaries);
+  const [diary, setDiary] = useState([]);
   const [date, setDate] = useState('');
-  const selectDate = (date.year + "-" + date.month + "-" +date.day).toString();
-useEffect(() => {
-  setDiary(diaries);
-  dispatch(filterDate(selectDate));
+  const month = date.month < 10 ? "0"+ date.month : date.month;
+  const day = date.day < 10 ? "0" + date.day : date.day;
+  const selectDate = (date.year + "-" + month + "-" + day).toString();
+
+  useEffect(() => {
+    console.log(selectDate);
+    searchByDate(selectDate)
+      .then(function(res) {
+        setDiary(res);
+          })
+    },[selectDate]);  
+
+// useEffect(() => {
+//   setDiary(diaries);
+//   dispatch(filterDate(selectDate));
   
-   console.log(selectDate); 
-    // console.log(selectDate);
-    // console.log(diaries);
-    // console.log(diary);
-    // console.log("hhh");
+//    console.log(selectDate); 
+//     // console.log(selectDate);
+//     // console.log(diaries);
+//     // console.log(diary);
+//     // console.log("hhh");
     
-    });
+//     });
     
 const handleClick=(e)=> {
-      setDate('');
-      dispatch(getAll());
-      setDiary(diaries);
+  // e.preventDefault();
+      
+  searchByDate("")
+      .then(function(res) {
+        setDiary(res);
+        // setDate('');
+          })
+    
       // console.log(date);
       // console.log(selectDate);
 };
@@ -48,7 +67,7 @@ const handleClick=(e)=> {
        
         {diary.map(entry => (
                    
-                    <DiaryEntry entry={entry}>
+                    <DiaryEntry entry={entry} setDiary={setDiary}>
 
                     </DiaryEntry>
                    

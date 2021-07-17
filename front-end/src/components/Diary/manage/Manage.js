@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import './Manage.css';
 import {useSelector, useDispatch} from 'react-redux';
 import DiaryEntry from './DiaryEntry';
+import { getAllDiaries} from '../../../services/diaryApi';
 
 function Manage(props){
 
@@ -9,21 +10,23 @@ function Manage(props){
   const favList = useSelector(state => state.favList);
 //   const isModalOpen = useSelector(state => state.addModal);
   const dispatch = useDispatch();
-  const [diary, setDiary] = useState(diaries);
+  const [diary, setDiary] = useState([]);
 //   const favList = localStorage.getItem("favorites");
 useEffect(() => {
-    setDiary(diaries);
-    
-    },[diaries]);
+  getAllDiaries()
+    .then(function(res) {
+      setDiary(res);
+        })
+  },[]);  
     
     return (
     <div className="main-body">
 
        <div className="cardbox">
         
-        {diaries.map(entry => (
+        {diary.map(entry => (
           
-           <DiaryEntry entry={entry}></DiaryEntry>
+           <DiaryEntry entry={entry} setDiary={setDiary}></DiaryEntry>
                    
                 ))
             }
