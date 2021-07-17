@@ -80,13 +80,13 @@ export default function DashboardNavBar(props) {
         className={classes.tabs}
 
       >
-        <Link to="/diary">
+       
           
         <Tab label="Diary" {...a11yProps(0)} />
-        </Link>
-        <Link to="/message">
+       
+       
         <Tab label="Message" {...a11yProps(1)} />
-        </Link>
+       
         <Tab label="Data" {...a11yProps(2)}  />
         <Tab label="Account" {...a11yProps(3)} />
         <Tab label="Logout" {...a11yProps(4)} onClick = {props.setStateToLoginForm}/>

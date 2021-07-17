@@ -13,6 +13,8 @@ import Favorite from "@material-ui/icons/Favorite";
 import IconButton from '@material-ui/core/IconButton';
 import EditModal from './EditModal';
 import {remove, favorite,fav,unfav} from '../../../actions';
+import { deleteDiary, getAllDiaries, favDiary} from '../../../services/diaryApi';
+
 
 function DiaryEntry(props){
 
@@ -25,6 +27,29 @@ function DiaryEntry(props){
   const [favorites, setFavorites]=useState(localStorage.getItem("favorites"));
 //   const favList = localStorage.getItem('favorites') || '0';
  
+const handleClick = (e) => {
+  e.preventDefault();
+  deleteDiary(props.entry).then(() => {
+     
+      getAllDiaries().then((res) => {
+         
+          props.setDiary(res);
+      })
+  });
+};
+
+const handleLikeClick = (e) => {
+  e.preventDefault();
+  setLike(!like);
+  favDiary(props.entry).then(() => {
+     
+      getAllDiaries().then((res) => {
+         
+          props.setDiary(res);
+      })
+  });
+};
+
     return (
         
         <div className="card" key={props.entry._id}>
@@ -46,13 +71,13 @@ function DiaryEntry(props){
                 <br/>
                  {/* unfinished edit part, save for project4 */}
                 {/* <button className="card-button">edit</button> */}
-                <button className="card-button" onClick={()=>dispatch(remove(props.entry))}>delete</button> 
+                <button className="card-button" onClick={handleClick}>delete</button> 
                 <div>
-                {like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry._id, false)); }}  aria-label="delete" color="primary">
+                {like && <IconButton onClick={handleLikeClick}  aria-label="delete" color="primary">
                 
                           <Favorite></Favorite>
                         </IconButton>}
-                {!like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry._id, true));}} aria-label="delete" color="primary">
+                {!like && <IconButton onClick={handleLikeClick} aria-label="delete" color="primary">
                           <FavoriteBorderIcon></FavoriteBorderIcon>
                        
                         </IconButton>}

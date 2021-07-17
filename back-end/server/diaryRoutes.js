@@ -67,6 +67,83 @@ router.post('/addDiary', function(req, res, next) {
 	  });
   });
 
+  router.delete('/:id', function(req, res, next) {
+	const id = req.params.id;
+	DiaryEntry.remove({ _id: id })
+	  .exec()
+	  .then(result => {
+		res.status(200).json(result);
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+		});
+	  });
+   
+  });
+
+  router.put('/addFav/:id', function(req, res, next) {
+ 
+	const id = req.params.id;
+	const newLike = !req.body.like;
+  DiaryEntry.findOneAndUpdate({ _id: id }, 
+	{like: newLike
+	})
+  .exec()
+  .then(result => {
+	res.status(200).json(result);
+  })
+  .catch(err => {
+	console.log(err);
+	res.status(500).json({error:err});
+  })
+  });
+
+  router.get('/searchDate', function(req, res, next) {
+	const date = req.query.date;
+	if(date===''){
+	  DiaryEntry.find()
+	  .exec()
+	  .then(docs => {
+		console.log(docs);
+		//   if (docs.length >= 0) {
+		res.status(200).json(docs);
+		//   } else {
+		//       res.status(404).json({
+		//           message: 'No entries found'
+		//       });
+		//   }
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+		});
+	  });
+	} else{
+	 
+	  DiaryEntry.find({'date':date})
+	  .exec()
+	  .then(docs => {
+		console.log(docs);
+		//   if (docs.length >= 0) {
+		res.status(200).json(docs);
+		//   } else {
+		//       res.status(404).json({
+		//           message: 'No entries found'
+		//       });
+		//   }
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+		});
+	  });
+	}
+  });
+  
 // router.get("/diaries", async (req, res) => {
 // 	const diaries = await DiaryEntry.find()
 // 	res.send(diaries)

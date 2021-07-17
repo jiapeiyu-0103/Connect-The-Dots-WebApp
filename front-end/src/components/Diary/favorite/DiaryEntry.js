@@ -13,6 +13,8 @@ import Favorite from "@material-ui/icons/Favorite";
 import IconButton from '@material-ui/core/IconButton';
 import DiaryInfoModal from '../search/DiaryInfoModal';
 import {remove, favorite,fav,unfav} from '../../../actions';
+import { favDiary, getAllDiaries} from '../../../services/diaryApi';
+
 
 function DiaryEntry(props){
 
@@ -24,6 +26,17 @@ function DiaryEntry(props){
   const [favorites, setFavorites]=useState(localStorage.getItem("favorites"));
 //   const favList = localStorage.getItem('favorites') || '0';
  
+const handleClick = (e) => {
+  e.preventDefault();
+  setLike(!like);
+  favDiary(props.entry).then(() => {
+     
+      getAllDiaries().then((res) => {
+         
+          props.setDiary(res);
+      })
+  });
+};
     return (
         
         <div className="card" key={props.entry._id}>
@@ -42,11 +55,11 @@ function DiaryEntry(props){
                 
                 <button onClick={()=>setIsOpen(true)} className="card-button">show more</button>
                 <div>
-                {like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry._id, false)); }}  aria-label="delete" color="primary">
+                {like && <IconButton onClick={handleClick}  aria-label="delete" color="primary">
                 
                           <Favorite></Favorite>
                         </IconButton>}
-                {!like && <IconButton onClick={() => { setLike(!like); dispatch(favorite(props.entry._id, true)); }} aria-label="delete" color="primary">
+                {!like && <IconButton onClick={handleClick} aria-label="delete" color="primary">
                           <FavoriteBorderIcon></FavoriteBorderIcon>
                        
                         </IconButton>}
