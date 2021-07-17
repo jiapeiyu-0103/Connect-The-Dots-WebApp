@@ -1,87 +1,60 @@
-import React from 'react';
-import * as d3 from 'd3';
-import { useD3 } from "../../hook/useD3";
+import React, {useEffect} from 'react';
+import { Doughnut }  from 'react-chartjs-2';
 import './pieChart.css';
+import { useState } from 'react'
 
-function PieChart({title, data, range, domain, legendX, legendY}) {
+function PieChart({title, data, range, domain, month}) {
 
-    const ref = useD3(
-        (svg) => {
-            const height = 500;
-            const width = 500;
-            const margin = 40;
+    const [diaryChartData, setDiaryChartData] = useState({
+        labels:[],
+        datasets: [{
+            data:[],
+            backgroundColor: []
+        }]
+    });
 
-            const radius = Math.min(width, height) / 2 - margin;
+    const chart = () => {
 
-            const color = d3.scaleOrdinal()
-                .domain(domain)
-                .range(range);
+        console.log("data in chart" + data);
 
-            const pie = d3.pie()
-                .sort(null) // Do not sort group by size
-                .value(function(d) {return d.value;});
-
-            const data_ready = pie(data);
-
-            console.log(data_ready);
-
-
-            const arc = d3.arc()
-                .innerRadius(radius * 0.5)         // This is the size of the donut hole
-                .outerRadius(radius * 0.8);
-
-            const legend = svg
-                .append('g')
-                .attr("transform", `translate(${100}, ${10})`);
-
-            const g = svg
-                .append('g')
-                .attr("transform", `translate(${100}, ${40})`);
-
-            g.selectAll('.cateArea')
-                .data(data_ready)
-                .join('path')
-                .attr('class', 'cateArea')
-                .attr('id', d => d.data.id)
-                .attr('transform', `translate(150, 245)`)
-                .attr('fill', function (d) {
-                    return color(d.data.id)
-                })
-                .attr('d', arc)
-                .attr('stroke', '#f1f1f1')
-                .attr('stroke-width', '3px');
-
-            for (let i = 0; i < range.length; i++) {
-                legend.append('circle')
-                    .attr("cx",legendX[i])
-                    .attr("cy",legendY[i])
-                    .attr("r", 8)
-                    .style("fill", range[i]);
-                legend.append("text")
-                    .attr("x", legendX[i] + 10)
-                    .attr("y", legendY[i])
-                    .text(domain[i])
-                    .style("font-size", "15px")
-                    .attr("alignment-baseline","middle")
-            }
-
-        },
-        [data.length]
-    );
+        setDiaryChartData({
+            labels: domain,
+            datasets: [{
+                data: data,
+                backgroundColor: range
+            }]
+        })
+    };
+//diaryChartData.datasets[0].data,
+    useEffect(() => {
+        chart();
+    }, [data]);
 
     return (
         <div>
-            <h1 className="chart-title">{title}</h1>
-            <svg
-                ref={ref}
-                style={{
-                    height: 500,
-                    width: "100%",
-                    marginRight: "0px",
-                    marginLeft: "20%",
-                }}
-            >
-            </svg>
+            <h2 className="chart-title">{title}</h2>
+            <div className="chart-area">
+                <Doughnut
+                    data={diaryChartData}
+                    options={{
+                        title: {
+                            display: true,
+                            text: {title}
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                                // onHover: handleHover,
+                                // onLeave: handleLeave
+                            }
+                        },
+                        animation: {
+                            animateScale: true
+                        }
+                    }}
+                >
+                </Doughnut>
+            </div>
         </div>
     );
 }
