@@ -58,7 +58,7 @@ function MessageMainView(props) {
                 </AppBar>
                 {/* insert component into the tabpanel */}
                 <TabPanel value="1"  ><DriftBottle curUser = {props.curUser}/></TabPanel>
-                <TabPanel value="2"><TreeHole/></TabPanel>
+                <TabPanel value="2"><TreeHole curUser = {props.curUser}/></TabPanel>
                 <TabPanel value="3"><Chat/></TabPanel>
             </TabContext>
         </div>

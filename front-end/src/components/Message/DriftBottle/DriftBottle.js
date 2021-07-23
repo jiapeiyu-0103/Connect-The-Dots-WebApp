@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import DriftBottleModal from './DriftBottleModal';
 import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
@@ -57,7 +58,6 @@ const addSentBottle = (e) => {
     bottleToAdd.audioUrl = audioData;
     bottleToAdd.imageUrl = pics;
     bottleToAdd.videoUrl = videos;
-    bottleToAdd.name = yourName;
     
  
     
@@ -417,6 +417,10 @@ const setModalToMy = () => {
             );
  
  
+}
+
+DriftBottle.propTypes = {
+    curUser: PropTypes.object,
 }
 
 export default DriftBottle;

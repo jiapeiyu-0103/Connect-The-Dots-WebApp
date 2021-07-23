@@ -1,99 +1,37 @@
 import './TreeHole.css'; 
 import {useState, useEffect, useRef} from 'react';
 import treeHoleImage from '../img/treeHole.png';
-import * as YourInfo from '../../../constants/YourInfo';
-import {constructYourObj} from '../../../constants/Helpers';
+import PropTypes from 'prop-types';
 import Thread from '../Thread/Thread';
-import MessageUploadAudioModal from '../MessageUploadAudioModal';
-import MessageUploadVideoModal from '../MessageUploadVideoModal';
-import MessageUploadImageModal from '../MessageUploadImageModal';
+import MediaUpload from '../MediaUpload';
 import TextField from '@material-ui/core/TextField';
-function TreeHole() {
+function TreeHole(props) {
 
 const isMounted = useRef(false);
 
-const yourName = YourInfo.YOUR_NAME;
-const yourLocation = YourInfo.YOUR_LOCATION;
+const curUser = props.curUser;
+const yourName = curUser.username;
+const yourPhoto = curUser.photo;
+const userId = curUser.message_id;
+    
+    
+const constructYourObj = (value) => {
+    
+    const returnObj = {};
+    returnObj.content = value;
+    returnObj.name = yourName;
+    returnObj.location = null;
+    returnObj.imageSrc = yourPhoto;
+    returnObj.userId = userId;
+    returnObj.replies = [];
+    return returnObj;
+}
     
 const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
 const [audioData, setAudioData]=useState(null);
-    
-const [isImageOpen, setIsImageOpen] = useState(false);
-const [isAudioOpen, setIsAudioOpen] = useState(false);
-const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-const [threads, setThreads] = useState(
-[
-    
-    {
-        name: "Stranger",
-        location: "Somewhere",
-        content: "To someone, you are awesome!",
-        imageSrc: null,
-        replies: [
-            {
-                name: yourName,
-                location: yourLocation,
-                content: 'Hey, thank you, you too!',
-                imageSrc: null
-            },
-            {
-                name: 'Stranger2',
-                location: 'Someplace',
-                content: "Have a great day!",
-                imageSrc: null
-            },
-            
-            
-            {
-                name: 'Stranger',
-                location: 'Somewhere',
-                content: "Deez nuts!",
-                imageSrc: null
-            },
-            
-            
-        ]
-    },
-    
-    {
-        name: "Stranger2",
-        location: "Someplace",
-        content: "You know about the up dog?",
-        imageSrc: null,
-        replies: [
-            {
-                name: "Stranger",
-                location: "Somewhere",
-                content: "What's up dog?",
-                imageSrc: null
-            },
-            {
-                name: yourName,
-                location: yourLocation,
-                content: "Ahh you got him/her!",
-                imageSrc: null
-            }, 
-            
-            {
-                name: "Stranger",
-                location: "Somewhere",
-                content: "Sed :<",
-                imageSrc: null
-            },
-            
-             {
-                name: "Stranger2",
-                location: "Someplace",
-                content: "muhahahahahaha",
-                imageSrc: null
-            },
-            
-        ]
-    },
-]
-);
+const [threads, setThreads] = useState([]);
 
     useEffect(() => {
         if (isMounted.current) {
@@ -116,73 +54,7 @@ const [threads, setThreads] = useState(
 
     }, [threads.length]);
     
-    
-    useEffect(() => {
-        if (isMounted.current) {
-                const messageAudioModal = document.getElementById("messageAudioModal");
-            if (messageAudioModal) {
-                messageAudioModal.scrollIntoView({
-                    block: "end",
-                    inline: "center",
-                    behavior: "smooth",
-                    alignToTop: false
-                });
-
-    }
-
-        } else {
-            isMounted.current = true;
-        }
-
-
-
-    }, [isAudioOpen]);
-    
-    
-       useEffect(() => {
-        if (isMounted.current) {
-                const messageVideoModal = document.getElementById("messageVideoModal");
-            if (messageVideoModal) {
-                messageVideoModal.scrollIntoView({
-                    block: "end",
-                    inline: "center",
-                    behavior: "smooth",
-                    alignToTop: false
-                });
-
-    }
-
-        } else {
-            isMounted.current = true;
-        }
-
-
-
-    }, [isVideoOpen]);
-    
-    
-    
-       useEffect(() => {
-        if (isMounted.current) {
-                const messageImageModal = document.getElementById("messageImageModal");
-            if (messageImageModal) {
-                messageImageModal.scrollIntoView({
-                    block: "end",
-                    inline: "center",
-                    behavior: "smooth",
-                    alignToTop: false
-                });
-
-    }
-
-        } else {
-            isMounted.current = true;
-        }
-
-
-
-    }, [isImageOpen]);
-    
+ 
     
 
     
@@ -223,28 +95,6 @@ if (threads && threads.length !== 0) {
     );
 }
 
-const openAudioModal = () => {
-    setIsAudioOpen(true);
-    
-
-    
-}
-
-
-const openImageModal = () => {
-    setIsImageOpen(true);
-    
-
-    
-}
-
-
-const openVideoModal = () => {
-    setIsVideoOpen(true);
-    
-
-    
-}
 
 
 const handleSend = () => {
@@ -259,10 +109,6 @@ const handleSend = () => {
     setAudioData(null);
     setPics(null);
     setVideos(null);
-    
-    setIsAudioOpen(false);
-    setIsImageOpen(false);
-    setIsVideoOpen(false);
 }
             return (
                 <div id="treeHoleOuter">
@@ -286,9 +132,7 @@ const handleSend = () => {
                             <br/>
                             <div className="send-container">
                             <button className="send-button"onClick={handleSend}>SEND</button>
-                            <button className="send-button" onClick={()=>openAudioModal()}>ADD AUDIO</button>
-                            <button className="send-button" onClick={()=>openImageModal()}>ADD IMAGE</button>
-                            <button className="send-button" onClick={()=>openVideoModal()}>ADD VIDEO</button>
+                            <MediaUpload setAudioData={setAudioData} setPics ={setPics} setVideos={setVideos} />
                             </div>
                         </div>
 
@@ -306,14 +150,6 @@ const handleSend = () => {
                         
                     </ul>
 
-                {isAudioOpen && (<div className="treeHoleModalOuter"><MessageUploadAudioModal url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/> </div>)}
-             
-         
-                {isImageOpen && (<div className="treeHoleModalOuter"><MessageUploadImageModal url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/> </div>)}
-
-
-                {isVideoOpen && (<div className="treeHoleModalOuter"><MessageUploadVideoModal url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/> </div>)}
-
 
             
                     
@@ -321,6 +157,10 @@ const handleSend = () => {
             );
  
  
+}
+
+TreeHole.propTypes = {
+    curUser: PropTypes.object,
 }
 
 export default TreeHole;
