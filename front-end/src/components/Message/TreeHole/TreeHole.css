@@ -16,7 +16,13 @@
     font-family: "Optima", sans-serif;
 }
 
+.deleteThreadBtn {
+    font-size: 30px;
+}
 
+.deleteThreadBtn:hover {
+    cursor: pointer;
+}
 
 
 #treeHoleImageFormWrapper {
