@@ -23,7 +23,6 @@ function LoginForm({setState, setUser}) {
                 let user = response.data
                 if (user !== "" && user.username === username && user.password === password) {
                     setState(DASHBOARD);
-                    console.log(user);
                     setUser({
                         username: user.username,
                         unique_id: user.userID,

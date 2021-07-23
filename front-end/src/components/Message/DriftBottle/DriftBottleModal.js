@@ -39,7 +39,7 @@ DriftBottleModal.propTypes = {
     setVideos: PropTypes.func,
     pics: PropTypes.string,
     setPics: PropTypes.func,
-    audioData: PropTypes.object,
+    audioData: PropTypes.string,
     setAudioData: PropTypes.func,
 }
 
