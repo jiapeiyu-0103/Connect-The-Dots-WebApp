@@ -11,3 +11,18 @@ export const constructYourObj = (value) => {
     returnObj.replies = [];
     return returnObj;
 }
+
+export const checkImage = (name) => {
+    const image = new Image();
+    image.src = name;
+
+    image.onload = () =>
+    {
+        return true;
+    }
+    image.onerror = () =>
+    {
+        return false;
+    }
+}     
+

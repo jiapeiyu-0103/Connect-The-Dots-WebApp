@@ -3,20 +3,12 @@ import DriftBottleModal from './DriftBottleModal';
 import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
 import {COLLECTED} from '../../../constants/BottleStates';
-import * as YourInfo from '../../../constants/YourInfo';
-import {constructYourObj} from '../../../constants/Helpers';
 import {SERVER_URL} from '../../../constants/ServerUrl';
-function DriftBottle() {
+function DriftBottle(props) {
 const [showDriftBotModal, setShowDriftBotModal] = useState(false);
 const [driftBotModalState, setDriftBotModalState] = useState(null);
 const [collectBottleInfo, setCollectBottleInfo] = useState(null);
-const exampleCollectedBottle = {
-    name: 'Stranger',
-    location: 'Somewhere',
-    content: 'Hi, wish you happiness wherever you are!',
-    imageSrc: null,
-    replies:[],
-}
+
 
 
 const [imageFileInfo, setImageFileInfo] = useState(null);
@@ -27,9 +19,10 @@ const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
 const [audioData, setAudioData]=useState(null);
 
-const yourName = YourInfo.YOUR_NAME;
-const yourLocation = YourInfo.YOUR_LOCATION;
-const userId = YourInfo.YOUR_USER_ID;
+const curUser = props.curUser;
+const yourName = curUser.username;
+const yourPhoto = curUser.photo;
+const userId = curUser.message_id;
     
 useEffect(() => {
   fetchSendBottles();
@@ -41,6 +34,19 @@ const [sentBottles, setSentBottles] = useState ([]);
     
 const [collectedBottles, setCollectedBottles] = useState (
 []);
+    
+    
+const constructYourObj = (value) => {
+    
+    const returnObj = {};
+    returnObj.content = value;
+    returnObj.name = yourName;
+    returnObj.location = null;
+    returnObj.imageSrc = yourPhoto;
+    returnObj.userId = userId;
+    returnObj.replies = [];
+    return returnObj;
+}
 
 const addSentBottle = (e) => {
     const contentValue = e.target.parentElement.querySelector("#sendBottleTextField").value;
@@ -51,6 +57,7 @@ const addSentBottle = (e) => {
     bottleToAdd.audioUrl = audioData;
     bottleToAdd.imageUrl = pics;
     bottleToAdd.videoUrl = videos;
+    bottleToAdd.name = yourName;
     
  
     

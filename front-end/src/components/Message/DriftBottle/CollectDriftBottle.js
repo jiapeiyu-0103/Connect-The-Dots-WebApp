@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import defaultUserImage from '../img/Default_User_Logo.png';
 import './CollectDriftBottle.css'
 import TextField from '@material-ui/core/TextField';
+import {checkImage} from '../../../constants/Helpers';
 
 function CollectDriftBottle(props) {
 const handleReply = () => {
@@ -19,11 +20,10 @@ const handleReply = () => {
                  <div id="collectBottleForm"> 
                     <div id="collectUserAccount" className="collectUserInfo">
                 
-                        <img alt="stuff" width="60vw" max-height="60vh" height="auto" src={props.collectBottleInfo.imageSrc || defaultUserImage} id="collectUserInfoImage" />
+                        <img alt="stuff" width="60vw" max-height="60vh" height="auto" src={checkImage(props.collectBottleInfo.imageSrc) ? props.collectBottleInfo.imageSrc : defaultUserImage} id="collectUserInfoImage" />
                 
                         <div id="collectUserInfoDiv">
                             <p>{`NAME: ${props.collectBottleInfo.name}`}</p>
-                            <p>{`FROM: ${props.collectBottleInfo.location}`}</p>
                         </div>
 
                     </div>
