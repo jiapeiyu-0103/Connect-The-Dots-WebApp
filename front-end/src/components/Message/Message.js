@@ -2,7 +2,7 @@ import './Message.css';
 import React, { useState } from 'react';
 import * as MessageStates from '../../constants/MessageStates';
 import MessageMainView from './MessageMainView';
-function Message() {
+function Message(props) {
 const [messageState, setMessageState] = useState(MessageStates.DRIFT_BOTTLE);
  const onNavClick = (e)=>{
       const navTarget = e.target;
@@ -24,7 +24,7 @@ const [messageState, setMessageState] = useState(MessageStates.DRIFT_BOTTLE);
                     {/*</div>*/}
                 
                     {/*<MessageMainView state={messageState} />*/}
-                    <MessageMainView/>
+                    <MessageMainView curUser={props.curUser}/>
                 
                 </div>
             );

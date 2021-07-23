@@ -19,7 +19,7 @@ function MessageUploadImageModal(props){
                     </div>
                     
                     <div className="pics-upload" >
-                     <input type="file" accept="image/*" multiple = {"true"} onChange={(e) => props.setState(URL.createObjectURL(e.target.files[0]), e.target.files[0])} /> 
+                     <input type="file" accept="image/*" onChange={(e) => props.setState(URL.createObjectURL(e.target.files[0]), e.target.files[0])} /> 
                     </div>
             
   

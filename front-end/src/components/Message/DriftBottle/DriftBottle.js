@@ -378,11 +378,11 @@ const handleVideoUpload = (url, file) => {
 }
 
 
-const handleAudioUpload = (url) => {
-    setAudioData(url.url);
+const handleAudioUpload = (url, file) => {
+    setAudioData(url);
     const audioFileInfo = {
-        audioFile: url.blob,
-        audioFileName: url.blob.size+"."+url.type.split("/")[1]
+        audioFile: file,
+        audioFileName: file.name,
     }
     setAudioFileInfo(audioFileInfo);
     

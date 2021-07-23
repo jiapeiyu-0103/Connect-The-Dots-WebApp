@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 //
 // }
 
-function MessageMainView() {
+function MessageMainView(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState('1');
 
@@ -57,7 +57,7 @@ function MessageMainView() {
                     </TabList>
                 </AppBar>
                 {/* insert component into the tabpanel */}
-                <TabPanel value="1"  ><DriftBottle/></TabPanel>
+                <TabPanel value="1"  ><DriftBottle curUser = {props.curUser}/></TabPanel>
                 <TabPanel value="2"><TreeHole/></TabPanel>
                 <TabPanel value="3"><Chat/></TabPanel>
             </TabContext>

@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import {useState, useEffect, useRef} from 'react';
 import './SendDriftBottle.css'
-import MessageUploadAudioModal from "../MessageUploadAudioModal"
-import MessageUploadImageModal from "../MessageUploadImageModal"
-import MessageUploadVideoModal from "../MessageUploadVideoModal"
 import TextField from '@material-ui/core/TextField';
 
 function SendDriftBottle(props) {
@@ -109,30 +106,20 @@ const handleSend = (e) => {
                 <br/><br/>
                     
                     <button className="throw-button" onClick={(e)=>{handleSend(e);}}>Throw into the sea</button>
-                    <button className="throw-button" onClick={()=>setIsAudioOpen(true)} >Add Audio</button>
-                    <button className="throw-button"  onClick={()=>setIsImageOpen(true)} >Add Image</button>
-                    <button className="throw-button"  onClick={()=>setIsVideoOpen(true)} >Add Video</button>
-{isAudioOpen ? 
-<div className="sendBottleModalOuter">
-<MessageUploadAudioModal url={props.audioData} setState={props.setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/>
-</div>
-: null
- }
 
-{isImageOpen ? 
-<div className="sendBottleModalOuter">
-<MessageUploadImageModal url={props.pics} setState={props.setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>
-</div>
-: null
- }
+                    <input type="file" id="driftAudio" name="driftAudio" hidden onChange = {(e)=>{props.setAudioData(URL.createObjectURL(e.target.files[0]), e.target.files[0])}} accept="audio/*" />
+                        
+                    <button className="throw-button" onClick={()=>{document.getElementById('driftAudio').click();}} >Add Audio</button>
 
+                    <input type="file" id="driftImage" name="driftImage" hidden onChange = {(e)=>{props.setPics(URL.createObjectURL(e.target.files[0]), e.target.files[0])}} accept="image/*" />
 
-{isVideoOpen ? 
-<div className="sendBottleModalOuter">
-<MessageUploadVideoModal url={props.videos} setState={props.setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>
-</div>
-: null
- }
+                    <button className="throw-button"  onClick={()=>{document.getElementById('driftImage').click();}} >Add Image</button>
+
+                    <input type="file" id="driftVideo" name="driftVideo" hidden onChange = {(e)=>{props.setVideos(URL.createObjectURL(e.target.files[0]), e.target.files[0])}} accept="video/*" />
+                        
+                        
+                    <button className="throw-button"  onClick={()=>{document.getElementById('driftVideo').click();}} >Add Video</button>
+
                 </div>
             );
  
