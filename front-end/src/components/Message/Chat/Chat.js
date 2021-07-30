@@ -1,51 +1,39 @@
-import {useState} from 'react';
-import ChatScreen from './ChatScreen';
+import { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 import './Chat.css';
-import {constructYourObj} from '../../../constants/Helpers';
-function Chat() {
-const [connected, setConnected] = useState(false);
-const [randomStranger, setRandomStranger] = useState(null);
-const [chatLog, setChatLog] = useState([]);
 
-const exampleRandomStranger = {
-    name: "Random Stranger",
-    location: "Somewhere",
-    imageSrc: null,
+let socket;
+const CONNECTION_PORT = "localhost:3001/";
+
+function Chat(props) {
+
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    //[CONNECTION_PORT]
+    useEffect(() => {
+        // initialize our connection
+        console.log("connect to port");
+        socket = io(CONNECTION_PORT);
+    }, [CONNECTION_PORT]);
+
+    const connectToRoom = () => {
+        // set the room data to server(backend)
+        socket.emit('join_room', props.curUser.username);
+    };
+
+    return (
+        <div>
+            <div className="chatInput">
+                <h1>Welcome: {props.curUser.username}</h1>
+                <h4>Let's start a new chart with a stranger!</h4>
+
+            </div>
+            <div className="chatTab">
+                <button onClick={connectToRoom}>Enter Chat</button>
+            </div>
+        </div>
+    )
 }
 
-const fetchRandomStranger = () => {
-    setRandomStranger(exampleRandomStranger);
-}
-const startConnection = () => {
-    fetchRandomStranger();
-    setConnected(true);
-}
-
-const addToChatLog = (value)=> {
-    const yourChat = constructYourObj(value);
-    const newChatLog = [...chatLog];
-    newChatLog.push(yourChat);
-    setChatLog(newChatLog);
-}
-
-const endConnection = () => {
-    setChatLog([]);
-    setConnected(false)
-    
-}
-            return (
-                <div id="chatTab"> 
-                    {connected ? 
-                      
-                    <ChatScreen addToChatLog={addToChatLog} chatLog={chatLog} stranger={randomStranger} endConnection={endConnection} />
-                    
-                     :
-                        <button onClick= {startConnection} >Connect To A Stranger </button> 
-                    }
-                </div>
-            );
- 
- 
-}
 
 export default Chat;

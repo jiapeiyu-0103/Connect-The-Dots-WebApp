@@ -5,6 +5,7 @@ const messageRoutes = require("./messageRoutes")
 const userRoutes = require("./userRoutes")
 const dataRoutes = require("./dataRoutes")
 const diaryRoutes = require("./diaryRoutes")
+const socket = require('socket.io');
 
 // Mongoose initializations
 const mongoose = require('mongoose');
@@ -33,7 +34,7 @@ db.once('open', function() {
     // PORT binding
     const PORT = process.env.PORT;
 
-    app.listen(PORT || 3001, () => {
+    const server = app.listen(PORT || 3001, () => {
       console.log(`ConnectTheDots server is listening at http://localhost:${PORT || 3001}`)
     })
 
@@ -43,7 +44,29 @@ db.once('open', function() {
       res.send('Connected successfully to ConnectTheDots server!');
 
     })
- 
+
+    const io = socket(server, {
+        cors: {
+            origin: "http://localhost:3000",
+            methods: ["GET", "POST"],
+            credentials: true,
+        },
+    });
+    io.on('connection', (socket) => {
+        // a random id give to whoever login to our application
+        console.log("connect to socket: " + socket.id);
+
+        socket.on('join_room', (data) => {
+            // data => room number
+            socket.join(data);
+            console.log('User: ' + data + ' Joined Rooms');
+        });
+
+
+        socket.on('disconnect', () =>{
+            console.log('USER DISCONNECTED');
+        });
+    })
     
     
 });
