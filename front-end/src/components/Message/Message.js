@@ -3,9 +3,13 @@ import React, { useState } from 'react';
 import * as MessageStates from '../../constants/MessageStates';
 import MessageMainView from './MessageMainView';
 function Message(props) {
+// Hooks for state control
 const [messageState, setMessageState] = useState(MessageStates.DRIFT_BOTTLE);
+// Handle user's navbar click
  const onNavClick = (e)=>{
+     // Get the target of the click
       const navTarget = e.target;
+     // Remove chosen classes from all children
       const navChildren = navTarget.parentElement.children;
       for (const navChild of navChildren) { 
         if (navChild.classList.contains("chosen")) {
@@ -13,23 +17,14 @@ const [messageState, setMessageState] = useState(MessageStates.DRIFT_BOTTLE);
             break;
         }
       }     
+      // Indicate that it is chosen and add css class
       navTarget.classList.add("chosen"); 
   }
             return (
                 <div id="message">
-                    {/*<div id="messageNav">*/}
-                    {/*    <button className="chosen" onClick={(e) => {onNavClick(e); setMessageState(MessageStates.DRIFT_BOTTLE); }}>Drift Bottle</button>*/}
-                    {/*    <button onClick={(e) => {onNavClick(e); setMessageState(MessageStates.TREE_HOLE); }}>Tree Hole</button>*/}
-                    {/*    <button onClick={(e) => {onNavClick(e); setMessageState(MessageStates.CHAT); }}>Chat</button>*/}
-                    {/*</div>*/}
-                
-                    {/*<MessageMainView state={messageState} />*/}
                     <MessageMainView curUser={props.curUser}/>
-                
                 </div>
             );
- 
- 
 }
 
 export default Message;

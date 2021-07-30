@@ -5,46 +5,36 @@ import PropTypes from 'prop-types';
 import Thread from '../Thread/Thread';
 import MediaUpload from '../MediaUpload';
 import TextField from '@material-ui/core/TextField';
-import {SERVER_URL} from '../../../constants/ServerUrl';
+import {SERVER_URL} from '../../../services/messageApi';
+import {constructMessageObj} from '../../../constants/Helpers';
 
 function TreeHole(props) {
 
+// Component reference used to check if component has been mounted    
 const isMounted = useRef(false);
 
+// Current users useful information
 const curUser = props.curUser;
-const yourName = curUser.username;
-const yourPhoto = curUser.photo;
 const userId = curUser.message_id;
     
-    
+// Fetch threads from server on ComponentDidMount
 useEffect(() => {
   fetchTreeHoleThreads();
 }, []);
-    
-    
-const constructYourObj = (value) => {
-    
-    const returnObj = {};
-    returnObj.content = value;
-    returnObj.name = yourName;
-    returnObj.location = null;
-    returnObj.imageSrc = yourPhoto;
-    returnObj.userId = userId;
-    returnObj.replies = [];
-    return returnObj;
-}
-    
-
+        
+// Hooks for media uploads
 const [imageFileInfo, setImageFileInfo] = useState(null);
 const [videoFileInfo, setVideoFileInfo] = useState(null);
 const [audioFileInfo, setAudioFileInfo] = useState(null);
-    
+
 const [pics, setPics] = useState(null);
 const [videos, setVideos] = useState(null);
 const [audioData, setAudioData]=useState(null);
 
+// Hooks for tree hole threads
 const [threads, setThreads] = useState([]);
 
+// Scroll to the new thread whenever it is added.
     useEffect(() => {
         if (isMounted.current) {
             const threadListDiv = document.getElementById("treeHoleOuter");
@@ -69,16 +59,17 @@ const [threads, setThreads] = useState([]);
  
     
 
-    
+// Handle replies submit
 const handleSubmit = (index, replyValue) => {
     const newThreads = [...threads];
     
-    const replyToAdd = constructYourObj(replyValue)
+    const replyToAdd = constructMessageObj(replyValue, curUser)
     
     newThreads[index].replies.push(replyToAdd);
     
     setThreads(newThreads);
     
+    // Push replies to server
     fetch(SERVER_URL+'messageApi/addTreeHoleThreadReplies', {
         method: 'PUT',
         body: JSON.stringify(newThreads[index]),
@@ -98,16 +89,15 @@ const handleSubmit = (index, replyValue) => {
     })
 }
 
-
+// Fetch tree hole threads from server
 const fetchTreeHoleThreads = () => {
-       //Fetch tree hole threads
     fetch(SERVER_URL+'messageApi/getTreeHoleThreads')
         .then(response => response.json())
         .then(data => {setThreads( [...data])})
         .catch(err=> console.error("Error when RETRIEVING Tree Hole Threads array"));
 }
 
-
+// Send video uploads to server
 const postTreeHoleThreadVideo = (treeHoleThreadId) => {
     const formData = new FormData();
     formData.append('treeHoleThreadId', treeHoleThreadId);
@@ -132,6 +122,7 @@ const postTreeHoleThreadVideo = (treeHoleThreadId) => {
      })
 }
 
+// Send image uploads to server
 const postTreeHoleThreadImage = (treeHoleThreadId) => {
     
     const formData = new FormData();
@@ -159,6 +150,7 @@ const postTreeHoleThreadImage = (treeHoleThreadId) => {
     
 }
 
+// Send audio uploads to server
 const postTreeHoleThreadAudio = (treeHoleThreadId) => {
     
     const formData = new FormData();
@@ -189,17 +181,18 @@ const postTreeHoleThreadAudio = (treeHoleThreadId) => {
 
 
 
+// Add a thread to the page
 const addThread = (value, audio, img, vid) => {
     const newThreads = [...threads];
     
-    const threadToAdd = constructYourObj(value);
+    const threadToAdd = constructMessageObj(value, curUser);
     
     threadToAdd.audioUrl = audio;
     threadToAdd.imageUrl = img;
     threadToAdd.videoUrl = vid;
     
     newThreads.push(threadToAdd);
-    
+    // Post request to server to add thread information to database
     fetch(SERVER_URL+'messageApi/addTreeHoleThread', {
             method: 'POST',
             body: JSON.stringify(threadToAdd),
@@ -211,19 +204,24 @@ const addThread = (value, audio, img, vid) => {
         .then(response => response.json())
         .then((data) => {
             if (data.message === 'ADD TREE HOLE THREAD success') {
+                // Post image upload if available
                 if (imageFileInfo) {
                     postTreeHoleThreadImage(data.treeHoleThreadId);
                 }
+                // Post video upload if available
                 if(videoFileInfo) {
                     postTreeHoleThreadVideo(data.treeHoleThreadId);
                 }
+                // Post audi upload if available
                 if(audioFileInfo) {
                     postTreeHoleThreadAudio(data.treeHoleThreadId);
                 }
+                
+                // Fetch threads after adding successfully
                 fetchTreeHoleThreads();
                 
                 
-    
+                // Reset values after adding successfully
                 document.getElementById("treeHoleFormInput").value = '';
                 document.getElementById("driftAudio").value = '';
                 document.getElementById("driftVideo").value = '';
@@ -239,12 +237,11 @@ const addThread = (value, audio, img, vid) => {
      })
 
 }
-    
-let threadList;
-    
+
+// Requesting server to delete a thread  
 const deleteThread = (index) => {
     const threadToDelete = threads[index];
-    
+
     fetch(SERVER_URL+'messageApi/deleteTreeHoleThreads/' + threadToDelete._id, {
             method: 'DELETE',
          })
@@ -259,7 +256,8 @@ const deleteThread = (index) => {
      })
     
 }
-    
+// Variable to store global thread list
+let threadList;   
 // Show global threads
 if (threads && threads.length !== 0) {
 
@@ -273,6 +271,7 @@ if (threads && threads.length !== 0) {
     );
 }
 
+// Media uploads event handle
 const handleAudioUpload = (url, file) => {
     setAudioData(url);
     const audioFileInfo = {
@@ -303,11 +302,7 @@ const handleVideoUpload = (url, file) => {
     
 }
 
-
-
-
-
-
+// Add thread on the user clicking Send button
 const handleSend = () => {
     const value = document.getElementById("treeHoleFormInput").value;
     
@@ -316,51 +311,34 @@ const handleSend = () => {
     }
    
 }
-            return (
-                <div id="treeHoleOuter">
-              
-                
-                
-                
-                    <div id="treeHoleImageFormWrapper">
-                        <img alt="stuff" id="treeHoleImage" src="https://i.postimg.cc/XqZ1Mmw4/tree-hole.jpg" />
-                        <div id="treeHoleForm">
-                {/*<textarea id="treeHoleFormInput" placeholder="Tell me your concerns" className="treeHoleInput"></textarea>*/}
-                   
-                    <TextField
-                            variant='filled'
-                            id="treeHoleFormInput" 
-                            color='primary'
-                            label='Tell me your concerns:'
-                            multiline
-                            className="treeHoleInput"/>
-                
-                            <br/>
-                            <div className="send-container">
-                            <button className="send-button"onClick={handleSend}>SEND</button>
-                            <MediaUpload setAudioData={handleAudioUpload} setPics ={handleImageUpload} setVideos={handleVideoUpload} />
-                            </div>
-                        </div>
+return (
+    <div id="treeHoleOuter">
+        <div id="treeHoleImageFormWrapper">
+            <img alt="stuff" id="treeHoleImage" src="https://i.postimg.cc/XqZ1Mmw4/tree-hole.jpg" />
+            <div id="treeHoleForm">
+        <TextField
+                variant='filled'
+                id="treeHoleFormInput" 
+                color='primary'
+                label='Tell me your concerns:'
+                multiline
+                className="treeHoleInput"/>
 
-  
-
-            
-
-                    </div>
-                    <br/>
-                    <hr/>
-       
-                
-                    <ul className="threadList"> 
-                        {threadList}
-                        
-                    </ul>
-
-
-            
-                    
+                <br/>
+                <div className="send-container">
+                <button className="send-button"onClick={handleSend}>SEND</button>
+                <MediaUpload setAudioData={handleAudioUpload} setPics ={handleImageUpload} setVideos={handleVideoUpload} />
                 </div>
-            );
+            </div>
+        </div>
+        <br/>
+        <hr/>
+
+        <ul className="threadList"> 
+            {threadList}
+        </ul>
+    </div>
+);
  
  
 }

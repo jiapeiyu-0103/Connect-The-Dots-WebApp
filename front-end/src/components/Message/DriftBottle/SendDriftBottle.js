@@ -4,7 +4,7 @@ import './SendDriftBottle.css'
 import TextField from '@material-ui/core/TextField';
 import MediaUpload from '../MediaUpload';
 function SendDriftBottle(props) {
-    
+// Event handler of user's throwing bottle into the sea event.
 const handleSend = (e) => {
     if (document.getElementById("sendBottleTextField").value || props.videos || props.audioData || props.pics) {
          props.addSentBottle(e);
@@ -13,9 +13,7 @@ const handleSend = (e) => {
     props.closeModal();
 }
             return (
-                <div id="sendBottleForm" className="sendBottleForm"> 
-                {/*<textarea placeholder="Type your message here..." id="sendBottleTextField" rows="15" />*/}
-                 
+                <div id="sendBottleForm" className="sendBottleForm">                  
                     <TextField
                             variant='filled'
                             id="sendBottleTextField" 

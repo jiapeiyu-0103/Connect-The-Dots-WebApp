@@ -7,7 +7,7 @@
     height: auto;
     font-size: 1.2vw;
     font-family: "Optima", sans-serif;
-    
+
 }
 
 .threadInner {
@@ -18,7 +18,6 @@
     margin-left: 5vw;
     width: auto;
     height: auto;
-    /* border: 1px solid black; */
     padding: 5px;
     overflow-y: scroll;
 
@@ -29,30 +28,31 @@
 }
 
 .threadMainInfo img {
-    display:inline-block;
+    display: inline-block;
     position: relative;
     top: 5vh;
-    width:5vw;
-    height:10vh;
+    width: 5vw;
+    height: 10vh;
 }
 
 
 .images-container {
     position: relative;
     width: 400px;
-    height: 250px;;
+    height: 250px;
+    ;
     border: 2px dashed black;
     text-align: center;
 }
 
 .images-container img {
-      width: 400px;
+    width: 400px;
     height: 250px;
 }
 
 
 .threadUserName {
-    display:inline-block;
+    display: inline-block;
     font-weight: bold;
     margin-left: 10px;
 }
@@ -74,12 +74,12 @@
 
 }
 
-.threadNav{
+.threadNav {
     width: 50vw;
 }
 
 .threadReplies li {
-    margin-top: 10px;  
+    margin-top: 10px;
 }
 
 .threadReplies li div b {
@@ -88,8 +88,8 @@
 
 .threadReplies li img {
     display: inline-block;
-    width:2vw;
-    height:4.5vh;
+    width: 2vw;
+    height: 4.5vh;
 }
 
 
@@ -97,10 +97,3 @@
     display: inline-block;
     margin-left: 10px;
 }
-
-/* .reply{
-    resize:none;
-    max-width: 100px;
-
-
-} */

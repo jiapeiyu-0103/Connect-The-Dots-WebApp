@@ -12,6 +12,7 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import './MessageMainView.css';
 
+// Generate CSS style object
 const useStyles = makeStyles((theme) => ({
     root: {
         position: 'absolute',
@@ -20,28 +21,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// function MessageMainView(props) {
-//   switch(props.state) {
-//       case MessageStates.CHAT:
-//           return (
-//               <Chat/>
-//           );
-//       case MessageStates.TREE_HOLE:
-//           return (
-//               <TreeHole/>
-//           );
-//       default:
-//         return (
-//             <DriftBottle />
-//         );
-//   }
-//
-// }
 
 function MessageMainView(props) {
+    // CSS style object
     const classes = useStyles();
+    // Hook for state controls
     const [value, setValue] = React.useState('1');
-
+    // Event handle for Tab List change
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -56,7 +42,6 @@ function MessageMainView(props) {
                         <Tab label="Chat" value="3" />
                     </TabList>
                 </AppBar>
-                {/* insert component into the tabpanel */}
                 <TabPanel value="1"  ><DriftBottle curUser = {props.curUser}/></TabPanel>
                 <TabPanel value="2"><TreeHole curUser = {props.curUser}/></TabPanel>
                 <TabPanel value="3"><Chat/></TabPanel>
@@ -65,8 +50,8 @@ function MessageMainView(props) {
     )
 }
             
-// MessageMainView.propTypes = {
-//     state: PropTypes.string,
-// }
+ MessageMainView.propTypes = {
+     curUser: PropTypes.object,
+ }
 
 export default MessageMainView;

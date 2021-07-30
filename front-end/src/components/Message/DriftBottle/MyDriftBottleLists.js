@@ -6,13 +6,11 @@ function MyDriftBottleLists(props) {
 
 const sentBottles = props.sentBottles;
 const collectedBottles = props.collectedBottles;
-    
-//const sentBottles = [];
-//const collectedBottles = [];
+
 
 let sentBottlesList;
 let collectedBottlesList;
-// sent bottles
+// Sent bottles list display
 if (!sentBottles || sentBottles.length === 0) {
       sentBottlesList = <p>There's currently no bottle, please throw some into the sea!</p>
 } else {
@@ -29,7 +27,7 @@ if (!sentBottles || sentBottles.length === 0) {
     );
 }
   
-// Collected bottles
+// Collected bottles list display
 if (!collectedBottles || collectedBottles.length === 0) {
       collectedBottlesList = <p>There's currently no bottle, please collect some!</p>
 } else {

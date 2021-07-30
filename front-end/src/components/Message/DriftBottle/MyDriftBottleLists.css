@@ -1,20 +1,14 @@
-.bottleList{
+.bottleList {
     text-align: center;
     width: 50vw;
     height: 70vh;
-    /* height:auto; */
     font-family: "Optima", sans-serif;
     font-size: 1.2vw;
 
 }
 
-/* .bottle{
-    margin-top: 10vh;
-    height: 40vh;
-} */
-
-.bottleListElem{
-    height:25vh;
+.bottleListElem {
+    height: 25vh;
     margin-top: 10vh;
     margin-bottom: 10vh;
     position: relative;
@@ -27,13 +21,14 @@
     margin: 0;
     padding: 0;
     width: 45%;
-    float:left;
-    height:60vh;
+    float: left;
+    height: 60vh;
     overflow-y: scroll;
     margin-top: 3.5vh;
 
 
 }
+
 #bottleDisplay img {
     display: block;
     margin: auto;
@@ -49,6 +44,4 @@
     width: 196px;
     margin: auto;
     position: relative;
-
-    
 }

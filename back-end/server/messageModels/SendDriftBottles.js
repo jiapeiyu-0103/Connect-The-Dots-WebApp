@@ -1,6 +1,6 @@
 /* SOURCE: https://rahmanfadhil.com/express-rest-api/ */
-
 const mongoose = require("mongoose")
+// Schema to store Drift Bottles
 const schema = mongoose.Schema({
     userId: mongoose.Schema.Types.ObjectId,
     collectorUserId: mongoose.Schema.Types.ObjectId,

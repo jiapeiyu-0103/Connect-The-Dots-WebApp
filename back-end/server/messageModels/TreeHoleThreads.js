@@ -1,6 +1,6 @@
 /* SOURCE: https://rahmanfadhil.com/express-rest-api/ */
-
 const mongoose = require("mongoose")
+// Schema to store Tree Hole Threads
 const schema = mongoose.Schema({
     userId: mongoose.Schema.Types.ObjectId,
 	name: String,
