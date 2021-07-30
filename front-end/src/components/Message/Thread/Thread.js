@@ -1,6 +1,5 @@
 import './Thread.css';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import defaultUserImage from '../img/Default_User_Logo.png';
 import {checkImage} from '../../../constants/Helpers';

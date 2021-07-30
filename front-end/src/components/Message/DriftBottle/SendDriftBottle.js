@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import {useState} from 'react';
 import './SendDriftBottle.css'
 import TextField from '@material-ui/core/TextField';
 import MediaUpload from '../MediaUpload';

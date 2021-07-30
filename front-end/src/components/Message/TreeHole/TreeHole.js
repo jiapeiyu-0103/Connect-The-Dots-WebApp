@@ -1,6 +1,5 @@
 import './TreeHole.css'; 
 import {useState, useEffect, useRef} from 'react';
-import treeHoleImage from '../img/treeHole.png';
 import PropTypes from 'prop-types';
 import Thread from '../Thread/Thread';
 import MediaUpload from '../MediaUpload';

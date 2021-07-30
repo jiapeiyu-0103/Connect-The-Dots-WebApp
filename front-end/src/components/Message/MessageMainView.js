@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import DriftBottle from './DriftBottle/DriftBottle';
 import TreeHole from './TreeHole/TreeHole';
 import Chat from './Chat/Chat';
-import * as MessageStates from '../../constants/MessageStates';
 import {makeStyles} from '@material-ui/core/styles';
 import React from "react";
 import AppBar from '@material-ui/core/AppBar';

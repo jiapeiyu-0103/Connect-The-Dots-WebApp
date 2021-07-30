@@ -29,6 +29,7 @@ const userId = curUser.message_id;
 useEffect(() => {
   fetchSendBottles();
   fetchCollectedBottles();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
 // Sent bottle array hook
