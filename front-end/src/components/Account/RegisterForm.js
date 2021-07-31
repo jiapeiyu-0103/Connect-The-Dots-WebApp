@@ -68,7 +68,7 @@ const RegisterForm = (props) => {
             password: pswd,
             sex: sex,
             birthday: date,
-            photo: "some default path in public folder"
+            photo: "https://www.pngitem.com/pimgs/m/150-1503941_user-windows-10-user-icon-png-transparent-png.png"
         }).then((response) => {
             console.log(">> New user is added successfully.")
         }).catch((err) => {

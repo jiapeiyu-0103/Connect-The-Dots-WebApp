@@ -106,7 +106,7 @@ router.post("/addDriftBottlesImages", (req, res) => {
         const uploadImageFile = files.imageFile[0];
         const path_temp = uploadImageFile.path;
         // Move uploaded file with unique name to server public/files folder
-        await fs.rename(path_temp, `${__dirname}/public/driftBottleImages/${hashImageName}`, (err) => {
+        await fs.copyFile(path_temp, `${__dirname}/public/driftBottleImages/${hashImageName}`, (err) => {
             if (err) console.error(err);
         });
         // Save serve URL and file name to database
@@ -149,7 +149,7 @@ router.post("/addTreeHoleThreadImages", (req, res) => {
         const uploadImageFile = files.imageFile[0];
         const path_temp = uploadImageFile.path;
         // Move uploaded file with unique name to server public/files folder
-        await fs.rename(path_temp, `${__dirname}/public/TreeHoleImages/${hashImageName}`, (err) => {
+        await fs.copyFile(path_temp, `${__dirname}/public/TreeHoleImages/${hashImageName}`, (err) => {
             if (err) console.error(err);
         });
         // Save serve URL and file name to database
@@ -191,7 +191,7 @@ router.post("/addDriftBottlesVideos", (req, res) => {
         const uploadVideoFile = files.videoFile[0];
         const path_temp = uploadVideoFile.path;
         // Move uploaded file with unique name to server public/files folder
-        await fs.rename(path_temp, `${__dirname}/public/driftBottleVideos/${hashVideoName}`, (err) => {
+        await fs.copyFile(path_temp, `${__dirname}/public/driftBottleVideos/${hashVideoName}`, (err) => {
             if (err) console.error(err);
         });
         // Save serve URL and file name to database
@@ -233,7 +233,7 @@ router.post("/addTreeHoleThreadVideos", (req, res) => {
         const uploadVideoFile = files.videoFile[0];
         const path_temp = uploadVideoFile.path;
         // Move uploaded file with unique name to server public/files folder
-        await fs.rename(path_temp, `${__dirname}/public/TreeHoleVideos/${hashVideoName}`, (err) => {
+        await fs.copyFile(path_temp, `${__dirname}/public/TreeHoleVideos/${hashVideoName}`, (err) => {
             if (err) console.error(err);
         });
         // Save serve URL and file name to database
@@ -275,7 +275,7 @@ router.post("/addDriftBottlesAudios", (req, res) => {
         const uploadAudioFile = files.audioFile[0];
         const path_temp = uploadAudioFile.path;
         // Move uploaded file with unique name to server public/files folder
-        await fs.rename(path_temp, `${__dirname}/public/driftBottleAudios/${hashAudioName}`, (err) => {
+        await fs.copyFile(path_temp, `${__dirname}/public/driftBottleAudios/${hashAudioName}`, (err) => {
             if (err) console.error(err);
         });
         // Save serve URL and file name to database
@@ -318,7 +318,7 @@ router.post("/addTreeHoleThreadAudios", (req, res) => {
         const uploadAudioFile = files.audioFile[0];
         const path_temp = uploadAudioFile.path;
         // Move uploaded file with unique name to server public/files folder
-        await fs.rename(path_temp, `${__dirname}/public/TreeHoleAudios/${hashAudioName}`, (err) => {
+        await fs.copyFile(path_temp, `${__dirname}/public/TreeHoleAudios/${hashAudioName}`, (err) => {
             if (err) console.error(err);
         });
         // Save serve URL and file name to database
@@ -429,41 +429,41 @@ router.post("/addTreeHoleThread", async (req, res) => {
 router.get('/getDriftBottleImages/:imageName', function (req, res, next) {
     const dirName = '/public/driftBottleImages/';
     const fileName = req.params.imageName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send image for tree hole thread
 router.get('/getTreeHoleThreadImages/:imageName', function (req, res, next) {
     const dirName = '/public/TreeHoleImages/';
     const fileName = req.params.imageName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send video for drift bottle
 router.get('/getDriftBottleVideos/:videoName', function (req, res, next) {
     const dirName = '/public/driftBottleVideos/';
     const fileName = req.params.videoName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send video for tree hole thread
 router.get('/getTreeHoleThreadVideos/:videoName', function (req, res, next) {
     const dirName = '/public/TreeHoleVideos/';
     const fileName = req.params.videoName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send audio for drift bottle
 router.get('/getDriftBottleAudios/:audioName', function (req, res, next) {
     const dirName = '/public/driftBottleAudios/';
     const fileName = req.params.audioName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send audio for tree hole thread
 router.get('/getTreeHoleThreadAudios/:audioName', function (req, res, next) {
     const dirName = '/public/TreeHoleAudios/';
     const fileName = req.params.audioName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 
 // Send requested fileName from server directory to front-end
-const sendFile = (dirName, fileName, res) => {
+const sendFile = (dirName, fileName, res, next) => {
     const options = {
         root: __dirname + dirName,
         dotfiles: 'deny',
