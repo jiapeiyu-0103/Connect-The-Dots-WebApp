@@ -12,10 +12,12 @@ router.get("/data", async (req, res) => {
 
 // get all entries for specific month
 router.get("/getOneMonthDairies", async (req, res) => {
+	const id = req.query.user;
 	const mon = parseInt(req.query.month);
 	console.log("dd " + mon);
 	if (mon !== null && mon !== undefined) {
 		await DataModel.find({
+			userID: id,
 			month: mon
 		}).then(doc => {
 			console.log(doc);

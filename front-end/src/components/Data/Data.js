@@ -8,7 +8,7 @@ import * as api from '../../services/api';
 import 'antd/dist/antd.css';
 import { Select } from 'antd';
 
-function Data() {
+function Data(props) {
 
 
 
@@ -75,9 +75,9 @@ function Data() {
 
 
     const calculateSummary = async (month) => {
-        await api.getOneMonthDairies(month).then(function (res) {
+
+        await api.getOneMonthDairies(month, props.curUser.unique_id).then(function (res) {
             // print data get from back-end(database) -> get the right data
-            console.log(res.data);
             let sunny = 0;
             let cloudy = 0;
             let rain = 0;
