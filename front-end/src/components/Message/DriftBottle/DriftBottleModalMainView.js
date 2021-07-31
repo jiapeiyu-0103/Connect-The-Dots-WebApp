@@ -5,7 +5,7 @@ import MyDriftBottle from './MyDriftBottle';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
 import React from "react";
 function DriftBottleModalMainView(props) {
-    
+    // Switch on control states
     switch (props.state) {
         case DriftBottleStates.MY_BOTTLES:
             return  <MyDriftBottle addReply={props.addReply} deleteBottle={props.deleteBottle} sentBottles={props.sentBottles} collectedBottles={props.collectedBottles} closeModal={props.closeModal} />
@@ -33,7 +33,7 @@ DriftBottleModalMainView.propTypes = {
     setVideos: PropTypes.func,
     pics: PropTypes.string,
     setPics: PropTypes.func,
-    audioData: PropTypes.object,
+    audioData: PropTypes.string,
     setAudioData: PropTypes.func,
 }
 

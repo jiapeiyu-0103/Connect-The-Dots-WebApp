@@ -1,11 +1,9 @@
 /* SOURCE: https://rahmanfadhil.com/express-rest-api/ */
 const mongoose = require("mongoose")
-// Schema to store Drift Bottles
+// Schema to store Tree Hole Threads
 const schema = mongoose.Schema({
     userId: mongoose.Schema.Types.ObjectId,
-    collectorUserId: mongoose.Schema.Types.ObjectId,
 	name: String,
-    location: String,
     imageSrc: String,
     audioUrl: String,
     imageUrl: String,
@@ -19,7 +17,6 @@ const schema = mongoose.Schema({
         {   
             userId: mongoose.Schema.Types.ObjectId,
             name: String,
-            location: String,
             content: String,
             imageSrc: String,
             replies: Array,
@@ -28,4 +25,4 @@ const schema = mongoose.Schema({
     ]
 })
 
-module.exports = mongoose.model("SendDriftBottles", schema)
+module.exports = mongoose.model("TreeHoleThreads", schema)

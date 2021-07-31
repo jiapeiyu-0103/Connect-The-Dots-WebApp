@@ -1,8 +1,8 @@
 .throw-button {
     text-align: center;
-    background-color:  #333;
+    background-color: #333;
     border: none;
-    color:white;
+    color: white;
     font-family: "Optima", sans-serif;
     font-size: 1.3vw;
     display: inline-flex;
@@ -16,9 +16,9 @@
 }
 
 .throw-button:hover {
-    background-color:#56799d; /* Green */
+    background-color: #56799d;
     color: white;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 #sendBottleForm {
@@ -33,9 +33,9 @@
     width: 40vw;
     max-height: 45vh;
     height: auto;
-    top:3%;
+    top: 3%;
     position: relative;
-    resize:none;
+    resize: none;
 }
 
 .sendBottleModalOuter {

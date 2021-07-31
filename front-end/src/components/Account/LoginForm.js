@@ -30,7 +30,8 @@ function LoginForm({setState, setUser}) {
                         sex: user.sex,
                         birthday: user.birthday,
                         password: user.password,
-                        photo: user.photo
+                        photo: user.photo,
+                        message_id : user._id, // For DriftBottle and Tree Hole, please keep
                     });
                 } else {
                     alert("Invaild username or password")

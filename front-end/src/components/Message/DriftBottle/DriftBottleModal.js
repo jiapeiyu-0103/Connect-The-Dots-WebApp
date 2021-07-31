@@ -6,7 +6,7 @@ function DriftBottleModal(props) {
                 
 
                 <div className="driftBotModal"> 
-                        
+                
                 <span onClick={props.closeModal} className="closeModalBtn">&times;</span>
                 
                 <div className="modalContent">
@@ -39,7 +39,7 @@ DriftBottleModal.propTypes = {
     setVideos: PropTypes.func,
     pics: PropTypes.string,
     setPics: PropTypes.func,
-    audioData: PropTypes.object,
+    audioData: PropTypes.string,
     setAudioData: PropTypes.func,
 }
 
