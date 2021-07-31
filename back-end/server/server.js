@@ -9,7 +9,7 @@ const socket = require('socket.io');
 
 // Mongoose initializations
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://ConnectTheDotsDbAdmin:readandwrite@connectthedotscluster.ottrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
+mongoose.connect('mongodb+srv://ConnectTheDotsDbAdmin:readandwrite@connectthedotscluster.ottrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&ssl=true', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
 
 // Connect to MongoDb
 const db = mongoose.connection;
@@ -20,10 +20,12 @@ db.once('open', function() {
     
     // Initialize Express server
     const app = express();
+    app.enable('trust proxy');
 
     // Middleware
     app.use(express.json())
     app.use(cors());  
+    app.use(express.static('public'));
     
     // IMPORTANT: End Points
     app.use("/messageApi", messageRoutes);

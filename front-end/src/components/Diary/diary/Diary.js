@@ -12,7 +12,7 @@ function Diary(props) {
     // const imageUploader = React.useRef(null);
     // const audioUploader = React.useRef(null);
     const day = new Date().toLocaleString("en-US", { day : '2-digit'});
-    // const month = new Date().toLocaleString("en-US", { month: "long" });
+    
     
     const month =new Date().getMonth()+1;
 

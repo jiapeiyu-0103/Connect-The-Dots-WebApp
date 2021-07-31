@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Thread from '../Thread/Thread';
 
 function MyDriftBottleInfoView(props) {
+  // Function to add reply to bottles
   const addReply = (replyValue) => {
       props.addReply(props.bottle.type, props.bottle.index, replyValue);
   }

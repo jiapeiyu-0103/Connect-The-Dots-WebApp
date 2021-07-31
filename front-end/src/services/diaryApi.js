@@ -1,5 +1,5 @@
 import axios from 'axios';
-let localURL = 'http://localhost:3001/diaryApi';
+let localURL = 'https://connect-the-dots-backend.herokuapp.com/diaryApi'||'https://localhost:3001/diaryApi';
 
 export const addDiary = (diary) => {
     return axios.post(localURL + "/addDiary", 

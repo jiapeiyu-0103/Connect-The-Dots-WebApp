@@ -32,12 +32,13 @@ const RegisterForm = (props) => {
     const [rePswd, setRePswd] = useState('')
     const [sex, setSex] = useState("Male")
     const [date, setDate] = useState('')
+    let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
 
 
     // check if the user name has been used before if not then return true
     // require the implement of database
     const checkNameAndCreate = (username) => {
-        axios.get(`http://localhost:3001/userApi/checkUserName/${username}`)
+        axios.get(localURL +`/checkUserName/${username}`)
             .then((response) => {
                 console.log("retrieve data from database and wait for username duplication check")
                 console.log(response)
@@ -61,7 +62,7 @@ const RegisterForm = (props) => {
     // create a user instance and store into database
     // require: 1) back implement of user class 2) implement of database
     const createUserAndStore = (name, pswd, sex, date) => {
-        axios.post('http://localhost:3001/userApi/users', {
+        axios.post(localURL +'/users', {
             userID: uuidv4(),
             username: name,
             password: pswd,

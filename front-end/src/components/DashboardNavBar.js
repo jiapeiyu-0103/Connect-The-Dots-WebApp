@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 // Reference from: https://material-ui.com/components/tabs/
 import './Diary/DiaryMainView.css'
@@ -12,7 +11,6 @@ import DiaryMainView from './Diary/DiaryMainView';
 import Message from './Message/Message';
 import Account from './Account/Account';
 import Data from './Data/Data'
-import { Link } from "react-router-dom";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -105,9 +103,6 @@ export default function DashboardNavBar(props) {
       <TabPanel value={value} index={3}>
       <Account curUser={props.curUser}/>
       </TabPanel>
-      {/* <TabPanel value={value} index={4}>
-      <Account curUser={props.curUser}/>
-      </TabPanel> */}
       
     </div>
   );
@@ -115,11 +110,6 @@ export default function DashboardNavBar(props) {
 
 DashboardNavBar.propTypes = {
     setStateToLoginForm: PropTypes.func,
-    setDashboardViewToDiary: PropTypes.func, 
-    setDashboardViewToMessage: PropTypes.func, 
-
-    setDashboardViewToAccount: PropTypes.func,
-    setDashboardViewToData: PropTypes.func
 };
 
 

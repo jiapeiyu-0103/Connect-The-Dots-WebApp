@@ -12,12 +12,13 @@ function LoginForm({setState, setUser}) {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [hideRgstForm, setHideRgstForm] = useState(true)
+    let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
 
 
     // match name with password, if match return true, else false;
     // require the implement of database
     const checkAccess = (username, password) => {
-        axios.get(`http://localhost:3001/userApi/checkUserName/${username}`)
+        axios.get(localURL +`/checkUserName/${username}`)
             .then((response) => {
                 console.log(response.data)
                 let user = response.data
@@ -29,7 +30,8 @@ function LoginForm({setState, setUser}) {
                         sex: user.sex,
                         birthday: user.birthday,
                         password: user.password,
-                        photo: user.photo
+                        photo: user.photo,
+                        message_id : user._id, // For DriftBottle and Tree Hole, please keep
                     });
                 } else {
                     alert("Invaild username or password")
