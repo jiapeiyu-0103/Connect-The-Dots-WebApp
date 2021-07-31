@@ -28,18 +28,19 @@ function Account({curUser}) {
     const [date, setDate] = useState(curUser.birthday)
     const [pswd, setPswd] = useState(curUser.password)
     const [rePswd, setRePswd] = useState(curUser.password)
+    let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
 
 
     // require implement of database
     const saveToDB = () => {
 
 
-        axios.get(`http://localhost:3001/userApi/checkUserName/${name}`)
+        axios.get(localURL + `/checkUserName/${name}`)
             .then((response) => {
                 console.log("retrieve data from database and wait for username duplication check")
                 console.log(response)
                 if (name === curUser.username || response.data === "") {
-                    axios.patch(`http://localhost:3001/userApi/users/${curUser.unique_id}`, 
+                    axios.patch(localURL +`/users/${curUser.unique_id}`, 
                                 {
                                     username: name,
                                     sex: sex,

@@ -17,7 +17,7 @@ function LoginForm({setState, setUser}) {
     // match name with password, if match return true, else false;
     // require the implement of database
     const checkAccess = (username, password) => {
-        axios.get(`http://localhost:3001/userApi/checkUserName/${username}`)
+        axios.get(localURL +`/checkUserName/${username}`)
             .then((response) => {
                 console.log(response.data)
                 let user = response.data
