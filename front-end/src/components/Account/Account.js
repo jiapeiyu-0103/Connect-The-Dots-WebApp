@@ -24,8 +24,12 @@ function Account({curUser}) {
 
 
     useEffect(() => {
-        console.log(">> effect is set")
-      }, [url]);
+        if (url) {
+            setPhotoURL(url)
+           
+          }
+        }, [url]);
+    
     
       const handleChange = async (e) => {
         let selected = e.target.files[0];
@@ -44,6 +48,7 @@ function Account({curUser}) {
 
 
     let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
+    // let localURL = 'https://localhost:3001/userApi';
 
 
     // require implement of database
