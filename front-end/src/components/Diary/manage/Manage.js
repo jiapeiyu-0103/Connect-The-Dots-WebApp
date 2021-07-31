@@ -15,6 +15,7 @@ function Manage(props){
 useEffect(() => {
   getAllDiaries(props.curUser.unique_id)
     .then(function(res) {
+      console.log(props.curUser.unique_id)
       setDiary(res);
         })
   },[]);  

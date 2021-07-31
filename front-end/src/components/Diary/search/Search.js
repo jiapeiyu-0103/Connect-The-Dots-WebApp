@@ -22,7 +22,7 @@ function Search(props) {
 
   useEffect(() => {
     console.log(selectDate);
-    searchByDate(selectDate)
+    searchByDate(selectDate, props.curUser.unique_id)
       .then(function(res) {
         setDiary(res);
           })
@@ -43,7 +43,7 @@ function Search(props) {
 const handleClick=(e)=> {
   // e.preventDefault();
       
-  searchByDate("")
+  getAllDiaries(props.curUser.unique_id)
       .then(function(res) {
         setDiary(res);
         // setDate('');

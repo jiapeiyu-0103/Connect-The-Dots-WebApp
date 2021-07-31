@@ -1,5 +1,5 @@
 import axios from 'axios';
-let localURL = 'https://connect-the-dots-backend.herokuapp.com/diaryApi'||'https://localhost:3001/diaryApi';
+let localURL = 'http://localhost:3001/diaryApi';
 
 export const addDiary = (diary) => {
     return axios.post(localURL + "/addDiary", 
@@ -7,9 +7,10 @@ export const addDiary = (diary) => {
     );
   };
 
-export const getAllDiaries = (usr) => {
-    return axios.get(localURL + `/?usr=${usr}`)
+export const getAllDiaries = (user) => {
+    return axios.get(localURL + `/getDiary?user=${user}`)
         .then(response => {
+          console.log(user);
           return response.data
         });
   };
@@ -26,9 +27,9 @@ export const getAllDiaries = (usr) => {
     );
   };
 
-  export const searchByDate = (date) => {
+  export const searchByDate = (date,user) => {
     return axios.get(
-      localURL + `/searchDate?date=${date}`
+      localURL + `/searchDate?date=${date}&user=${user}`
       // {
       //   params: {
       //      name
