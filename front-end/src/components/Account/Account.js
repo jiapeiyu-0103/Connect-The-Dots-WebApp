@@ -1,25 +1,13 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './Account.css';
+import TextField from '@material-ui/core/TextField'
+import useStorage from '../../hook/useStorage';
 import axios from 'axios'
 
 
 function Account({curUser}) {
 
     console.log(curUser)
-
-    let years = []
-
-    for(let i = 1900; i < 2021; i++) {
-        let id = "year_option" + i
-        years.push(<option key={id} value={i}> {i} </option>)
-    }
-
-    let days = []
-
-    for(let i = 1; i < 32; i++) {
-        let id = "day_option" + i
-        days.push(<option key={id} value={i}> {i} </option>)
-    }
 
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState(curUser.username)
@@ -28,6 +16,33 @@ function Account({curUser}) {
     const [date, setDate] = useState(curUser.birthday)
     const [pswd, setPswd] = useState(curUser.password)
     const [rePswd, setRePswd] = useState(curUser.password)
+
+    const [file, setFile] = useState(null);
+    const [error, setError] = useState(null);
+    const types = ['image/png', 'image/jpeg','image/jpg','image/gif'];
+    const { url } = useStorage(file);
+
+
+    useEffect(() => {
+        console.log(">> effect is set")
+      }, [url]);
+    
+      const handleChange = async (e) => {
+        let selected = e.target.files[0];
+
+    
+        if (selected) {
+          setFile(selected);
+          setError('');
+          setPhotoURL(url)
+        } else {
+          setFile(null);
+          setError('Please select an image file (png or jpg)');
+        }
+      };
+
+
+
     let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
 
 
@@ -108,7 +123,7 @@ function Account({curUser}) {
                     <h3 className="display-info">Name: {curUser.username}</h3>
                     <h3 className="display-info">Sex: {curUser.sex}</h3>
                     <h3 className="display-info">Photo:</h3>
-                    <img className="display-img"  src="https://i.postimg.cc/CKGz7xXV/sponge-Bob.jpg" alt={curUser.name}/>
+                    <img className="display-img"  src={curUser.photo} alt={curUser.name}/>
                     <h3 className="display-info">Birthday:  {curUser.birthday}</h3>
                     <button className="edit-button" onClick={() => {setEditMode(true)}}>Edit</button>
                 </div>
@@ -143,13 +158,20 @@ function Account({curUser}) {
                     </div>
 
                     <div className="info-input">
-                        <label className="edit-info">Photo: </label>
-                        <input type="text" value={photoURL} placeholder="please enter image URL" onChange={(e) => {setPhotoURL(e.target.value)}}></input> <br/>
+                        <label className="edit-info">Photo: </label> <br/>
+                        <input type="file" accept="image/*" multiple ={true} onChange={handleChange}/><br/>
+                        {/* <input type="text" value={photoURL} placeholder="please enter image URL" onChange={(e) => {setPhotoURL(e.target.value)}}></input> <br/> */}
                     </div>
 
                     <div className="info-input">
                         <label className="edit-info">Birthday:</label>
-
+                        <TextField
+                        variant='outlined'
+                        value={date}
+                        type='date'
+                        onChange={(e) => {setDate(e.target.value)}}
+                        style={{'width': '40%'}}
+                        />
 
                     </div>
 
