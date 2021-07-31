@@ -123,7 +123,7 @@ router.post('/addDiary', function(req, res, next) {
 	  });
 	} else{
 	 
-	  DiaryEntry.find({'date':date})
+	  DiaryEntry.find({'date':'2021-02-03'})
 	  .exec()
 	  .then(docs => {
 		console.log(docs);
