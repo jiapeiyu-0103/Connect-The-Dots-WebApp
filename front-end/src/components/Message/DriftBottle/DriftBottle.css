@@ -11,7 +11,7 @@
     background-size: cover;
     /* background-image: url("../img/bottle.png"); */
     background-image: url("https://i.postimg.cc/R0Bpn345/drift-bottle2.jpg");
-    opacity: 70%;
+    opacity: 0.7;
     border-radius: 10px;
     justify-content: flex-end;
     flex-direction: column;
@@ -82,7 +82,7 @@
   margin-top: 10px;
   overflow-y: scroll;
   background-image: url("https://i.postimg.cc/TYczfMqD/Pngtree-retro-letter-paper-red-blue-1433239.png");
-  opacity: 90%;
+  opacity: 0.9;
   /* border-radius: 10px; */
   background-size:contain;
 }
