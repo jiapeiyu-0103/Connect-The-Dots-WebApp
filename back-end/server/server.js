@@ -23,6 +23,7 @@ db.once('open', function() {
     // Middleware
     app.use(express.json())
     app.use(cors());  
+    app.use(express.static('public'));
     
     // IMPORTANT: End Points
     app.use("/messageApi", messageRoutes);
