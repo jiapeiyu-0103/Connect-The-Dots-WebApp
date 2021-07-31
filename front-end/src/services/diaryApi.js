@@ -7,8 +7,8 @@ export const addDiary = (diary) => {
     );
   };
 
-export const getAllDiaries = () => {
-    return axios.get(localURL + '/')
+export const getAllDiaries = (usr) => {
+    return axios.get(localURL + `/?usr=${usr}`)
         .then(response => {
           return response.data
         });

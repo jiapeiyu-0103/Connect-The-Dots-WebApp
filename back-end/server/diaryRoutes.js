@@ -10,7 +10,8 @@ const mongoose = require("mongoose");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   //it will automatically return a json
-  DiaryEntry.find()
+  const usr = req.query.usr;
+  DiaryEntry.find({'userID':usr})
     .exec()
     .then(docs => {
       console.log(docs);
