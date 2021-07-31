@@ -19,6 +19,7 @@ db.once('open', function() {
     
     // Initialize Express server
     const app = express();
+    app.enable('trust proxy');
 
     // Middleware
     app.use(express.json())
