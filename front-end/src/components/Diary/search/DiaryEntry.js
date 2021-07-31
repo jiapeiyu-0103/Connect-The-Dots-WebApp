@@ -32,7 +32,7 @@ const handleClick = (e) => {
   setLike(!like);
   favDiary(props.entry).then(() => {
      
-      getAllDiaries().then((res) => {
+      getAllDiaries(props.entry.userID).then((res) => {
          
           props.setDiary(res);
       })
