@@ -97,7 +97,7 @@
     font-size: 4vw;
     font-family: "Didot";
     /* font-family: "OCR A Std", monospace; */
-    opacity: 60%;
+    opacity: 0.6;
     text-align: left;
     margin-bottom: 1vh;
     margin-left: 3vw;
@@ -111,7 +111,7 @@
     top: 35%;
     left: 8%;
     margin-left: 3vw;
-    opacity: 70%;
+    opacity: 0.7;
     /* border-radius: 70%;
     padding-top: 10vh;
     padding-bottom: 10vh; */

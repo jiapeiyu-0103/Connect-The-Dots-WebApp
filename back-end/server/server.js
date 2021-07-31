@@ -8,7 +8,7 @@ const diaryRoutes = require("./diaryRoutes")
 
 // Mongoose initializations
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://ConnectTheDotsDbAdmin:readandwrite@connectthedotscluster.ottrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
+mongoose.connect('mongodb+srv://ConnectTheDotsDbAdmin:readandwrite@connectthedotscluster.ottrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&ssl=true', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
 
 // Connect to MongoDb
 const db = mongoose.connection;
