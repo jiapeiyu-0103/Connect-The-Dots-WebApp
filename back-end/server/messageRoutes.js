@@ -429,41 +429,41 @@ router.post("/addTreeHoleThread", async (req, res) => {
 router.get('/getDriftBottleImages/:imageName', function (req, res, next) {
     const dirName = '/public/driftBottleImages/';
     const fileName = req.params.imageName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send image for tree hole thread
 router.get('/getTreeHoleThreadImages/:imageName', function (req, res, next) {
     const dirName = '/public/TreeHoleImages/';
     const fileName = req.params.imageName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send video for drift bottle
 router.get('/getDriftBottleVideos/:videoName', function (req, res, next) {
     const dirName = '/public/driftBottleVideos/';
     const fileName = req.params.videoName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send video for tree hole thread
 router.get('/getTreeHoleThreadVideos/:videoName', function (req, res, next) {
     const dirName = '/public/TreeHoleVideos/';
     const fileName = req.params.videoName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send audio for drift bottle
 router.get('/getDriftBottleAudios/:audioName', function (req, res, next) {
     const dirName = '/public/driftBottleAudios/';
     const fileName = req.params.audioName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 // Send audio for tree hole thread
 router.get('/getTreeHoleThreadAudios/:audioName', function (req, res, next) {
     const dirName = '/public/TreeHoleAudios/';
     const fileName = req.params.audioName;
-    sendFile(dirName, fileName, res);
+    sendFile(dirName, fileName, res, next);
 });
 
 // Send requested fileName from server directory to front-end
-const sendFile = (dirName, fileName, res) => {
+const sendFile = (dirName, fileName, res, next) => {
     const options = {
         root: __dirname + dirName,
         dotfiles: 'deny',
