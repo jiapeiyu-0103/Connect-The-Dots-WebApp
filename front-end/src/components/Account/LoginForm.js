@@ -12,7 +12,7 @@ function LoginForm({setState, setUser}) {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [hideRgstForm, setHideRgstForm] = useState(true)
-    let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
+    let localURL = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-backend.herokuapp.com/userApi' : 'http://localhost:3001/userApi';
 
 
     // match name with password, if match return true, else false;

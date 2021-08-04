@@ -1,5 +1,5 @@
 import axios from 'axios';
-const localURL = 'https://connect-the-dots-backend.herokuapp.com/diaryApi'||'http://localhost:3001/diaryApi';
+const localURL = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-backend.herokuapp.com/diaryApi' : 'http://localhost:3001/diaryApi';
 
 export const addDiary = (diary) => {
     return axios.post(localURL + "/addDiary", 
