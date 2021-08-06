@@ -218,7 +218,7 @@ const addCollectedBottleReply = (index, replyValue) => {
     if(i === -1) {
         i = newCollectedBottles.length-1;
         
-    } 
+    }
     
     // Push new reply to collected bottles array copy
     newCollectedBottles[i].replies.push(replyToAdd);
@@ -226,10 +226,16 @@ const addCollectedBottleReply = (index, replyValue) => {
     // Update new collected bottles array with the copy
     setCollectedBottles(newCollectedBottles);
     
+    // Construct request
+    const objectToSentToServer = {
+        _id: newCollectedBottles[i]._id,
+        replyToAdd: replyToAdd
+    }
+    
     // Request server to save information of the new reply in database
     fetch(SERVER_URL+'messageApi/addSendDriftBottlesReplies', {
         method: 'PUT',
-        body: JSON.stringify(newCollectedBottles[i]),
+        body: JSON.stringify(objectToSentToServer),
         headers: {
         'Content-Type': 'application/json'
         }
@@ -237,9 +243,7 @@ const addCollectedBottleReply = (index, replyValue) => {
     })
     .then(response => response.json())
     .then((data) => {
-        if (data === 'ADD SEND BOTTLE REPLIES success') {  
-
-        } else {
+        if (data !== 'ADD SEND BOTTLE REPLIES success') {  
             console.error("Error when ADD a Send Drift Bottle REPLY!");
         }
     })
@@ -258,17 +262,23 @@ const addSentBottleReply = (index, replyValue) => {
         i = newSentBottles.length-1;
         
     } 
-    
+       
     // Push new reply to sent bottles array copy
     newSentBottles[i].replies.push(replyToAdd);
     
     // Update new sent bottles array with the copy
     setSentBottles(newSentBottles);
     
+    // Construct request
+    const objectToSentToServer = {
+        _id: newSentBottles[i]._id,
+        replyToAdd: replyToAdd
+    }
+    
     // Request server to save information of the new reply in database
     fetch(SERVER_URL+'messageApi/addSendDriftBottlesReplies', {
         method: 'PUT',
-        body: JSON.stringify(newSentBottles[i]),
+        body: JSON.stringify(objectToSentToServer),
         headers: {
         'Content-Type': 'application/json'
         }
@@ -276,10 +286,7 @@ const addSentBottleReply = (index, replyValue) => {
     })
     .then(response => response.json())
     .then((data) => {
-        if (data === 'ADD SEND BOTTLE REPLIES success') {  
-            
-
-        } else {
+        if (data !== 'ADD SEND BOTTLE REPLIES success') {  
             console.error("Error when ADD a Send Drift Bottle REPLY!");
         }
     })

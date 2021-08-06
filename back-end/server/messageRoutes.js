@@ -349,18 +349,16 @@ router.put("/addSendDriftBottlesReplies", async (req, res) => {
             _id: req.body._id
         },
         update = {
-            replies: req.body.replies
-        },
-        options = {
-            upsert: true,
-            new: true,
-            setDefaultsOnInsert: true
+            $addToSet: {
+                'replies': req.body.replyToAdd
+            }
         };
-    await SendDriftBottles.findOneAndUpdate(query, update, options, (error, result) => {
-        if (error) console.log("Failed to update send drift bottles replies. Error: " + error.stack);
+    
+    await SendDriftBottles.updateOne(query, update, (error, result) => {
+    if (error) console.log("Failed to update send drift bottles replies. Error: " + error.stack);
 
     });
-
+     
     res.json("ADD SEND BOTTLE REPLIES success");
 })
 
@@ -370,18 +368,16 @@ router.put("/addTreeHoleThreadReplies", async (req, res) => {
             _id: req.body._id
         },
         update = {
-            replies: req.body.replies
-        },
-        options = {
-            upsert: true,
-            new: true,
-            setDefaultsOnInsert: true
+            $addToSet: {
+                'replies': req.body.replyToAdd
+            }
         };
-    await TreeHoleThreads.findOneAndUpdate(query, update, options, (error, result) => {
+
+    await TreeHoleThreads.updateOne(query, update, (error, result) => {
         if (error) console.log("Failed to update tree hole threads replies. Error: " + error.stack);
 
-    });
-
+    }); 
+    
     res.json("ADD TREE HOLE THREAD REPLIES success");
 })
 
@@ -488,16 +484,11 @@ router.delete("/deleteCollectedDriftBottles/:id", async (req, res) => {
         },
         update = {
             collectorUserId: null
-        },
-        options = {
-            upsert: true,
-            new: true,
-            setDefaultsOnInsert: true
         };
-    await SendDriftBottles.findOneAndUpdate(query, update, options, (error, result) => {
+    await SendDriftBottles.findOneAndUpdate(query, update, (error, result) => {
         if (error) console.log("Failed to throw a collected bottle. Error: " + error.stack);
         else
-            res.json('DELETE COLLECTED BOTTLE success');
+        res.json('DELETE COLLECTED BOTTLE success');
 
     });
 
