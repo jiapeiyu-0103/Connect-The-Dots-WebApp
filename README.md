@@ -1,3 +1,7 @@
+### High-level Description:
+
+'Connect the Dots' is an anonymous social web application that allow anonymous users to pour out those annoying issues (secrets, stress, trouble or persistence,etc) without any concerns and pass their love and warmth to others. After registering for an account and login, an user can create diaries entries that contain texts, videos, audios, pictures and store them in a safe place for later access and management. Data on the user's diaries entries are also calculated and showcased in the forms of beautiful pie charts. The user can also write anonymous messages and send them out to the world and receive back replies from other users as well as having instant text-based chat with a random stranger.
+
 ### Project Description: 
 *Who is it for?*
 
@@ -5,7 +9,7 @@ The Application is intended for everyone, especially people with the needs for h
 
 *What will it do? (What "human activity" will it support?)*
 
-‘Connect the Dots’ is an anonymous social web application that allows anonymous users to pour out those annoying issues (secrets, stress, trouble or persistence,etc) without any concerns and pass their love and warmth to others.
+‘Connect the Dots’ will allow anonymous users to pour out those annoying issues (secrets, stress, trouble or persistence,etc) without any concerns and pass their love and warmth to others.
 
 We are all one small dot in this vast universe, independent but could also be connected. Our application aims to gather those original anonymous ‘dots’ who seek for a tree hole or companionship and let them build up their own connections; know themselves better and in order to fully accept themselves through the pouring out; finally healing each other during the connections. Users can not only record their diary through text, image, audio and video here but also can form the communication with random strangers through the virtual message in the bottle or the tree hole posts which refers to the anonymous blogs, or instant messaging.
 
@@ -27,22 +31,22 @@ We are aiming to allow users to play mini games as well as having video/audio ca
 
 1. Allow users to create accounts.
 2. Allow users to modify their accounts (profile pictures, description, etc.)
-3. Allow users to write and edit and store diary entries in the form of pictures, text, videos, etc.
-4. Allow users to send messages, pictures, videos (anonymously or non-anonymously) to random strangers and get their responses.
-5. Allow users to send messages, pictures, videos (anonymously or non-anonymously) into a public space where all users can see and respond.
+3. Allow users to write and store diary entries in the form of pictures, text, videos, etc.
+4. Allow users to send messages, pictures, videos to random strangers and get their responses.
+5. Allow users to send messages, pictures, videos into a public space where all users can see and respond.
 
 *Standard requirements (will most likely complete)*
 
-1. Allow users to connect to a random stranger and have a text-based chat.
-2. Allow users to search for the diary entry by dates, key words and weather, emotion, activite tags that they added to their diaries.
-3. Allow users to view the diary-related data, which includes the user emotion report and the charts that will reflect users' emotional change.(For example, showcase the most frequent emotion user pick for their diary entry and their emotion distribution in a month.)
-4. Allow users to favorite their preferred diaries.
-5. Allow users to save unfinished diary in the draft box.
+1. Allow users to search for the diary entry by dates, key words and weather, emotion, activite tags that they added to their diaries.
+2. Allow users to view the diary-related data, which includes the user emotion report and the charts that will reflect users' emotional change.(For example, showcase the most frequent emotion user pick for their diary entry and their emotion distribution in a month.)
+3. Allow users to favorite their preferred diaries.
+4. Allow users to edit their diary entries.
+5. Allow users to delete their diary entries.
 
 *Stretch requirements (plan to complete at least 1!)*
 1. Allow users to add friends through search or 'add' button beside user name.;
 2. Allow users to connect via video and/or audio call to a random stranger.
-3. Allow users to play mini games with a random stranger on this call (tic-tac-toe, collaborative drawing, etc.)
+3. Allow users to connect to a random stranger and have a text-based chat.
 
 ### Minimal requirements task breakdown:
 1. Allow users to create accounts.

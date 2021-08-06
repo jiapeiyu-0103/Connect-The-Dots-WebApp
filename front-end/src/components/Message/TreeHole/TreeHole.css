@@ -1,0 +1,147 @@
+#treeHoleOuter {
+    min-height: 80vh;
+    min-width: 70vw;
+    overflow: auto;
+    margin: auto;
+    text-align: left;
+
+}
+
+.treeHoleInput {
+    overflow-y: scroll;
+    resize: none;
+    width: 35vw;
+    height: 35vh;
+    font-size: 1.2vw;
+    font-family: "Optima", sans-serif;
+}
+
+.deleteThreadBtn {
+    font-size: 30px;
+}
+
+.deleteThreadBtn:hover {
+    cursor: pointer;
+}
+
+
+#treeHoleImageFormWrapper {
+    position: relative;
+}
+
+
+#treeHoleImage {
+    width: 45%;
+
+}
+
+#treeHoleForm {
+    width: 50%;
+    height: 100%;
+    float: right;
+
+}
+
+#treeHoleForm input {
+    width: 98%;
+    height: 9vw;
+
+}
+
+#treeHoleForm button {
+    text-align: center;
+    background-color: #333;
+    border: none;
+    color: white;
+    font-family: "Optima", sans-serif;
+    font-size: 1vw;
+    display: inline-flex;
+    padding: 2% 4%;
+    margin-bottom: 2vh;
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    opacity: 0.75;
+    margin-right: 10px;
+    margin-top: 0vh;
+    position: relative;
+    transform: translate(0%, -200%);
+}
+
+#treeHoleForm button:hover {
+    background-color: #56799d;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width: 1300px) {
+
+    .treeHoleInput {
+        height: 28vh;
+    }
+
+    #treeHoleForm input {
+        width: 96%;
+        height: 8vw;
+
+    }
+
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+    .treeHoleInput {
+        height: 25vh;
+    }
+
+
+}
+
+@media only screen and (max-width: 1100px) {
+
+    .treeHoleInput {
+        height: 20vh;
+    }
+
+
+}
+
+@media only screen and (max-width: 800px) {
+    .treeHoleInput {
+        height: 15vh;
+    }
+
+    #treeHoleForm input {
+        height: 70px;
+
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+    .treeHoleInput {
+        height: 10vh;
+    }
+
+    #treeHoleForm input {
+        height: 70px;
+
+    }
+
+}
+
+.treeHoleModalOuter {
+    min-width: 600px;
+}
+
+
+.threadList {
+    list-style-type: none;
+    min-width: 400px;
+
+}
+
+.threadList li {
+    margin-bottom: 20px;
+
+}

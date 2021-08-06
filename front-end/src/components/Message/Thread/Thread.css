@@ -1,0 +1,99 @@
+.thread {
+    text-align: left;
+    min-height: 60vh;
+    min-width: 50vw;
+    overflow-y: scroll;
+    width: auto;
+    height: auto;
+    font-size: 1.2vw;
+    font-family: "Optima", sans-serif;
+
+}
+
+.threadInner {
+    min-height: 60vh;
+    min-width: 50vw;
+    overflow-y: scroll;
+    margin-top: 5vh;
+    margin-left: 5vw;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    overflow-y: scroll;
+
+}
+
+.threadMainInfo {
+    margin-bottom: -10px;
+}
+
+.threadMainInfo img {
+    display: inline-block;
+    position: relative;
+    top: 5vh;
+    width: 5vw;
+    height: 10vh;
+}
+
+
+.images-container {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    ;
+    border: 2px dashed black;
+    text-align: center;
+}
+
+.images-container img {
+    width: 400px;
+    height: 250px;
+}
+
+
+.threadUserName {
+    display: inline-block;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.threadMainContent {
+    text-align: left;
+
+}
+
+.threadReplies {
+    margin-top: 3vh;
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    width: 50vw;
+    height: 40vh;
+    overflow-y: scroll;
+
+
+}
+
+.threadNav {
+    width: 50vw;
+}
+
+.threadReplies li {
+    margin-top: 10px;
+}
+
+.threadReplies li div b {
+    margin-left: 10px;
+}
+
+.threadReplies li img {
+    display: inline-block;
+    width: 2vw;
+    height: 4.5vh;
+}
+
+
+.threadReplies li p {
+    display: inline-block;
+    margin-left: 10px;
+}
