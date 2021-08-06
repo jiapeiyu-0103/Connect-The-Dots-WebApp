@@ -63,15 +63,17 @@ const handleSubmit = (index, replyValue) => {
     const newThreads = [...threads];
     
     const replyToAdd = constructMessageObj(replyValue, curUser)
-    
-    newThreads[index].replies.push(replyToAdd);
-    
-    setThreads(newThreads);
+
+    // Construct request
+    const objectToSentToServer = {
+        _id: newThreads[index]._id,
+        replyToAdd: replyToAdd
+    }
     
     // Push replies to server
     fetch(SERVER_URL+'messageApi/addTreeHoleThreadReplies', {
         method: 'PUT',
-        body: JSON.stringify(newThreads[index]),
+        body: JSON.stringify(objectToSentToServer),
         headers: {
         'Content-Type': 'application/json'
         }
@@ -80,7 +82,7 @@ const handleSubmit = (index, replyValue) => {
     .then(response => response.json())
     .then((data) => {
         if (data === 'ADD TREE HOLE THREAD REPLIES success') {  
-            
+            fetchTreeHoleThreads();
 
         } else {
             console.error("Error when ADD a TREE HOLE THREAD REPLY!");
