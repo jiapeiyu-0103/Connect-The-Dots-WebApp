@@ -21,8 +21,9 @@ function Chat(props) {
 
     const connectToRoom = () => {
         // set the room data to server(backend)]
-        setLoggedIn(true);
+        // setLoggedIn(true);
         // socket.emit('join_room', props.curUser.username);
+        window.open('http://localhost:10000', "chat_room")
     };
 
     const sendMessage = () => {
@@ -38,7 +39,7 @@ function Chat(props) {
                 <div>
                     <div className="chatInput">
                         <h1>Welcome: {props.curUser.username}</h1>
-                        <h4>Let's start a new chart with a stranger!</h4>
+                        <h4>Let's start a new chat with a stranger!</h4>
                     </div>
                     <div className="chatTab">
                         <button onClick={connectToRoom}>
