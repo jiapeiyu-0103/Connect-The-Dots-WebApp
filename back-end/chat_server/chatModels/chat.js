@@ -4,36 +4,110 @@ const notification = document.getElementById('chat-message-notice')
 const output = document.getElementById('chat-message-show');
 const message = document.getElementById('send-message-text');
 const send = document.getElementById('send-message-btn');
+const leave = document.getElementById('leave-room-btn');
+let randomUser = null;
 
 // emit events
 
 send.addEventListener('click', () => {
-    socket.emit('send-message', message.value)
+    if (randomUser !== null) {
+        socket.emit('send-message', {
+            message: message.value,
+            sender: socket.id,
+            receiver: randomUser
+        })
+        output.innerHTML += '<p>' + 'you' + ": " + message.value + '</p>'
+        message.value = ""
+    } else {
+        notification.innerHTML = "<p> Please wait for someone join the room or refresh the page </p>"
+    }
 })
 
+leave.addEventListener('click', () => {
+    notification.innerHTML = "<p> You have left the room, please refresh the page for next connection </p>"
+    if (randomUser !== null) {
+        socket.emit('leave', {
+            sender: socket.id,
+            receiver: randomUser
+        })
+    }
+    socket.close()
+})
+
+
+
 message.addEventListener('keypress', () => {
-    socket.emit('typing')
+    if (randomUser !== null) {
+        socket.emit('typing', {
+            sender: socket.id,
+            receiver: randomUser
+        })
+    }
 })
 
 socket.emit('pair')
 
 
 // listen for events
-
-socket.on('notice', (message) => {
-    console.log(message.message)
-    output.innerHTML += '<p>' + message.sender + ": " + message.message + '</p>'
+socket.on('enter-room', () => {
+    notification.innerHTML = "<p> Welcome to the chat room !!! </p>"
 })
 
+
+socket.on('request', (req) => {
+    console.log(req.message)
+    if (randomUser == null) {
+        socket.emit('offer', {
+            message: ">> get a request and provide an offer",
+            sender: socket.id,
+            receiver: req.sender
+        })
+    }
+})
+
+socket.on('offer', (offer) => {
+    console.log(randomUser)
+    if (randomUser == null) {
+        randomUser = offer.sender
+        socket.emit('confirm', {
+            message: `>> connection with socket id ${socket.id} has been set up`,
+            sender: socket.id,
+            receiver: offer.sender
+        })
+    }
+})
+
+socket.on('confirm', (message) => {
+    randomUser = message.sender
+    socket.emit('feedback', {
+        message: `>> connection with socket id ${socket.id} has been set up`,
+        sender: socket.id,
+        receiver: message.sender
+    })
+    notification.innerHTML = '<p><em> you are now connecting to a random user </em></p>'
+})
+
+socket.on('feedback', (message) => {
+    randomUser = message.sender
+    notification.innerHTML = '<p><em> you are now connecting to a random user </em></p>'
+})
+
+
 socket.on('send-message', (data) => {
-    console.log(data.message)
-    output.innerHTML += '<p>' + data.sender + ": " + data.message + '</p>'
-    notification.innerHTML = ''
-    message.value = ""
+    if (data.sender === randomUser) {
+        console.log(data.message)
+        output.innerHTML += '<p>' + data.sender + ": " + data.message + '</p>'
+        notification.innerHTML = ''
+    }
 }) 
 
 socket.on('typing', (data) => {
     console.log(data.sender)
     notification.innerHTML = '<p><em>' + data.sender + ' is typing a message...</em></p>'
-    
+})
+
+socket.on('leave', (message) => {
+    notification.innerHTML = '<p><em> The random user has left the chat room </em></p>'
+    output.innerHTML = ''
+    randomUser = null
 })
