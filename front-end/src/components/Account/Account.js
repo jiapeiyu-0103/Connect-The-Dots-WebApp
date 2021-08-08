@@ -7,7 +7,7 @@ import axios from 'axios'
 
 function Account({curUser}) {
 
-    console.log(curUser)
+    // console.log(curUser)
 
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState(curUser.username)
@@ -58,7 +58,7 @@ function Account({curUser}) {
         axios.get(localURL + `/checkUserName/${name}`)
             .then((response) => {
                 console.log("retrieve data from database and wait for username duplication check")
-                console.log(response)
+                // console.log(response)
                 if (name === curUser.username || response.data === "") {
                     axios.patch(localURL +`/users/${curUser.unique_id}`, 
                                 {

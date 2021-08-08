@@ -40,7 +40,7 @@ router.get("/checkUserName/:username", async (req, res) => {
 })
 
 router.patch("/users/:id", async (req, res) => {
-	const {userID, username, password, sex, birthday} = req.body
+	const {userID, username, password, sex, photo, birthday} = req.body
 	console.log(req.body)
 	let update = await User.updateOne(
 				{ userID: req.params.id }, 
@@ -48,7 +48,8 @@ router.patch("/users/:id", async (req, res) => {
 					username: username,
 					password: password,
 					sex:sex,
-					birthday: birthday
+					birthday: birthday,
+					photo: photo
 					}
 				})
 	res.send(update)
