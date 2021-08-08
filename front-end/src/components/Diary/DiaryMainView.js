@@ -55,14 +55,14 @@ export default function DiaryMainView(props) {
             <Tab label="Diary" value="1"  />
             <Tab label="Search" value="2" />
             <Tab label="Favorite" value="3" />
-            <Tab label="Manage" value="4" />
+            {/* <Tab label="Manage" value="4" /> */}
           </TabList>
         </AppBar>
         {/* insert component into the tabpanel */}
         <TabPanel value="1"><Diary curUser={props.curUser}/></TabPanel>
         <TabPanel value="2"><Search curUser={props.curUser}/></TabPanel>
         <TabPanel value="3"><Favorite curUser={props.curUser}/></TabPanel>
-        <TabPanel value="4"><Manage curUser={props.curUser}/></TabPanel>
+        {/* <TabPanel value="4"><Manage curUser={props.curUser}/></TabPanel> */}
       </TabContext>
     </div>
   );

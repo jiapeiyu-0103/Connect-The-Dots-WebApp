@@ -22,7 +22,7 @@
 }
 
 .calendar{
- 
+ margin-top: 10vh;
   position: relative;
   left: 35%;
 }
@@ -48,4 +48,8 @@
   background-color:#003568; 
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.ant-switch-inner{
+  font-size: 100vw;
 }

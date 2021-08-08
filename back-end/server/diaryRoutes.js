@@ -110,13 +110,7 @@ router.post('/addDiary', function(req, res, next) {
 	  .exec()
 	  .then(docs => {
 		console.log(docs);
-		//   if (docs.length >= 0) {
 		res.status(200).json(docs);
-		//   } else {
-		//       res.status(404).json({
-		//           message: 'No entries found'
-		//       });
-		//   }
 	  })
 	  .catch(err => {
 		console.log(err);
@@ -130,13 +124,7 @@ router.post('/addDiary', function(req, res, next) {
 	  .exec()
 	  .then(docs => {
 		console.log(docs);
-		//   if (docs.length >= 0) {
 		res.status(200).json(docs);
-		//   } else {
-		//       res.status(404).json({
-		//           message: 'No entries found'
-		//       });
-		//   }
 	  })
 	  .catch(err => {
 		console.log(err);
@@ -146,7 +134,92 @@ router.post('/addDiary', function(req, res, next) {
 	  });
 	}
   });
-  
+
+  router.get('/searchWea', function(req, res, next) {
+	const weather = req.query.weather;
+	const user = req.query.user;
+	DiaryEntry.find({'weather':weather, 'userID': user})
+	.exec()
+	  .then(docs => {
+		console.log(docs);
+		res.status(200).json(docs);
+	})
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+	   });
+	});
+	
+  });
+
+  router.get('/searchEmo', function(req, res, next) {
+	const emotion = req.query.emotion;
+	const user = req.query.user;
+	DiaryEntry.find({'emotion':emotion, 'userID': user})
+	.exec()
+	  .then(docs => {
+		console.log(docs);
+		res.status(200).json(docs);
+	})
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+	   });
+	});
+  });
+
+  router.get('/searchAct', function(req, res, next) {
+	const activity = req.query.activity;
+	const user = req.query.user;
+	DiaryEntry.find({'activity':activity, 'userID': user})
+	.exec()
+	  .then(docs => {
+		console.log(docs);
+		res.status(200).json(docs);
+	})
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+	   });
+	});
+  });
+
+  router.get('/searchWord', function(req, res, next) {
+	const keyword = req.query.keyword;
+	const user = req.query.user;
+	if(keyword===''){
+	  DiaryEntry.find({'userID': user})
+	  .exec()
+	  .then(docs => {
+		console.log(docs);
+		res.status(200).json(docs);
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+		});
+	  });
+	} else{
+	 
+	  DiaryEntry.find({'content':{'$regex' : keyword, '$options' : 'i'}, 'userID': user})
+	  .exec()
+	  .then(docs => {
+		console.log(docs);
+		res.status(200).json(docs);
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({
+		  error: err
+		});
+	  });
+	}
+  });
+ 
 // router.get("/diaries", async (req, res) => {
 // 	const diaries = await DiaryEntry.find()
 // 	res.send(diaries)

@@ -30,12 +30,39 @@ export const getAllDiaries = (user) => {
   export const searchByDate = (date,user) => {
     return axios.get(
       localURL + `/searchDate?date=${date}&user=${user}`
-      // {
-      //   params: {
-      //      name
-      //   }
-      // }
    ).then(response => {
     return response.data
   });
+};
+
+export const searchByWeather = (weather, user) => {
+  return axios.get(
+    localURL + `/searchWea?weather=${weather}&user=${user}`
+ ).then(response => {
+  return response.data
+});
+};
+
+export const searchByEmotion = (emotion,user) => {
+  return axios.get(
+    localURL + `/searchEmo?emotion=${emotion}&user=${user}`
+ ).then(response => {
+  return response.data
+});
+};
+
+export const searchByActivity = (activity,user) => {
+  return axios.get(
+    localURL + `/searchAct?activity=${activity}&user=${user}`
+ ).then(response => {
+  return response.data
+});
+};
+
+export const searchByKeyword = (keyword, user) => {
+  return axios.get(
+    localURL + `/searchWord?keyword=${keyword}&user=${user}`
+ ).then(response => {
+  return response.data
+});
 };

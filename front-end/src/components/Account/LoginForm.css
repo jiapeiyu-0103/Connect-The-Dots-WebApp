@@ -6,7 +6,8 @@
     /* background-image: url('https://i.postimg.cc/8CnQ6FrG/Wechat-IMG19544.jpg'); */
     background-image: url('https://i.postimg.cc/qqhVMT94/White-Blue-Watercolor-Wallpaper-Mural-Hovia.png');
     background-repeat: repeat;
-    font-family: "Optima", sans-serif;
+    /* font-family: "Optima", sans-serif; */
+    font-family: "Roboto";
     font-size:1.1vw;
 }
 
@@ -47,7 +48,8 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family:  "Optima", sans-serif;
+    font-family: "Roboto";
+    /* font-family:  "Optima", sans-serif; */
     /* font-family: "Andale Mono"; */
     font-size:1vw;
     display: inline-flex;
@@ -73,7 +75,8 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family:  "Optima", sans-serif;
+    /* font-family:  "Optima", sans-serif; */
+    font-family: "Roboto";
     /* font-family: "Andale Mono"; */
     font-size:1vw;
     display: inline-flex;
@@ -95,7 +98,7 @@
 
 .logo-name {
     font-size: 4vw;
-    font-family: "Didot";
+    
     /* font-family: "OCR A Std", monospace; */
     opacity: 0.6;
     text-align: left;

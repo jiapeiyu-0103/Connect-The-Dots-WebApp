@@ -13,7 +13,7 @@ import Favorite from "@material-ui/icons/Favorite";
 import IconButton from '@material-ui/core/IconButton';
 import DiaryInfoModal from './DiaryInfoModal';
 import {remove, favorite,fav,unfav} from '../../../actions';
-import { favDiary, getAllDiaries} from '../../../services/diaryApi';
+import { favDiary, getAllDiaries, deleteDiary} from '../../../services/diaryApi';
 
 
 
@@ -31,6 +31,17 @@ const handleClick = (e) => {
   e.preventDefault();
   setLike(!like);
   favDiary(props.entry).then(() => {
+     
+      getAllDiaries(props.entry.userID).then((res) => {
+         
+          props.setDiary(res);
+      })
+  });
+};
+
+const handleDelClick = (e) => {
+  e.preventDefault();
+  deleteDiary(props.entry).then(() => {
      
       getAllDiaries(props.entry.userID).then((res) => {
          
@@ -59,6 +70,8 @@ const handleClick = (e) => {
                 <img alt="" className="checkbox-img" src={props.entry.act_emoji}/>
                 
                <br/>
+               <button className="card-button" onClick={handleDelClick}>edit</button> 
+               <button className="card-button" onClick={handleDelClick}>delete</button> 
                 <button onClick={()=>setIsOpen(true)} className="card-button">show more</button>
                 <div>
                 {like && <IconButton onClick={handleClick}  aria-label="delete" color="primary">
