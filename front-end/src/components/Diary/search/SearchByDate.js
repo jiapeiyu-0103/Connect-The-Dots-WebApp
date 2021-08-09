@@ -64,7 +64,7 @@ function SearchByDate(props) {
          
           {diary.map(entry => (
                      
-                      <DiaryEntry entry={entry} setDiary={setDiary}>
+                      <DiaryEntry entry={entry} setDiary={setDiary} curUser={props.curUser}>
   
                       </DiaryEntry>
                      

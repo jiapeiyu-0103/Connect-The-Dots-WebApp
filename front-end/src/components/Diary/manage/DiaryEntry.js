@@ -11,7 +11,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Favorite from "@material-ui/icons/Favorite";
 import IconButton from '@material-ui/core/IconButton';
-import EditModal from './EditModal';
+
 import {remove, favorite,fav,unfav} from '../../../actions';
 import { deleteDiary, getAllDiaries, favDiary} from '../../../services/diaryApi';
 

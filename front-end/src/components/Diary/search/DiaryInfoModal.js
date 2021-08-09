@@ -23,21 +23,40 @@ function DiaryInfoModal(props){
           <h3 className="diary-text">{props.entry.content}</h3>
           
           {/* <img src={props.entry.image}></img> */}
-          <Slider dots className="carousel-image">
+          {props.entry.pics.length !==0 && (<Slider dots className="carousel-image">
+                  
                     {props.entry.pics.map(ig => (
                     
                     <img src={ig} alt="diary-image"></img>
                     
                   ))}  
-                  <div>
-                  <ReactAudioPlayer src={props.entry.audio} controls/>
-                 </div> 
-                 <div >
-                 <ReactPlayer url={props.entry.video} width="30vw" height="30vh" />
-                 </div>
+               </Slider>  )}  
+         {props.entry.audio.length !==0  &&  (<Slider dots className="carousel-image">  
+                  {
+                    props.entry.audio.map(
+                        aud=> (
+                            
+                         <ReactAudioPlayer src={aud} controls/>
+                         )
+                        
 
-                </Slider>    
+                    )
+            }
+            {/* <div> <ReactAudioPlayer src={"11"} controls/></div> */}
+           </Slider>)}
+          
+           {props.entry.video.length !==0 && (<Slider dots className="carousel-image">
+                    {props.entry.video.map(vid => (
+                    
+                    <video width="300" height="250" controls src={vid}/> 
+                    
+                    
+                    
+                  ))}  
+                  {/* <div><video width="300" height="250" controls src={"11"}/> </div> */}
 
+                </Slider> )
+                 }
         
         </div>          
       </div>

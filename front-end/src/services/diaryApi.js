@@ -66,3 +66,14 @@ export const searchByKeyword = (keyword, user) => {
   return response.data
 });
 };
+
+export const getDiaryById = (id) => {
+  return axios.get(localURL +`/${id}`)
+              .then(resp => resp.data);
+};
+
+export const editDiary = (diary) => {
+  return axios.put(localURL + `/${diary.id}`, 
+  diary
+  );
+};

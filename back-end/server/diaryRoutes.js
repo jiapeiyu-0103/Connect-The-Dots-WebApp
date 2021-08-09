@@ -32,6 +32,45 @@ router.get('/getDiary', async function(req, res, next) {
     });
 });
 
+router.get('/:id', async function(req, res, next) {
+
+	const id = req.params.id;
+	  await DiaryEntry.findById(id)
+		.exec()
+		.then(doc => {
+		  console.log("From database", doc);
+		  if (doc) {
+			res.status(200).json(doc);
+		  } else {
+			res
+			  .status(404)
+			  .json({ message: "No valid entry found for provided ID" });
+		  }
+		})
+		.catch(err => {
+		  console.log(err);
+		  res.status(500).json({ error: err });
+		});
+});
+
+router.put('/:id', function(req, res, next) {
+ 
+	const id = req.params.id;
+	DiaryEntry.findOneAndUpdate({ _id: id }, {title: req.body.title,
+	content: req.body.content,
+	pics: req.body.pics,
+	audio: req.body.audio,
+	video: req.body.video})
+  .exec()
+  .then(result => {
+	res.status(200).json(result);
+  })
+  .catch(err => {
+	console.log(err);
+	res.status(500).json({error:err});
+  })
+  });
+
 router.post('/addDiary', function(req, res, next) {
 	// const newCard = req.body;
 	const newDiary = new DiaryEntry({

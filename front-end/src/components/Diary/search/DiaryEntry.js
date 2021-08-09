@@ -12,6 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Favorite from "@material-ui/icons/Favorite";
 import IconButton from '@material-ui/core/IconButton';
 import DiaryInfoModal from './DiaryInfoModal';
+import EditModal from './EditModal';
 import {remove, favorite,fav,unfav} from '../../../actions';
 import { favDiary, getAllDiaries, deleteDiary} from '../../../services/diaryApi';
 
@@ -21,6 +22,7 @@ function DiaryEntry(props){
 
  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
   const favList = useSelector(state => state.favList);
   const diaries = useSelector(state => state.diaries);
   const [list, setList] = useState(favList);
@@ -70,7 +72,7 @@ const handleDelClick = (e) => {
                 <img alt="" className="checkbox-img" src={props.entry.act_emoji}/>
                 
                <br/>
-               <button className="card-button" onClick={handleDelClick}>edit</button> 
+               <button onClick={()=>setEditOpen(true)} className="card-button">edit</button>
                <button className="card-button" onClick={handleDelClick}>delete</button> 
                 <button onClick={()=>setIsOpen(true)} className="card-button">show more</button>
                 <div>
@@ -87,8 +89,9 @@ const handleDelClick = (e) => {
             </div>
 
         <div>
-               
+        {editOpen && (<EditModal entry={props.entry} curUser={props.curUser} show={true} handleClose={()=>setEditOpen(false)}/>)}  
              {isOpen && (<DiaryInfoModal entry={props.entry} show={true} handleClose={()=>setIsOpen(false)}/>)} 
+            
         </div>
             
         </div>

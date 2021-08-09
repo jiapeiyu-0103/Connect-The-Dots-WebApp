@@ -14,6 +14,7 @@ function UploadImageModal(props){
   const { url } = useStorage(file);
 
   useEffect(() => {
+    
     if (url) {
       props.setState([...props.url,url]);
       console.log(props.url);
@@ -46,9 +47,11 @@ function UploadImageModal(props){
           <div className="modal-content">
               
                    <h2> Record what you saw!</h2>
+                  
                      <div className="imges-container" >
                         {/* <img  src={props.url} alt=""/>     */}
                         <Slider dots>
+                        
                     {props.url.map(ig => (
                     
                     <img src={ig} alt="diary-image"></img>

@@ -1,0 +1,150 @@
+ /* modal css style studied from: https://www.w3schools.com/howto/howto_css_modals.asp */
+.diary-modal{
+    z-index:1000;
+    display:block;
+    padding-top:10vw;
+    position: absolute;
+    /* transform: translate(-10%, -20%); */
+    left:10%;
+    top:20%;
+    width:80%;
+    height:80%;
+    overflow: scroll;
+}
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+  /* Modal Content */
+  .info-modal-content {
+    background-color: #fefefe;
+    /* background-position: center; */
+    background-repeat: repeat;
+    background-image: url("https://i.pinimg.com/564x/09/ef/45/09ef459c5248f393362aa20b0889b921.jpg");
+    /* https://i.pinimg.com/564x/90/7f/13/907f135e046add9ddd187b49697ea527.jpg */
+    background-size: cover;
+    font-family: "Optima", sans-serif;
+    font-size:1.5vw;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    
+    
+    text-align: center; 
+  }
+  .diary-text{
+    text-indent: 4vw;
+    padding-left: 5vw;
+    text-align: start;
+  }
+  .modal-button {
+    background-color:  #333;
+    z-index:5;
+    border: none;
+    color:white;
+      font-family: "Gill Sans", sans-serif;
+      font-size:2vw;
+    /* display: inline-flex; */
+    display: table-cell;
+    padding: 0.5% 1%;
+    
+    margin: 0% 0%;
+    transition-duration: 0.4s;
+    border-radius: 15px; 
+  }
+
+  .start {
+      margin-right: 2vh;
+  }
+
+  .button-diary {
+      font-family: "Gill Sans", sans-serif;
+  }
+
+  .modal-button:hover {
+    background-color:#56799d;; /* Green */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+.carousel-image {
+  position: relative;
+  width: 30vw;
+  /* height: 60vh; */
+  /* display: flex; */
+  left:20%;
+  align-items: center;
+  
+}
+
+.video-item {
+  width: 50%;
+  height:50%;
+}
+
+.edit-input {
+    font-family:  "Optima", sans-serif;
+    position: relative;
+    /* border: 0 none; */
+    background-color: transparent;
+    transform: translate(5%, 0%);
+    resize: none;
+    width: 30vw;
+    height: 40vh;
+    overflow: scroll;
+}
+
+.edit-title{
+    font-family:  "Optima", sans-serif;
+    position: relative;
+    /* border: 0 none; */
+    background-color: transparent;
+    transform: translate(2%, 0%);
+    resize: none;
+    width: 30vw;
+    height: 5vh;
+    text-align: center;
+    overflow: scroll;
+  }
+
+.edit-button-container{
+    position: absolute;
+    transform: translate(-330%, -60%);
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+ }
+
+  .edit-buttons {
+    text-align: center;
+    background-color:  #333;
+    border: none;
+    color:white;
+    font-family:  "Optima", sans-serif;
+    /* font-family: "Andale Mono"; */
+    font-size:1.5vw;
+    display: inline-flex;
+    padding: 1% 1%;
+    margin-bottom: 2vh;
+    margin-left: 3vh;
+    /* margin: 2% 2%; */
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    opacity: 0.75;
+    position: relative;
+    transform: translate(-20%, -20%);
+  }
+
+  .edit-buttons:hover {
+    background-color:#56799d; /* Green */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
