@@ -2,13 +2,13 @@
  .modal{
     z-index:3;
 
-    display:block;
+    display:flex;
     padding-top:100px;
     position: relative;
-    transform: translate(-10%, -180%);
+    transform: translate(-10%, -190%);
     left:25%;
     top:0;
-    width:60%;
+    width:35vw;
     height:100%;
     overflow: scroll;
 }
@@ -31,7 +31,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 30vw;
     
     
     text-align: center; 

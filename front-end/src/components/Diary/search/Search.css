@@ -53,3 +53,14 @@
 .ant-switch-inner{
   font-size: 100vw;
 }
+
+.search-title{
+  font-size: 1.3vw;
+  font-family: "Optima", sans-serif;
+  text-align: left;
+}
+
+.switch{
+  position: relative;
+  transform: translate(-25%, -120%);
+}

@@ -49,9 +49,12 @@ const onChange=(checked)=> {
     return (
     <div className="main-body">
     {/* <Search placeholder="Search Diary By Keyword" onSearch={(value)=>{setKeyword(value);}} style={{ width: 500, 'font-family': "Optima" }} enterButton /> */}
-    <h2 className="search-title">Search Diary By: </h2>
-    <Switch checkedChildren="Date" unCheckedChildren="Tag" style={{ width:200, height: 50, fontFamily:"Optima" }} onChange={onChange}  defaultChecked />
+   
+    <h2 className="search-title">SEARCH DIARY BY: </h2>
     
+   <div className="switch">
+    <Switch checkedChildren="Date" unCheckedChildren="Tag" style={{ width:150, height: 30, fontFamily:"Optima", fontSize: "3vw"}} onChange={onChange}  defaultChecked />
+    </div>
     <div>
         {option && (<SearchByDate curUser={props.curUser}/>)}
         

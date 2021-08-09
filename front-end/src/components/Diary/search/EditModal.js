@@ -256,7 +256,7 @@ useEffect(() => {
                 {isVideoOpen && (<UploadVideo url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>)}
                 </div>       
 
-                <button className="modal-button" onClick={handleClick} >Confirm</button>
+                <button className="edit-buttons" onClick={handleClick} >Confirm</button>
                
 
 

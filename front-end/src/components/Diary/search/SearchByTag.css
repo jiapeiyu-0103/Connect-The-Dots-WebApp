@@ -71,6 +71,23 @@
     width: 1vw;
     height: 1vh;
 }
+
+.tag-title{
+  
+  font-size: 1.3vw;
+  font-family: "Optima", sans-serif;
+  text-align: left;
+  margin-left: 2%;
+}
+
+.search{
+  margin-bottom: 3%;
+}
+
+.title-filter{
+  position: relative;
+  transform: translate(-49%, 85%);
+}
 /* input[type=radio] + label>img {
     border: 1px dashed #444;
     width: 5vw;

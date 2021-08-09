@@ -366,9 +366,10 @@ function Diary(props) {
                         
                     </div>
                 <div className="button-container" >
-                    <button className="buttons" onClick={()=>setIsImageOpen(true)}>Add image</button>
+                   
                     {/* <button className="upload-button">View picture</button> */}
                     <button className="buttons" onClick={()=>setIsAudioOpen(true)}>Add audio</button>
+                    <button className="buttons" onClick={()=>setIsImageOpen(true)}>Add image</button>
                     {/* <button className="upload-button">View audio</button> */}
                     <button className="buttons" onClick={()=>setIsVideoOpen(true)}>Add video</button>
                     {/* <button className="upload-button">View video</button> */}

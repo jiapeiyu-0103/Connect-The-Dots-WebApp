@@ -102,10 +102,14 @@ const filterActivity =(e)=>{
 }
       return (
       <div className="main-body">
+        <div className="search">
           <Search placeholder="Search Diary By Keyword" onSearch={(value)=>{setKeyword(value); setActivity("");setWeather("");setEmotion("");setFilter(false);}} style={{ width: 500, 'font-family': "Optima" }} enterButton />
-          <div>
-                <h2> Filter by Weather</h2>
-            </div>
+          </div>
+          <div className="title-filter"> 
+              <img src="https://i.postimg.cc/XJ21RRsh/18860108731537184102-512-1.png"  style={{'width': '2vw', 'height':'3.5vh'}} alt="FILTER" />
+              </div>
+                <h2 className="tag-title"> BY: WEATHER</h2>
+           
           <div className="list-container">
              
                   <div className="tag-container">
@@ -167,9 +171,10 @@ const filterActivity =(e)=>{
                 <hr/>
 
             <div>
-                <div>
-                <h2> Filter by Emotion</h2>
-                </div>
+            <div className="title-filter"> 
+              <img src="https://i.postimg.cc/XJ21RRsh/18860108731537184102-512-1.png"  style={{'width': '2vw', 'height':'3.5vh'}} alt="FILTER" />
+              </div>
+                <h2 className="tag-title"> BY: EMOTION</h2>
                 <div className="list-container">
                   <div className="tag-container">
                     <input type="radio" name="emotion" id="Grinning" class="input-hidden" onClick={()=>{setEmotion("grinning");setEmoEmoji("https://i.postimg.cc/Jn2FPdFf/IMG-0463.jpg");}}/>
@@ -251,9 +256,10 @@ const filterActivity =(e)=>{
             </div>
 
             <div>
-                <div>
-                <h2> Filter by activity</h2>
-                </div>
+            <div className="title-filter"> 
+              <img src="https://i.postimg.cc/XJ21RRsh/18860108731537184102-512-1.png"  style={{'width': '2vw', 'height':'3.5vh'}} alt="FILTER" />
+              </div>
+                <h2 className="tag-title"> BY: ACTIVITY</h2>
                 <div className="list-container">
                     <div className="tag-container">
                     <input type="radio" name="activity" id="Writing" class="input-hidden" onClick={()=>{setActivity("writing");setActEmoji("https://i.postimg.cc/mDWxsnj7/IMG-0471.jpg");}}/>
