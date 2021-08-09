@@ -16,15 +16,15 @@ send.addEventListener('click', () => {
             sender: socket.id,
             receiver: randomUser
         })
-        output.innerHTML += '<p>' + 'you' + ": " + message.value + '</p>'
+        output.innerHTML +=  '<p class="messageContent">' + 'you' + ": " + message.value + '</p>'
         message.value = ""
     } else {
-        notification.innerHTML = "<p> Please wait for someone join the room or refresh the page </p>"
+        notification.innerHTML = "<p class='notificationText'> Please wait for someone join the room or refresh the page </p>"
     }
 })
 
 leave.addEventListener('click', () => {
-    notification.innerHTML = "<p> You have left the room, please refresh the page for next connection </p>"
+    notification.innerHTML = "<p class='notificationText'> You have left the room, please refresh the page for next connection </p>"
     if (randomUser !== null) {
         socket.emit('leave', {
             sender: socket.id,
@@ -50,7 +50,7 @@ socket.emit('pair')
 
 // listen for events
 socket.on('enter-room', () => {
-    notification.innerHTML = "<p> Welcome to the chat room !!! </p>"
+    notification.innerHTML = "<p class='notificationText'> Welcome to the chat room !!! </p>"
 })
 
 
@@ -84,19 +84,19 @@ socket.on('confirm', (message) => {
         sender: socket.id,
         receiver: message.sender
     })
-    notification.innerHTML = '<p><em> you are now connecting to a random user </em></p>'
+    notification.innerHTML = '<p class=\'notificationText\'><em> you are now connecting to a random user </em></p>'
 })
 
 socket.on('feedback', (message) => {
     randomUser = message.sender
-    notification.innerHTML = '<p><em> you are now connecting to a random user </em></p>'
+    notification.innerHTML = '<p class=\'notificationText\'><em> you are now connecting to a random user </em></p>'
 })
 
 
 socket.on('send-message', (data) => {
     if (data.sender === randomUser) {
         console.log(data.message)
-        output.innerHTML += '<p>' + data.sender + ": " + data.message + '</p>'
+        output.innerHTML += '<p class="pairMessageContent">' + 'anonymous' + ": " + data.message + '</p>'
         notification.innerHTML = ''
     }
 }) 
@@ -107,7 +107,7 @@ socket.on('typing', (data) => {
 })
 
 socket.on('leave', (message) => {
-    notification.innerHTML = '<p><em> The random user has left the chat room </em></p>'
+    notification.innerHTML = '<p class=\'notificationText\'><em> The random user has left the chat room </em></p>'
     output.innerHTML = ''
     randomUser = null
 })

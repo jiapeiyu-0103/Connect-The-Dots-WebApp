@@ -18,7 +18,7 @@ const user = "Harry";
 
 // change the default path !!!!!
 // app.use(express.static('../../front-end/src/components/Message/Chat/index.html'));
-app.use(express.static(path.join(__dirname, 'chatModels')));
+app.use(express.static(path.join(__dirname, '../../front-end/src/components/Message/Chat/chatModels')));
 
 io.on('connection', (socket) => {
     console.log('>> new client connection ', socket.id)
