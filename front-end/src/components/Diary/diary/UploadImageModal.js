@@ -50,7 +50,7 @@ function UploadImageModal(props){
                   
                      <div className="imges-container" >
                         {/* <img  src={props.url} alt=""/>     */}
-                        <Slider dots>
+                        {props.url.length !==0 && (<Slider dots>
                         
                     {props.url.map(ig => (
                     
@@ -59,7 +59,7 @@ function UploadImageModal(props){
                     
                   ))}  
 
-                </Slider>   
+                </Slider>)}   
                     </div>
                     
                     <div className="pics-upload" >

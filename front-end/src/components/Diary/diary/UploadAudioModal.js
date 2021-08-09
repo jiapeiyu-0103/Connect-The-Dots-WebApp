@@ -58,14 +58,14 @@ function UploadAudioModal(props){
                        </div>
                   </div> */}
                   <div className="imges-container" >
-                  <Slider dots>
+                  {props.url.length !==0 && (<Slider dots>
                     {props.url.map(audio => (
                     
                     <ReactAudioPlayer src={audio} controls/>   
                     
                   ))}  
 
-                </Slider>  
+                </Slider>)}  
 
                           
                     </div>

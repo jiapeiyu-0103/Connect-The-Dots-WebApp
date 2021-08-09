@@ -29,9 +29,9 @@ function Diary(props) {
     const [activity, setActivity] = useState('');
     const [actEmoji, setActEmoji] = useState('');
     const [like, setLike] = useState(false);
-    const [pics, setPics] = useState(["https://i.postimg.cc/d06GR0sH/diary-covers-2133724.jpg"]);
-    const [videos, setVideos] = useState([""]);
-    const [audioData, setAudioData]=useState([""]);
+    const [pics, setPics] = useState([]);
+    const [videos, setVideos] = useState([]);
+    const [audioData, setAudioData]=useState([]);
 
     const [isImageOpen, setIsImageOpen] = useState(false);
     const [isAudioOpen, setIsAudioOpen] = useState(false);
@@ -64,16 +64,16 @@ function Diary(props) {
 
     const handleRecord = (e) => {
         e.preventDefault();
-        newDiary.pics.shift();
-        newDiary.audio.shift();
-        newDiary.video.shift();
+        // newDiary.pics.shift();
+        // newDiary.audio.shift();
+        // newDiary.video.shift();
         console.log(pics);
         addDiary(newDiary).then(function(){
               window.alert("Record succussfully!");
               clearInput();
-              setPics(["https://i.postimg.cc/d06GR0sH/diary-covers-2133724.jpg"]);
-              setAudioData([""]);
-              setVideos([""]);
+              setPics([]);
+              setAudioData([]);
+              setVideos([]);
               setTitle('');
               setContent('');
 

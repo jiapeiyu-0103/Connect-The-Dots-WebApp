@@ -54,7 +54,7 @@ function UploadVideoModal(props){
                         {/* <div className="img-grid">
 
                         </div> */}
-                         <Slider dots>
+                         {props.url.length !==0 && (<Slider dots>
                     {props.url.map(video => (
                     
                     <video width="400" height="250" controls src={video}/> 
@@ -63,7 +63,7 @@ function UploadVideoModal(props){
                     
                   ))}  
 
-                </Slider>  
+                </Slider>)}  
 
                           
                     </div>

@@ -20,9 +20,9 @@ function EditModal(props) {
   const [title, setTitle] = useState(props.entry.title);
   const [content, setContent] = useState(props.entry.content);
  
-  const [pics, setPics] = useState(pics_init);
-  const [videos, setVideos] = useState(vid_init);
-  const [audioData, setAudioData]= useState(aud_init);
+  const [pics, setPics] = useState(props.entry.pics);
+  const [videos, setVideos] = useState(props.entry.video);
+  const [audioData, setAudioData]= useState(props.entry.audio);
 
   const [isImageOpen, setIsImageOpen] = useState(false);
   const [isAudioOpen, setIsAudioOpen] = useState(false);
@@ -194,38 +194,40 @@ function EditModal(props) {
                
 
               </Slider>     */}
-              <Slider dots className="carousel-image">
+           {pics.length !==0 && (<Slider dots className="carousel-image">
                   
-                    {pics.map(ig => (
-                    
-                    <img src={ig} alt="diary-image"></img>
-                    
-                  ))}  
-               </Slider>    
+                  {pics.map(ig => (
+                  
+                  <img src={ig} alt="diary-image"></img>
+                  
+                ))}  
+             </Slider>  )}  
+       {audioData.length !==0  &&  (<Slider dots className="carousel-image">  
+                {
+                  audioData.map(
+                      aud=> (
+                          
+                       <ReactAudioPlayer src={aud} controls/>
+                       )
+                      
 
-               <Slider dots className="carousel-image">  
-                  {
-                    audioData.map(
-                        audio=> (
-                            
-                         <ReactAudioPlayer src={audio} controls/>
-                         )
-                        
+                  )
+          }
+          {/* <div> <ReactAudioPlayer src={"11"} controls/></div> */}
+         </Slider>)}
+        
+         {videos.length !==0 && (<Slider dots className="carousel-image">
+                  {videos.map(vid => (
+                  
+                  <video width="300" height="250" controls src={vid}/> 
+                  
+                  
+                  
+                ))}  
+                {/* <div><video width="300" height="250" controls src={"11"}/> </div> */}
 
-                    )
-            }
-           </Slider>
-          
-           <Slider dots className="carousel-image">
-                    {videos.map(video => (
-                    
-                    <video width="300" height="250" controls src={video}/> 
-                    
-                    
-                    
-                  ))}  
-
-                </Slider>  
+              </Slider> )
+               }
             
 
                
