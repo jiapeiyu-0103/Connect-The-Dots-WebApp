@@ -1,25 +1,4 @@
 import './DiaryMainView.css'
-// function Diary() {
-
-//     return (
-//         // <div >
-//         //   {/* <ul>
-//         //     <li><a className="active" href="/diary">Diary</a></li>
-//         //     <li><a href="/message">Message</a></li>
-//         //     <li><a href="#contact">Data</a></li>
-//         //     <li><a href="#about">Account</a></li>
-//         //   </ul> */}
-//         //   <div className="topnav">
-//         //         <a className="active" href="/diary">Diary</a>
-//         //         <a href="/diary">Search</a>
-//         //     </div> 
-//         // </div>
-        
-//         <div> This is the Diary page </div>
-       
-//       );
- 
-// }
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';

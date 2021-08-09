@@ -306,11 +306,12 @@ const filterActivity =(e)=>{
                     <div className="tag-container">
                     <input type="radio" name="activity" id="Delicacy" class="input-hidden" onClick={()=>{setActivity("delicacy");setActEmoji("https://i.postimg.cc/fbK7ztj5/IMG-0477.jpg");}}/>
   
-                    <label for="Delicacyy">
+                    <label for="Delicacy">
                       <img src="https://i.postimg.cc/fbK7ztj5/IMG-0477.jpg" style={{'width': '5vw', 'height':'8vh'}} alt="I'm sad" />
                     </label>
                     <p>Delicacy</p>
                     </div>
+                   
                     <div className="tag-container">
                     <input type="radio" name="activity" id="Sport" class="input-hidden" onClick={()=>{setActivity("sport");setActEmoji("https://i.postimg.cc/FF2TnSPJ/IMG-0478.jpg");}}/>
   
