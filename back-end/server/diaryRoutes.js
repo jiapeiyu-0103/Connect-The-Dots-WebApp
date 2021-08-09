@@ -32,26 +32,7 @@ router.get('/getDiary', async function(req, res, next) {
     });
 });
 
-router.get('/:id', async function(req, res, next) {
 
-	const id = req.params.id;
-	  await DiaryEntry.findById(id)
-		.exec()
-		.then(doc => {
-		  console.log("From database", doc);
-		  if (doc) {
-			res.status(200).json(doc);
-		  } else {
-			res
-			  .status(404)
-			  .json({ message: "No valid entry found for provided ID" });
-		  }
-		})
-		.catch(err => {
-		  console.log(err);
-		  res.status(500).json({ error: err });
-		});
-});
 
 router.put('/:id', function(req, res, next) {
  
@@ -74,8 +55,8 @@ router.put('/:id', function(req, res, next) {
 router.post('/addDiary', function(req, res, next) {
 	// const newCard = req.body;
 	const newDiary = new DiaryEntry({
-	  _id: new mongoose.Types.ObjectId(),
-	  userID: req.body.userID,
+	_id: new mongoose.Types.ObjectId(),
+	userID: req.body.userID,
 	title: req.body.title,
 	content: req.body.content,
 	weather: req.body.weather,
@@ -124,7 +105,7 @@ router.post('/addDiary', function(req, res, next) {
    
   });
 
-  router.put('/addFav/:id', function(req, res, next) {
+router.put('/addFav/:id', function(req, res, next) {
  
 	const id = req.params.id;
 	const newLike = !req.body.like;
@@ -141,7 +122,7 @@ router.post('/addDiary', function(req, res, next) {
   })
   });
 
-  router.get('/searchDate', function(req, res, next) {
+router.get('/searchDate', function(req, res, next) {
 	const date = req.query.date;
 	const user = req.query.user;
 	if(date===''){
@@ -174,7 +155,7 @@ router.post('/addDiary', function(req, res, next) {
 	}
   });
 
-  router.get('/searchWea', function(req, res, next) {
+router.get('/searchWea', function(req, res, next) {
 	const weather = req.query.weather;
 	const user = req.query.user;
 	DiaryEntry.find({'weather':weather, 'userID': user})
@@ -190,9 +171,9 @@ router.post('/addDiary', function(req, res, next) {
 	   });
 	});
 	
-  });
+});
 
-  router.get('/searchEmo', function(req, res, next) {
+router.get('/searchEmo', function(req, res, next) {
 	const emotion = req.query.emotion;
 	const user = req.query.user;
 	DiaryEntry.find({'emotion':emotion, 'userID': user})
@@ -207,7 +188,7 @@ router.post('/addDiary', function(req, res, next) {
 		  error: err
 	   });
 	});
-  });
+});
 
   router.get('/searchAct', function(req, res, next) {
 	const activity = req.query.activity;
@@ -226,7 +207,7 @@ router.post('/addDiary', function(req, res, next) {
 	});
   });
 
-  router.get('/searchWord', function(req, res, next) {
+router.get('/searchWord', function(req, res, next) {
 	const keyword = req.query.keyword;
 	const user = req.query.user;
 	if(keyword===''){
@@ -242,9 +223,10 @@ router.post('/addDiary', function(req, res, next) {
 		  error: err
 		});
 	  });
-	} else{
+} else{
 	 
-	  DiaryEntry.find({'content':{'$regex' : keyword, '$options' : 'i'}, 'userID': user})
+	//   DiaryEntry.find({'content':{'$regex' : keyword, '$options' : 'i'}, 'userID': user}) 
+	DiaryEntry.find({$and: [{ $or: [{'content':{'$regex' : keyword, '$options' : 'i'}},{'title':{'$regex' : keyword, '$options' : 'i'}}]}, {'userID': user}]}) 
 	  .exec()
 	  .then(docs => {
 		console.log(docs);
@@ -257,7 +239,7 @@ router.post('/addDiary', function(req, res, next) {
 		});
 	  });
 	}
-  });
+});
  
 // router.get("/diaries", async (req, res) => {
 // 	const diaries = await DiaryEntry.find()
@@ -277,5 +259,26 @@ router.post('/addDiary', function(req, res, next) {
 // 	const diary = await DiaryEntry.findOne({ _id: req.params.id })
 // 	res.send(diary)
 // })
+
+router.get('/:id', async function(req, res, next) {
+
+const id = req.params.id;
+await DiaryEntry.findById(id)
+	  .exec()
+	 .then(doc => {
+			  console.log("From database", doc);
+			  if (doc) {
+				res.status(200).json(doc);
+			  } else {
+				res
+				  .status(404)
+				  .json({ message: "No valid entry found for provided ID" });
+			  }
+			})
+	  .catch(err => {
+			  console.log(err);
+			  res.status(500).json({ error: err });
+			});
+});
 
 module.exports = router

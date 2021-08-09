@@ -36,6 +36,12 @@ function SearchByDate(props) {
                 })
       },[keyword]);
 
+    // useEffect(() => {
+    //   getAllDiaries(props.curUser.unique_id)
+    //         .then(function(res) {
+    //           setDiary(res);
+    //             })
+    // },[]);
   const handleClick=(e)=> {
     // e.preventDefault();
      setKeyword('');   
@@ -64,9 +70,9 @@ function SearchByDate(props) {
          
           {diary.map(entry => (
                      
-                      <DiaryEntry entry={entry} setDiary={setDiary} curUser={props.curUser}>
+                <DiaryEntry entry={entry} setDiary={setDiary} curUser={props.curUser}>
   
-                      </DiaryEntry>
+                 </DiaryEntry>
                      
                   ))
               }

@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Slider from 'infinite-react-carousel';
 import ReactAudioPlayer from 'react-audio-player';
 import ReactPlayer from 'react-player'
-import { getDiaryById, getAllDiaries, editDiary} from '../../../services/diaryApi';
+import { getAllDiaries, editDiary, getDiaryById} from '../../../services/diaryApi';
 import UploadImage from '../diary/UploadImageModal';
 import UploadAudio from '../diary/UploadAudioModal';
 import UploadVideo from '../diary/UploadVideoModal';
@@ -38,28 +38,36 @@ function EditModal(props) {
 //     setWandUrl(card.wandpic);
 //   };
   
-//   useEffect(() => {
-//     console.log(props.entry.pics);
-//     console.log(props.entry._id);
-//     console.log(props.entry.audio);
+useEffect(() => {
+    // console.log(props.entry.pics);
+    // console.log(props.entry._id);
+    // console.log(props.entry.audio);
 
-//     console.log(props.entry.audio.length === 0);
-//     console.log(aud_init);
-//     console.log(vid_init);
-//     console.log(pics);
-//     console.log(audioData);
-//     console.log(videos);
-//     getDiaryById(props.entry._id)
-//       .then(function(res) {
-//           console.log(res.pics);
+    // console.log(props.entry.audio.length === 0);
+    // console.log(aud_init);
+    // console.log(vid_init);
+    // console.log(pics);
+    // console.log(audioData);
+    // console.log(videos);
+    const id = props.entry._id;
+    console.log(id);
+    
+        // Yes, it's a valid ObjectId, proceed with `findById` call.
+      
+    getDiaryById(newDiary)
+      .then(function(res) {
+          console.log(res.pics);
           
-//             setTitle(res.title);
-//             setContent(res.content);
-//             setPics(res.pics);
-//             setAudioData(res.audio);
-//             setVideos(res.video);
-//           })
-//     },[]); 
+            setTitle(res.title);
+            setContent(res.content);
+            setPics(res.pics);
+            setAudioData(res.audio);
+            setVideos(res.video);
+          })
+    
+      
+    
+    },[props.edit]); 
   
 
     const newDiary = {
@@ -75,11 +83,13 @@ function EditModal(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
+    props.setEdit(!props.edit);
     newDiary.pics[0] === "https://i.postimg.cc/d06GR0sH/diary-covers-2133724.jpg" ? newDiary.pics.shift(): console.log("good") ;
     newDiary.audio[0] === "11" ? newDiary.audio.shift() : console.log("good");
     newDiary.video[0] === "11" ? newDiary.video.shift() : console.log("good");
     editDiary(newDiary).then(function(){
         getAllDiaries(props.curUser.unique_id).then(function(res){
+        props.setDiary(res);
           window.alert("Edit successfully!");
         });
     });
