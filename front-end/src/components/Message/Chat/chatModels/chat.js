@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:10000');
+const socket = io.connect('https://connect-the-dots-backend.herokuapp.com');
 
 const notification = document.getElementById('chat-message-notice')
 const output = document.getElementById('chat-message-show');

@@ -23,7 +23,7 @@ function Chat(props) {
         // set the room data to server(backend)]
         // setLoggedIn(true);
         // socket.emit('join_room', props.curUser.username);
-        window.open('http://localhost:10000', "chat_room")
+        window.open('https://connect-the-dots-backend.herokuapp.com', "chat_room")
     };
 
     const sendMessage = () => {
