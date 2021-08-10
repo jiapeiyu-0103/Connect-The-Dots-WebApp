@@ -13,8 +13,9 @@ function Manage(props){
   const [diary, setDiary] = useState([]);
 //   const favList = localStorage.getItem("favorites");
 useEffect(() => {
-  getAllDiaries()
+  getAllDiaries(props.curUser.unique_id)
     .then(function(res) {
+      console.log(props.curUser.unique_id)
       setDiary(res);
         })
   },[]);  

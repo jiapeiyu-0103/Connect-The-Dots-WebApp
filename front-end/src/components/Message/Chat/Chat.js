@@ -13,16 +13,16 @@ function Chat(props) {
     const [messageList, setMessageList] = useState([]);
 
     //[CONNECTION_PORT]
-    useEffect(() => {
-        // initialize our connection
-        console.log("connect to port");
-        socket = io(CONNECTION_PORT);
-    }, [CONNECTION_PORT]);
+    // useEffect(() => {
+    //     // initialize our connection
+    //     console.log("connect to port");
+    //     socket = io(CONNECTION_PORT);
+    // }, [CONNECTION_PORT]);
 
     const connectToRoom = () => {
         // set the room data to server(backend)]
         setLoggedIn(true);
-        socket.emit('join_room', props.curUser.username);
+        // socket.emit('join_room', props.curUser.username);
     };
 
     const sendMessage = () => {

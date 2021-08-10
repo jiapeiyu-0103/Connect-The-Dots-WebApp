@@ -32,7 +32,7 @@ const RegisterForm = (props) => {
     const [rePswd, setRePswd] = useState('')
     const [sex, setSex] = useState("Male")
     const [date, setDate] = useState('')
-    let localURL = 'https://connect-the-dots-backend.herokuapp.com/userApi'||'https://localhost:3001/userApi';
+    let localURL = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-backend.herokuapp.com/userApi' : 'http://localhost:3001/userApi';
 
 
     // check if the user name has been used before if not then return true

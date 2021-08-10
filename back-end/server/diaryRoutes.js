@@ -8,9 +8,11 @@ const mongoose = require("mongoose");
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/getDiary', async function(req, res, next) {
   //it will automatically return a json
-  DiaryEntry.find()
+  const user = req.query.user;
+  console.log(user);
+  await DiaryEntry.find({'userID':user})
     .exec()
     .then(docs => {
       console.log(docs);
@@ -102,8 +104,9 @@ router.post('/addDiary', function(req, res, next) {
 
   router.get('/searchDate', function(req, res, next) {
 	const date = req.query.date;
+	const user = req.query.user;
 	if(date===''){
-	  DiaryEntry.find()
+	  DiaryEntry.find({'userID': user})
 	  .exec()
 	  .then(docs => {
 		console.log(docs);
@@ -123,7 +126,7 @@ router.post('/addDiary', function(req, res, next) {
 	  });
 	} else{
 	 
-	  DiaryEntry.find({'date':date})
+	  DiaryEntry.find({'date':date, 'userID': user})
 	  .exec()
 	  .then(docs => {
 		console.log(docs);

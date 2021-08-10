@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - 'project_5'
+      - 'project_6'
     paths:
       - 'back-end/**'
 
