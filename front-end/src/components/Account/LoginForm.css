@@ -7,7 +7,7 @@
     background-image: url('https://i.postimg.cc/qqhVMT94/White-Blue-Watercolor-Wallpaper-Mural-Hovia.png');
     background-repeat: repeat;
     /* font-family: "Optima", sans-serif; */
-    font-family: "Roboto";
+    font-family:  "Optima", sans-serif;
     font-size:1.1vw;
 }
 
@@ -48,7 +48,7 @@
     background-color:  #333;
     border: none;
     color:white;
-    font-family: "Roboto";
+    font-family:  "Optima", sans-serif;
     /* font-family:  "Optima", sans-serif; */
     /* font-family: "Andale Mono"; */
     font-size:1vw;
@@ -76,7 +76,7 @@
     border: none;
     color:white;
     /* font-family:  "Optima", sans-serif; */
-    font-family: "Roboto";
+    font-family:  "Optima", sans-serif;
     /* font-family: "Andale Mono"; */
     font-size:1vw;
     display: inline-flex;

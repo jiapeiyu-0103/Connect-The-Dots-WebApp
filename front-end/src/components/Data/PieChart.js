@@ -14,9 +14,6 @@ function PieChart({title, data, range, domain, month}) {
     });
 
     const chart = () => {
-
-        console.log("data in chart" + data);
-
         setDiaryChartData({
             labels: domain,
             datasets: [{

@@ -103,12 +103,10 @@ function Data(props) {
             let fearful = 0;
             let woozy = 0;
             res.data.map(function (dairy) {
-                console.log(dairy.weather);
                 if (dairy.weather === "sunny") {
                     // setTags(tags.sunny + 1);
                     // cannot really update the corresponding fields. The output is undefined.
                     sunny++;
-                    console.log("sunny " + sunny);
                 } else if (dairy.weather === "cloudy") {
                     cloudy++
                     // setTags(tags.cloudy + 1);

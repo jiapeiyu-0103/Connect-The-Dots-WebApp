@@ -3,65 +3,33 @@ import './SearchByTag.css';
 import DiaryEntry from './DiaryEntry';
 import 'react-day-picker/lib/style.css';
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import { Calendar } from "react-modern-calendar-datepicker";
 import { getAllDiaries, searchByWeather, searchByEmotion, searchByActivity, searchByKeyword} from '../../../services/diaryApi';
 import 'antd/dist/antd.css';
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 
 function SearchByTag(props) {
    
-  //   const isModalOpen = useSelector(state => state.addModal);
-   
     const [diary, setDiary] = useState([]);
-    const [date, setDate] = useState('');
     const [keyword, setKeyword] = useState('');
     const [filter, setFilter] = useState(false);
-    const month = date.month < 10 ? "0"+ date.month : date.month;
-    const day = date.day < 10 ? "0" + date.day : date.day;
-    const selectDate = (date.year + "-" + month + "-" + day).toString();
     const { Search } = Input;
-    const onSearch = value => console.log(value);
     const [weather, setWeather] = useState('');
     const [weaEmoji, setWeaEmoji] = useState('');
     const [emotion, setEmotion] = useState('');
     const [emoEmoji, setEmoEmoji] = useState('');
     const [activity, setActivity] = useState('');
     const [actEmoji, setActEmoji] = useState('');
-
-    // useEffect(() => {
-    //   searchByWeather(weather, props.curUser.unique_id)
-    //     .then(function(res) {
-    //       setDiary(res);
-    //         })
-    //   },[]);  
     
-    // useEffect(() => {
-    //     searchByActivity(activity, props.curUser.unique_id)
-    //       .then(function(res) {
-    //         setDiary(res);
-    //           })
-    // },[]);  
-
-    // useEffect(() => {
-    //     searchByEmotion(emotion, props.curUser.unique_id)
-    //       .then(function(res) {
-    //         setDiary(res);
-    //           })
-    //     },[]);  
-      
-      
-    
-    useEffect(() => {
-        searchByKeyword(keyword, props.curUser.unique_id)
-            .then(function(res) {
-              setDiary(res);
-                })
-      },[keyword]);
+  useEffect(() => {
+    searchByKeyword(keyword, props.curUser.unique_id)
+      .then(function(res) {
+        setDiary(res);
+    })
+  },[keyword]);
 
   const handleClick=(e)=> {
-    // e.preventDefault();
-     setKeyword('');
-     setFilter(false);   
+    setKeyword('');
+    setFilter(false);   
     getAllDiaries(props.curUser.unique_id)
         .then(function(res) {
           setDiary(res);
@@ -100,11 +68,11 @@ const filterActivity =(e)=>{
       setDiary(res);
         })
 }
-      return (
+  return (
       <div className="main-body">
         <div className="search">
           <Search placeholder="Search Diary By Keyword" onSearch={(value)=>{setKeyword(value); setActivity("");setWeather("");setEmotion("");setFilter(false);}} style={{ width: 500, 'font-family': "Optima" }} enterButton />
-          </div>
+        </div>
           <div className="title-filter"> 
               <img src="https://i.postimg.cc/XJ21RRsh/18860108731537184102-512-1.png"  style={{'width': '2vw', 'height':'3.5vh'}} alt="FILTER" />
               </div>
@@ -366,7 +334,15 @@ const filterActivity =(e)=>{
           <div>
           <button className="search-button" onClick={handleClick}>View All Entry</button>
           </div>
-          {filter && ( <p>These diary entries contain tags: Weather:{weather}; Emotion: {emotion}; Activity: {activity};</p>)}
+          {filter && ( 
+          <div>
+            <img src="https://i.postimg.cc/jjzkxdrS/open-book-emoji-by-twitter.png" alt="result" className="emoji"/>
+            <h3>THESE DIARY ENTRIES CONTAIN TAGS: </h3>
+            <h4 style={{color: '#3f51b5'}}> ⛱️WEATHER: {weather} </h4>
+            <h4 style={{color: '#0091ff'}}> 👻EMOTION: {emotion} </h4>
+            <h4 style={{color: '#56799d'}}> 👾ACTIVITY: {activity} </h4>
+
+          </div>)}
          
          <div className="cardbox">
         
@@ -380,7 +356,7 @@ const filterActivity =(e)=>{
               }
         </div>
   
-          </div>
+      </div>
   
       );
   }

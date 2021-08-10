@@ -6,11 +6,9 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { getAllDiaries, searchByDate, searchByKeyword} from '../../../services/diaryApi';
 import 'antd/dist/antd.css';
-import { Input, Space } from 'antd';
+import { Input} from 'antd';
 
 function SearchByDate(props) {
-   
-  //   const isModalOpen = useSelector(state => state.addModal);
    
     const [diary, setDiary] = useState([]);
     const [date, setDate] = useState('');
@@ -19,52 +17,38 @@ function SearchByDate(props) {
     const day = date.day < 10 ? "0" + date.day : date.day;
     const selectDate = (date.year + "-" + month + "-" + day).toString();
     const { Search } = Input;
-    const onSearch = value => console.log(value);
   
     useEffect(() => {
-      // console.log(selectDate);
       searchByDate(selectDate, props.curUser.unique_id)
         .then(function(res) {
           setDiary(res);
             })
       },[selectDate]);  
     
-      useEffect(() => {
+    useEffect(() => {
         searchByKeyword(keyword, props.curUser.unique_id)
             .then(function(res) {
               setDiary(res);
                 })
       },[keyword]);
 
-    // useEffect(() => {
-    //   getAllDiaries(props.curUser.unique_id)
-    //         .then(function(res) {
-    //           setDiary(res);
-    //             })
-    // },[]);
-  const handleClick=(e)=> {
-    // e.preventDefault();
-     setKeyword('');   
-    getAllDiaries(props.curUser.unique_id)
+    const handleClick=(e)=> {
+      setKeyword('');   
+      getAllDiaries(props.curUser.unique_id)
         .then(function(res) {
           setDiary(res);
-          // setDate('');
             })
-      
-        // console.log(date);
-        // console.log(selectDate);
-  };
-      return (
+    };
+
+    return (
       <div className="main-body">
           <Search placeholder="Search Diary By Keyword" onSearch={(value)=>{setKeyword(value);}} style={{ width: 500, 'font-family': "Optima" }} enterButton />
    
           <div className="calendar">
-            {/* <h3 text-align="start">Search diary entry by date:</h3> */}
-          <Calendar value={date} onChange={setDate} colorPrimary="#819eb6" calendarClassName="custom-calendar" calendarTodayClassName="custom-today-day"/>
-         
+            <Calendar value={date} onChange={setDate} colorPrimary="#819eb6" calendarClassName="custom-calendar" calendarTodayClassName="custom-today-day"/>
           </div>
           <div>
-          <button className="search-button" onClick={handleClick}>View All Entry</button>
+            <button className="search-button" onClick={handleClick}>View All Entry</button>
           </div>
          <div className="cardbox">
          
@@ -72,15 +56,13 @@ function SearchByDate(props) {
                      
                 <DiaryEntry entry={entry} setDiary={setDiary} curUser={props.curUser}>
   
-                 </DiaryEntry>
-                     
+                 </DiaryEntry>  
                   ))
               }
         </div>
   
-          </div>
+      </div>
   
       );
-  }
-  
+  }  
   export default SearchByDate;

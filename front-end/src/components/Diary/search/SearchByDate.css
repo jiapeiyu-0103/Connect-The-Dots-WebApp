@@ -1,12 +1,8 @@
 .main-body {
-    /* background-image: url("https://wallpaperboat.com/wp-content/uploads/2019/06/harry-potter-52.jpg"); 
-    background-repeat: repeat;
-    background-position: center;
-    background-size: cover; */
     height: 130%;
     position: relative;
     text-align: center;
-  }
+}
   
   .cardbox {
     display: flex;
@@ -38,9 +34,6 @@
       margin: 2% 2%;
       transition-duration: 0.4s;
       border-radius: 15px;
-      /* position: relative;
-      transform: translate(50%,-50%); */
-  
   }
   
   .search-button:hover{

@@ -13,21 +13,21 @@ export const getAllDiaries = (user) => {
           console.log(user);
           return response.data
         });
-  };
+};
 
-  export const deleteDiary = (diary) => {
+export const deleteDiary = (diary) => {
     return axios.delete(localURL + `/${diary._id}`, 
     diary
     );
-  };
+};
 
-  export const favDiary = (diary) => {
+export const favDiary = (diary) => {
     return axios.put(localURL + `/addFav/${diary._id}`, 
     diary
     );
-  };
+};
 
-  export const searchByDate = (date,user) => {
+export const searchByDate = (date,user) => {
     return axios.get(
       localURL + `/searchDate?date=${date}&user=${user}`
    ).then(response => {

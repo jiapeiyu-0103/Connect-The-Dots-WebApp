@@ -6,86 +6,65 @@ import UploadAudio from './UploadAudioModal';
 import UploadVideo from './UploadVideoModal';
 import { addDiary } from '../../../services/diaryApi';
 
-import useStorage from '../../../hook/useStorage';
-
 function Diary(props) {
-    // const imageUploader = React.useRef(null);
-    // const audioUploader = React.useRef(null);
-    const day = new Date().toLocaleString("en-US", { day : '2-digit'});
     
-    
-    const month =new Date().getMonth()+1;
+  const month =new Date().getMonth()+1;
+  const todayDate = new Date().toISOString().slice(0, 10);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [weather, setWeather] = useState('');
+  const [weaEmoji, setWeaEmoji] = useState('');
+  const [emotion, setEmotion] = useState('');
+  const [emoEmoji, setEmoEmoji] = useState('');
+  const [activity, setActivity] = useState('');
+  const [actEmoji, setActEmoji] = useState('');
+  const [like, setLike] = useState(false);
+  const [pics, setPics] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [audioData, setAudioData]=useState([]);
 
-    const year = new Date().getFullYear();
-    const separator = '/';
+  const [isImageOpen, setIsImageOpen] = useState(false);
+  const [isAudioOpen, setIsAudioOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-    const todayDate = new Date().toISOString().slice(0, 10);
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [weather, setWeather] = useState('');
-    const [weaEmoji, setWeaEmoji] = useState('');
-    const [emotion, setEmotion] = useState('');
-    const [emoEmoji, setEmoEmoji] = useState('');
-    const [activity, setActivity] = useState('');
-    const [actEmoji, setActEmoji] = useState('');
-    const [like, setLike] = useState(false);
-    const [pics, setPics] = useState([]);
-    const [videos, setVideos] = useState([]);
-    const [audioData, setAudioData]=useState([]);
+  const newDiary = {
+    userID: props.curUser.unique_id,
+    title: title, 
+    content: content,
+    weather: weather,
+    wea_emoji: weaEmoji,
+    emotion: emotion,
+    emo_emoji: emoEmoji,
+    activity: activity,
+    act_emoji: actEmoji,
+    like: like,
+    date: todayDate,
+    month: month,
+    audio: audioData,
+    pics: pics,
+    video: videos
+  };
 
-    const [isImageOpen, setIsImageOpen] = useState(false);
-    const [isAudioOpen, setIsAudioOpen] = useState(false);
-    const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const inputEl = useRef(null);
+    const clearInput = () => {
+    inputEl.current.reset();
+  };
 
-   
-    const newDiary = {
-        // need to modify
-        userID: props.curUser.unique_id,
-        title: title, 
-        content: content,
-        weather: weather,
-        wea_emoji: weaEmoji,
-        emotion: emotion,
-        emo_emoji: emoEmoji,
-        activity: activity,
-        act_emoji: actEmoji,
-        like: like,
-        date: todayDate,
-        month: month,
-        audio: audioData,
-        pics: pics,
-        video: videos};
-
-        const inputEl = useRef(null);
-        //   useref usage reference from: https://stackoverflow.com/questions/62412963/how-to-reset-input-field-from-useref-in-react
-          const clearInput = () => {
-            inputEl.current.reset();
-          };
-
-    const handleRecord = (e) => {
-        e.preventDefault();
-        // newDiary.pics.shift();
-        // newDiary.audio.shift();
-        // newDiary.video.shift();
-        console.log(pics);
-        addDiary(newDiary).then(function(){
-              window.alert("Record succussfully!");
-              clearInput();
-              setPics([]);
-              setAudioData([]);
-              setVideos([]);
-              setTitle('');
-              setContent('');
-
-              console.log(pics);
-              
-              //refresh the page==clear input
-              // window.location.reload();
+  const handleRecord = (e) => {
+    e.preventDefault();
+    addDiary(newDiary).then(function(){
+      window.alert("Record succussfully!");
+      clearInput();
+      setPics([]);
+      setAudioData([]);
+      setVideos([]);
+      setTitle('');
+      setContent('');
            
-        });
-      };
+    });
+  };
 
-    return (
+  return (
         <div id="Diary">
             <div className="title">
                 <h1>Hi, sweetie! Do you want to record your day?</h1>
@@ -95,7 +74,7 @@ function Diary(props) {
             <form ref={inputEl}>
             <div className="container">
                 <div>
-                    <img className="greet" src="https://i.postimg.cc/j5mMTYvX/IMG-0488.jpg"/>
+                    <img className="greet" src="https://i.postimg.cc/j5mMTYvX/IMG-0488.jpg" alt="greet"/>
                 </div>
                 
                 <div className="list-container">
@@ -338,44 +317,27 @@ function Diary(props) {
                       <img src="https://i.postimg.cc/j2dtp9qZ/IMG-0483.jpg" alt="I'm sad" />
                     </label>
                     <p>Match</p>
-                    </div>
-                    
-                   
+                    </div>   
                 </div>
-                
                 <br/>
                 <hr/>
             </div>
             </form>
             <div>
-                {/* <h3 >Date: {month}{separator}{day},{year} </h3> */}
                 <h3 >Date: {todayDate} </h3>
-                
-                </div>
-           
+            </div>
             <div>
             <div className="diary">
                 <div className="pic-upload" id="picture-upload">
-                    {/* <input type="file" accept="image/*" multiple = "false"
-                           style={{
-                               display: "none"
-                           }} ref={imageUploader} onChange={(e) => setPics(URL.createObjectURL(e.target.files[0]))}/> 
-                            onClick={() => imageUploader.current.click()}*/ }
                      <div className="img-container" >
-                        <img className="img-display" />
-                        
+                        <img className="img-display"/>
                     </div>
                 <div className="button-container" >
-                   
-                    {/* <button className="upload-button">View picture</button> */}
                     <button className="buttons" onClick={()=>setIsAudioOpen(true)}>Add audio</button>
                     <button className="buttons" onClick={()=>setIsImageOpen(true)}>Add image</button>
-                    {/* <button className="upload-button">View audio</button> */}
                     <button className="buttons" onClick={()=>setIsVideoOpen(true)}>Add video</button>
-                    {/* <button className="upload-button">View video</button> */}
                 </div>
                 </div>
-               
                 <div >
                   <input type="text" name="title" placeholder="Title.." className="diary-title" value={title} onChange={(e)=>{setTitle(e.target.value)}}></input>
                 </div>
@@ -383,24 +345,16 @@ function Diary(props) {
             </div>
 
             </div>
-            
-                
                 <div>
-                {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
-        
+                  {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
                 </div>
                 <div>
-                {isAudioOpen && (<UploadAudio url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/>)}
+                  {isAudioOpen && (<UploadAudio url={audioData} setState={setAudioData} show={true} handleClose={()=>setIsAudioOpen(false)}/>)}
                 </div>
                 <div>
-                {isVideoOpen && (<UploadVideo url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>)}
+                  {isVideoOpen && (<UploadVideo url={videos} setState={setVideos} show={true} handleClose={()=>setIsVideoOpen(false)}/>)}
                 </div>
-
-               
-        
-                <button className="buttons" onClick={(e)=>{handleRecord(e);}}>Record</button> 
-            
-                
+                <button className="buttons" onClick={(e)=>{handleRecord(e);}}>Record</button>       
         </div>
     );
 }
