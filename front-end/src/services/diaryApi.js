@@ -30,11 +30,6 @@ export const getAllDiaries = (user) => {
   export const searchByDate = (date,user) => {
     return axios.get(
       localURL + `/searchDate?date=${date}&user=${user}`
-      // {
-      //   params: {
-      //      name
-      //   }
-      // }
    ).then(response => {
     return response.data
   });

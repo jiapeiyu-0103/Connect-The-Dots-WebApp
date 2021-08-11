@@ -8,7 +8,6 @@ const leave = document.getElementById('leave-room-btn');
 let randomUser = null;
 
 // emit events
-
 send.addEventListener('click', () => {
     if (randomUser !== null) {
         socket.emit('send-message', {
@@ -55,7 +54,6 @@ socket.on('enter-room', () => {
 
 
 socket.on('request', (req) => {
-    console.log(req.message)
     if (randomUser == null) {
         socket.emit('offer', {
             message: ">> get a request and provide an offer",
@@ -66,7 +64,6 @@ socket.on('request', (req) => {
 })
 
 socket.on('offer', (offer) => {
-    console.log(randomUser)
     if (randomUser == null) {
         randomUser = offer.sender
         socket.emit('confirm', {
@@ -95,14 +92,12 @@ socket.on('feedback', (message) => {
 
 socket.on('send-message', (data) => {
     if (data.sender === randomUser) {
-        console.log(data.message)
         output.innerHTML += '<p class="pairMessageContent">' + 'anonymous' + ": " + data.message + '</p>'
         notification.innerHTML = ''
     }
 }) 
 
 socket.on('typing', (data) => {
-    console.log(data.sender)
     notification.innerHTML = '<p><em>' + data.sender + ' is typing a message...</em></p>'
 })
 
