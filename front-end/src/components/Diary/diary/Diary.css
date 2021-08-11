@@ -14,7 +14,6 @@ input[type=radio]:checked + label>img {
   box-shadow: 0 0 3px 3px #56799d;
 }
 
-/* Stuff after this is only to make things more pretty */
 input[type=radio] + label>img {
   border: 1px dashed #444;
   width: 150px;
@@ -22,18 +21,9 @@ input[type=radio] + label>img {
   transition: 500ms all;
 }
 
-/* input[type=radio]:checked + label>img {
-  transform: 
-    rotateZ(-10deg) 
-    rotateX(10deg);
-} */
-
-
 .title {
     font-family: "Optima", sans-serif;
-    /* font-family: "Andale Mono"; */
-    font-size:1.5vw;
-    
+    font-size:1.5vw;    
 }
     
 
@@ -43,10 +33,11 @@ input[type=radio] + label>img {
     position: relative;
     left: -20%;
     margin-top: 3%;
+    margin-bottom: 3%;
+
 }
 
 .container {
-    /* font-family: "Gill Sans", sans-serif; */
     position: relative;
 }
 
@@ -59,7 +50,7 @@ input[type=radio] + label>img {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .item-container {
@@ -90,7 +81,6 @@ input[type=radio] + label>img {
     font-family:  "Optima", sans-serif;
     position: relative;
     transform: translate(60%, -50%);
-    
     width: 40%;
     height: 60%;
     overflow: scroll;
@@ -105,10 +95,10 @@ input[type=radio] + label>img {
     border: 2px dashed black;
     text-align: center;
 }
+
 .audio-container {
   position: relative;
   transform: translate(10%, -50%);
-  
   width: 35%;
   height: 60%;
   border: 2px dashed black;
@@ -117,7 +107,7 @@ input[type=radio] + label>img {
 
 .date {
     font-size: 1.5vw;
-    font-family: "Gill Sans", sans-serif;
+    font-family:  "Optima", sans-serif;
 }
 
 .pic-upload {
@@ -130,12 +120,10 @@ input[type=radio] + label>img {
     justify-content: center;
 }
 
-/* still need to adjust after show image */
 .img-display {
     position: relative;
     height: 23vw;
-    width: 26vw;
-    
+    width: 26vw;    
 }
 
 .buttons {
@@ -144,24 +132,22 @@ input[type=radio] + label>img {
     border: none;
     color:white;
     font-family:  "Optima", sans-serif;
-    /* font-family: "Andale Mono"; */
     font-size:1.8vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
-    /* margin: 2% 2%; */
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
     position: relative;
     transform: translate(-50%, -20%);
-  }
+}
 
-  .buttons:hover {
-    background-color:#56799d; /* Green */
+.buttons:hover {
+    background-color:#56799d; 
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  }
+}
 
 .diary-title{
     font-family: "Optima", sans-serif;
@@ -182,9 +168,10 @@ input[type=radio] + label>img {
     justify-content: space-between;
     align-content: center;
   }
+
 @media screen and (max-width: 1200px) {
     .diary-input {
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(60%, -50%);
         
@@ -194,7 +181,7 @@ input[type=radio] + label>img {
     }
 
     .diary-title{
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(60%, -1000%);
         width: 40%;
@@ -217,28 +204,26 @@ input[type=radio] + label>img {
   
   
     .diary-input {
-        font-family: "Gill Sans", sans-serif;
+        font-family: "Optima", sans-serif;
         position: relative;
         transform: translate(60%, -50%);
-        
         width: 38%;
         height: 25%;
         overflow: scroll;
     }
 
     .diary-title{
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(60%, -900%);
         width: 40%;
         height: 10%;
         overflow: scroll;
       }
+
     .img-container {
         position: relative;
         transform: translate(-120%, -95%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
@@ -246,15 +231,12 @@ input[type=radio] + label>img {
     }
   }
 
-  
   @media screen and (max-width: 850px) {
   
   
     .img-container {
         position: relative;
         transform: translate(-120%, -120%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
@@ -262,7 +244,7 @@ input[type=radio] + label>img {
     }
 
     .diary-title{
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(60%, -600%);
         width: 38%;
@@ -272,13 +254,9 @@ input[type=radio] + label>img {
   }
 
   @media screen and (max-width: 750px) {
-  
-  
     .img-container {
         position: relative;
         transform: translate(-120%, -145%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
@@ -287,13 +265,10 @@ input[type=radio] + label>img {
   }
 
   @media screen and (max-width: 650px) {
-  
-  
     .diary-input {
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(70%, -75%);
-        
         width: 35%;
         height: 15%;
         overflow: scroll;
@@ -302,8 +277,6 @@ input[type=radio] + label>img {
     .img-container {
         position: relative;
         transform: translate(-120%, -175%);
-        
-        
         width: 35%;
         height: 30%;
         border: 2px dashed black;
@@ -312,21 +285,18 @@ input[type=radio] + label>img {
   }
 
   @media screen and (max-width: 550px) {
-  
-  
     .diary-title{
-        font-family: "Gill Sans", sans-serif;
+        font-family: "Optima", sans-serif;
         position: relative;
         transform: translate(65%, -500%);
         width: 36%;
         height: 6%;
         overflow: scroll;
       }
+
     .img-container {
         position: relative;
         transform: translate(-120%, -205%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
@@ -335,21 +305,19 @@ input[type=radio] + label>img {
   }
 
   @media screen and (max-width: 450px) {
-  
-  
+
     .diary-title{
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(70%, -450%);
         width: 34%;
         height: 1%;
         overflow: scroll;
       }
+
     .img-container {
         position: relative;
         transform: translate(-120%, -265%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
@@ -358,45 +326,40 @@ input[type=radio] + label>img {
   }
 
   @media screen and (max-width: 380px) {
-  
-  
     .img-container {
         position: relative;
         transform: translate(-120%, -300%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
         text-align: center;
     }
   }
+
   @media screen and (max-width: 350px) {
-  
-  
+
     .img-container {
         position: relative;
         transform: translate(-120%, -350%);
-        
-        
         width: 35%;
         height: 40%;
         border: 2px dashed black;
         text-align: center;
     }
+
     .diary-title{
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(67%, -350%);
         width: 32%;
         height: 6%;
         overflow: scroll;
       }
+
     .diary-input {
-        font-family: "Gill Sans", sans-serif;
+        font-family:  "Optima", sans-serif;
         position: relative;
         transform: translate(70%, -90%);
-        
         width: 32%;
         height: 9%;
         overflow: scroll;

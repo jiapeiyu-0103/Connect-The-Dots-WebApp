@@ -21,8 +21,11 @@ function Chat(props) {
 
     const connectToRoom = () => {
         // set the room data to server(backend)]
-        setLoggedIn(true);
+        // setLoggedIn(true);
         // socket.emit('join_room', props.curUser.username);
+        let chatServer = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-chatroom.herokuapp.com' : 'http://localhost:10000';
+
+        window.open(chatServer, "chat_room")
     };
 
     const sendMessage = () => {
@@ -34,52 +37,17 @@ function Chat(props) {
 
     return (
         <div>
-            {!loggedIn ? (
-                <div>
-                    <div className="chatInput">
-                        <h1>Welcome: {props.curUser.username}</h1>
-                        <h4>Let's start a new chart with a stranger!</h4>
-                    </div>
-                    <div className="chatTab">
-                        <button onClick={connectToRoom}>
-                            Enter Chat
-                        </button>
-                    </div>
+            <div>
+                <div className="chatInput">
+                    <h1>Welcome: {props.curUser.username}</h1>
+                    <h4>Let's start a new chat with a stranger!</h4>
                 </div>
-            ) : (
-                <div>
-                    <div className="chatContainer">
-                        <div className="messages">
-                            {messageList.map((val, key) => {
-                                return <div className="messageIndividual">
-
-                                    <div className="messageImg">
-                                        <img src={props.curUser.photo} alt={props.curUser.username} width="45vw" height="45vh"/>
-                                    </div>
-
-                                    <div className="messageContent">
-                                        <div className="textContent">
-                                            {val.author} : {val.content}
-                                        </div>
-                                    </div>
-                                </div>
-                            })}
-                        </div>
-
-                        <div className="messageInputs">
-                            <input
-                                type="text"
-                                placeholder="Message..."
-                                value={message}
-                                onChange={(e) => {
-                                    setMessage(e.target.value);
-                                }}
-                            />
-                            <button onClick={sendMessage}>Send</button>
-                        </div>
-                    </div>
+                <div className="chatTab">
+                    <button onClick={connectToRoom}>
+                        Enter Chat
+                    </button>
                 </div>
-            )}
+            </div>
         </div>
     )
 }
