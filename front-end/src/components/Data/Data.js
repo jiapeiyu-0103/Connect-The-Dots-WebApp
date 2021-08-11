@@ -56,7 +56,6 @@ function Data(props) {
 
     const handleChange = (value) => {
         let month = value.value;
-        //reset the obj once we select an another month
         setTags(intialTag);
         setMonth(month);
         calculateSummary(month).then(res => {
@@ -210,7 +209,7 @@ function Data(props) {
             <div className="pie-chart">
                 <div className="weatherTag">
                     <div className="pie-area">
-                        <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain} month={month}/>
+                        <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain}/>
                     </div>
                     <div className="table-area">
                         <TagSummaryTable tags={weatherDomain} data={weather} title="Weather"/>
@@ -218,7 +217,7 @@ function Data(props) {
                 </div>
                 <div className="weatherTag">
                     <div className="pie-area">
-                        <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain} month={month}/>
+                        <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain}/>
                     </div>
                     <div className="table-area">
                         <TagSummaryTable tags={activityDomain} data={activity} title="Activity"/>
@@ -226,7 +225,7 @@ function Data(props) {
                 </div>
                 <div className="weatherTag">
                     <div className="pie-area">
-                        <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain} month={month}/>
+                        <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain}/>
                     </div>
                     <div className="table-area">
                         <TagSummaryTable tags={feelingDomain} data={feeling} title="Emotion"/>
