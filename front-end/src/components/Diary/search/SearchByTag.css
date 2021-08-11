@@ -1,0 +1,89 @@
+.main-body {
+    height: 130%;
+    position: relative;
+    text-align: center;
+  }
+  
+  .cardbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+  }
+  .date-picker {
+    z-index: 100;
+    padding-bottom: 10vh;
+  }
+  
+  .calendar{
+   margin-top: 10vh;
+    position: relative;
+    left: 35%;
+  }
+  
+  .search-button{
+    text-align: center;
+      background-color:  #333;
+      border: none;
+      color:white;
+      font-size: 1vw;
+      font-family: "Optima", sans-serif;
+      display: inline-flex;
+      padding: 1.5%;
+      margin: 2% 2%;
+      transition-duration: 0.4s;
+      border-radius: 15px;
+  
+  }
+  
+  .search-button:hover{
+    background-color:#003568; 
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+.tag-container {
+    width: 15%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.tag-pic{
+   
+    width: 1vw;
+    height: 1vh;
+}
+
+.tag-title{
+  
+  font-size: 1.3vw;
+  font-family: "Optima", sans-serif;
+  text-align: left;
+  margin-left: 2%;
+}
+
+.search{
+  margin-bottom: 3%;
+}
+
+.title-filter{
+  position: relative;
+  transform: translate(-49%, 85%);
+}
+
+.emoji{
+  width:10vw;
+  height:12vh;
+}
