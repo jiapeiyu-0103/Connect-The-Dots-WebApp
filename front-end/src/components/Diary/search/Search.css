@@ -54,7 +54,23 @@
   text-align: left;
 }
 
+.opt-one{
+  font-size: 1vw;
+  font-family: "Optima", sans-serif;
+  text-align: left;
+  position: relative;
+  transform: translate(17%, -150%);
+}
+
+.opt-two{
+  font-size: 1vw;
+  font-family: "Optima", sans-serif;
+  text-align: left;
+  position: relative;
+  transform: translate(26.5%, -425%);
+}
+
 .switch{
   position: relative;
-  transform: translate(-25%, -120%);
+  transform: translate(-27%, -180%);
 }

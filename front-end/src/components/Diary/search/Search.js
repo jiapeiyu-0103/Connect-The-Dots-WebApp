@@ -18,12 +18,13 @@ function Search(props) {
   return (
   
   <div className="main-body">
-    
+
     <h2 className="search-title">SEARCH DIARY BY: </h2>
-    
+    <h3 className="opt-one">TAG </h3>
     <div className="switch">
-      <Switch checkedChildren="Date" unCheckedChildren="Tag" style={{ width:150, height: 30, fontFamily:"Optima", fontSize: "3vw"}} onChange={onChange}  defaultChecked />
+      <Switch checkedChildren="Date" unCheckedChildren="Tag" style={{ width:70, height: 30, fontFamily:"Optima", fontSize: "3vw"}} onChange={onChange}  defaultChecked />
     </div>
+    <h3 className="opt-two">DATE </h3>
     <div>
         {option && (<SearchByDate curUser={props.curUser}/>)}  
     </div>

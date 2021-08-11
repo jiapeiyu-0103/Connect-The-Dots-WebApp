@@ -53,7 +53,7 @@ function Diary(props) {
   const handleRecord = (e) => {
     e.preventDefault();
     addDiary(newDiary).then(function(){
-      window.alert("Record succussfully!");
+      window.alert("Record successfully!");
       clearInput();
       setPics([]);
       setAudioData([]);
