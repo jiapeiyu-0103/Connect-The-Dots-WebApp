@@ -23,7 +23,7 @@ function Chat(props) {
         // set the room data to server(backend)]
         // setLoggedIn(true);
         // socket.emit('join_room', props.curUser.username);
-        let chatServer = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-chat.herokuapp.com' : 'http://localhost:10000';
+        let chatServer = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-chatroom.herokuapp.com' : 'http://localhost:10000';
 
         window.open(chatServer, "chat_room")
     };
