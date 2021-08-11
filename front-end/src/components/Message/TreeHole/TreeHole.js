@@ -5,7 +5,7 @@ import Thread from '../Thread/Thread';
 import MediaUpload from '../MediaUpload';
 import TextField from '@material-ui/core/TextField';
 import {SERVER_URL} from '../../../services/messageApi';
-import {constructMessageObj} from '../../../constants/Helpers';
+import {constructMessageObj} from '../../../constants/MessageHelpers';
 
 function TreeHole(props) {
 

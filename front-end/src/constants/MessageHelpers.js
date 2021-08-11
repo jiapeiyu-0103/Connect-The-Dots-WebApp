@@ -1,4 +1,4 @@
-/* File to store helper functions */
+/* File to store helper functions for Message*/
 
 // Construct an user object for message functionalities
 export const constructMessageObj = (value, curUser) => {   
@@ -10,9 +10,5 @@ export const constructMessageObj = (value, curUser) => {
     returnObj.userId = curUser.message_id;
     returnObj.replies = [];
     return returnObj;
-}
-// Check if an image URL is valid
-export const checkImage = (name) => {
-    return true;
-}     
+}  
 

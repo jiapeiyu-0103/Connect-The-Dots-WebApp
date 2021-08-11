@@ -5,7 +5,7 @@ import './DriftBottle.css';
 import * as DriftBottleStates from '../../../constants/DriftBottleStates';
 import {COLLECTED} from '../../../constants/BottleStates';
 import {SERVER_URL} from '../../../services/messageApi';
-import {constructMessageObj} from '../../../constants/Helpers';
+import {constructMessageObj} from '../../../constants/MessageHelpers';
 function DriftBottle(props) {
 // Hooks to control Drift Bottle modal visibilties and states
 const [showDriftBotModal, setShowDriftBotModal] = useState(false);
