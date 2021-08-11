@@ -1,4 +1,6 @@
-const socket = io.connect('https://connect-the-dots-backend.herokuapp.com');
+let chatServer = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-chat.herokuapp.com' : 'http://localhost:10000';
+
+const socket = io.connect(chatSever);
 
 const notification = document.getElementById('chat-message-notice')
 const output = document.getElementById('chat-message-show');
