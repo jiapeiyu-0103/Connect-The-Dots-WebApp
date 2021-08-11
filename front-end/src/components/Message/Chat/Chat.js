@@ -1,38 +1,11 @@
-import  React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import  React from 'react';
 import './Chat.css';
-
-let socket;
-const CONNECTION_PORT = "localhost:3001/";
 
 function Chat(props) {
 
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    const [message, setMessage] = useState('');
-    const [messageList, setMessageList] = useState([]);
-
-    //[CONNECTION_PORT]
-    // useEffect(() => {
-    //     // initialize our connection
-    //     console.log("connect to port");
-    //     socket = io(CONNECTION_PORT);
-    // }, [CONNECTION_PORT]);
-
     const connectToRoom = () => {
-        // set the room data to server(backend)]
-        // setLoggedIn(true);
-        // socket.emit('join_room', props.curUser.username);
         let chatServer = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-chatroom.herokuapp.com' : 'http://localhost:10000';
-
         window.open(chatServer, "chat_room")
-    };
-
-    const sendMessage = () => {
-        // emit message to socket
-        // ...
-        setMessageList([...messageList, {author: props.curUser.username, content: message}]);
-        setMessage("");
     };
 
     return (
