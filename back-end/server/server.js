@@ -49,11 +49,12 @@ db.once('open', function() {
 
     const io = socket(server, {
         cors: {
-            origin: "http://localhost:3000",
+            origin: "https://connecthedots.herokuapp.com",
             methods: ["GET", "POST"],
             credentials: true,
         },
     });
+    
     io.on('connection', (socket) => {
         // a random id give to whoever login to our application
         console.log("connect to socket: " + socket.id);

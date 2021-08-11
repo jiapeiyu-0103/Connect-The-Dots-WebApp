@@ -19,6 +19,17 @@
 }
 
 .pie-chart {
-    margin-left: 12vw;
-    width: 55vw;
+    margin-left: 10vw;
+    width: 20vw;
+}
+
+.weatherTag {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+}
+
+.pie-area {
+    display: flex;
+    margin-right: 12vw;
 }

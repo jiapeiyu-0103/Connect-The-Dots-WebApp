@@ -1,14 +1,13 @@
-import React, { useState} from "react";
+import React from "react";
 import './DiaryInfoModal.css';
 import Slider from 'infinite-react-carousel';
 import ReactAudioPlayer from 'react-audio-player';
-import ReactPlayer from 'react-player'
 
 function DiaryInfoModal(props){
-    const showModal = props.show ? "diary-modal display-block" : "diary-modal display-none";
+    const showModal = props.show ? "info-diary-modal display-block" : "diary-modal display-none";
     
     return (
-        <div className={showModal}>
+      <div className={showModal}>
         <button onClick={props.handleClose} className="modal-button">&times;</button>
         
         <div className="info-modal-content">
@@ -22,22 +21,36 @@ function DiaryInfoModal(props){
           <h3 className="diary-text">Dear Diary: </h3>
           <h3 className="diary-text">{props.entry.content}</h3>
           
-          {/* <img src={props.entry.image}></img> */}
-          <Slider dots className="carousel-image">
+          {props.entry.pics.length !==0 && (
+            <Slider dots className="carousel-image">
+                  
                     {props.entry.pics.map(ig => (
                     
                     <img src={ig} alt="diary-image"></img>
                     
                   ))}  
-                  <div>
-                  <ReactAudioPlayer src={props.entry.audio} controls/>
-                 </div> 
-                 <div >
-                 <ReactPlayer url={props.entry.video} width="30vw" height="30vh" />
-                 </div>
+            </Slider>  )}  
 
-                </Slider>    
+         {props.entry.audio.length !==0  &&  (
+            <Slider dots className="carousel-image">  
+                {
+                    props.entry.audio.map(
+                        aud=> ( 
+                         <ReactAudioPlayer src={aud} controls/>
+                         )
+                    )
+                }
+            </Slider>)}
+          
+           {props.entry.video.length !==0 && (
+             <Slider dots className="carousel-image">
+                  {props.entry.video.map(vid => (
+                    
+                    <video width="300" height="250" controls src={vid}/>  
+                  ))}  
 
+             </Slider> )
+            }
         
         </div>          
       </div>

@@ -5,6 +5,7 @@ import './data.css';
 import * as api from '../../services/api';
 import 'antd/dist/antd.css';
 import { Select } from 'antd';
+import TagSummaryTable from "./TagSummaryTable";
 
 function Data(props) {
 
@@ -55,6 +56,7 @@ function Data(props) {
 
     const handleChange = (value) => {
         let month = value.value;
+        //reset the obj once we select an another month
         setTags(intialTag);
         setMonth(month);
         calculateSummary(month).then(res => {
@@ -206,9 +208,30 @@ function Data(props) {
             </div>
 
             <div className="pie-chart">
-                <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain}/>
-                <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain}/>
-                <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain}/>
+                <div className="weatherTag">
+                    <div className="pie-area">
+                        <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain} month={month}/>
+                    </div>
+                    <div className="table-area">
+                        <TagSummaryTable tags={weatherDomain} data={weather} title="Weather"/>
+                    </div>
+                </div>
+                <div className="weatherTag">
+                    <div className="pie-area">
+                        <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain} month={month}/>
+                    </div>
+                    <div className="table-area">
+                        <TagSummaryTable tags={activityDomain} data={activity} title="Activity"/>
+                    </div>
+                </div>
+                <div className="weatherTag">
+                    <div className="pie-area">
+                        <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain} month={month}/>
+                    </div>
+                    <div className="table-area">
+                        <TagSummaryTable tags={feelingDomain} data={feeling} title="Emotion"/>
+                    </div>
+                </div>
             </div>
         </div>
     )

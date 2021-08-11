@@ -56,7 +56,7 @@ function LoginForm({setState, setUser}) {
                 {/* <h1 className="main-title">Connect the Dots</h1> */}
                 <div className="input-container">
                     <div className="name-container">
-                        <h2>Welcome!</h2>
+                        <h2 className="name-container">Welcome!</h2>
                         {/* <label className="label">Username:</label>
                         <input type='text' placeholder='please enter your user name' value={name} onChange={(e) => {setName(e.target.value)}}/><br/> */}
                         <TextField
@@ -88,10 +88,10 @@ function LoginForm({setState, setUser}) {
                     </div>
                     {/* <button className="sign-in" onClick = {onLogin}> Sign in </button>
                     <button className="sign-up" onClick = {() => {setHideRgstForm(false)}}> Sign up </button> */}
-                    <Button variant='contained' color='primary' onClick={onLogin} style={{'width': '30%', 'margin': '5px'}}>
+                    <Button variant='contained' color='primary' onClick={onLogin} style={{'width': '30%', 'margin': '5px'}} font-family='Roboto'>
                         Sign In
                     </Button>
-                    <Button variant='contained' color='primary'onClick={() => {setHideRgstForm(false)}} style={{'width': '30%', 'margin': '5px'}}>
+                    <Button variant='contained' color='primary'onClick={() => {setHideRgstForm(false)}} style={{'width': '30%', 'margin': '5px'}} font-family='Roboto'>
                         Sign Up
                     </Button>
                 </div>

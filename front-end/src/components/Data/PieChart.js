@@ -22,6 +22,7 @@ function PieChart({title, data, range, domain}) {
             }]
         })
     };
+
     useEffect(() => {
         chart();
     }, [data]);
