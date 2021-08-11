@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import defaultUserImage from '../img/Default_User_Logo.png';
 import './CollectDriftBottle.css'
 import TextField from '@material-ui/core/TextField';
 
