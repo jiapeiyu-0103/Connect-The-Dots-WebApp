@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import moment from 'moment'
-// import * as Tags from '../constants/Tags'
 import PieChart from "./PieChart";
 import React from 'react';
 import './data.css';
 import * as api from '../../services/api';
 import 'antd/dist/antd.css';
 import { Select } from 'antd';
+import TagSummaryTable from "./TagSummaryTable";
 
 function Data(props) {
 
@@ -20,8 +19,6 @@ function Data(props) {
 
     const feelingRange = ["#774936", "#8A5A44", "#9D6B53", "#B07D62", "#C38E70", "#CD9777", "#D69F7E", "#DEAB90", "#EDC4B3"];
     const feelingDomain = ["grinning", "grin-squint", "touched", "angry", "weary", "crying", "exploding", "fearful", "woozy"];
-
-    let pieChartList = [];
 
     const { Option } = Select;
     const [month, setMonth] = useState(1);
@@ -57,12 +54,6 @@ function Data(props) {
     };
     const [tags, setTags] = useState(intialTag);
 
-    // let weather = [tags.sunny, tags.cloudy, tags.rain, tags.snow, tags.thundershower, tags.overcast];
-
-   // let activity = [tags.writing, tags.dancing, tags.party, tags.show, tags.travel, tags.park, tags.delicacy, tags.sport, tags.game];
-
-   // let feeling = [tags.grinning, tags.grin_squint, tags.touched, tags.angry, tags.weary, tags.crying, tags.exploding, tags.fearful, tags.woozy];
-
     const handleChange = (value) => {
         let month = value.value;
         //reset the obj once we select an another month
@@ -70,7 +61,6 @@ function Data(props) {
         setMonth(month);
         calculateSummary(month).then(res => {
         });
-        // get the right month
     };
 
 
@@ -103,27 +93,18 @@ function Data(props) {
             let fearful = 0;
             let woozy = 0;
             res.data.map(function (dairy) {
-                console.log(dairy.weather);
                 if (dairy.weather === "sunny") {
-                    // setTags(tags.sunny + 1);
-                    // cannot really update the corresponding fields. The output is undefined.
                     sunny++;
-                    console.log("sunny " + sunny);
                 } else if (dairy.weather === "cloudy") {
                     cloudy++
-                    // setTags(tags.cloudy + 1);
                 } else if (dairy.weather === "rain") {
                     rain++;
-                    // setTags(tags.rain + 1);
                 } else if (dairy.weather === "snow") {
                     snow++;
-                    // setTags(tags.snow + 1);
                 } else if (dairy.weather === "thundershower") {
                     thundershower++;
-                    // setTags(tags.thundershower + 1);
                 } else if (dairy.weather === "overcast") {
                     overcast++;
-                    // setTags(tags.overcast + 1);
                 }
 
                 if (dairy.activity === "writing") {
@@ -191,16 +172,12 @@ function Data(props) {
             newTags.exploding = exploding;
             newTags.fearful = fearful;
             newTags.woozy = woozy;
-           // weather = [newTags.sunny, tags.cloudy, tags.rain, tags.snow, tags.thundershower, tags.overcast];
             let localWeather = [newTags.sunny, newTags.cloudy, newTags.rain, newTags.snow, newTags.thundershower, newTags.overcast];
             let localActivity = [newTags.writing, newTags.dancing, newTags.party, newTags.show, newTags.travel, newTags.park, newTags.delicacy, newTags.sport, newTags.game];
             let localFeeling = [newTags.grinning, newTags.grin_squint, newTags.touched, newTags.angry, newTags.weary, newTags.crying, newTags.exploding, newTags.fearful, newTags.woozy];
             setWeather(localWeather);
             setActivity(localActivity);
             setFeeling(localFeeling);
-            // pieChartList.push(<PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain} month={month}/>);
-            // pieChartList.push(<PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain} month={month}/>);
-            // pieChartList.push(<PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain} month={month}/>);
         });
     };
     
@@ -231,9 +208,30 @@ function Data(props) {
             </div>
 
             <div className="pie-chart">
-                <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain} month={month}/>
-                <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain} month={month}/>
-                <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain} month={month}/>
+                <div className="weatherTag">
+                    <div className="pie-area">
+                        <PieChart title="Weather Data" data={weather} range={weatherRange} domain={weatherDomain} month={month}/>
+                    </div>
+                    <div className="table-area">
+                        <TagSummaryTable tags={weatherDomain} data={weather} title="Weather"/>
+                    </div>
+                </div>
+                <div className="weatherTag">
+                    <div className="pie-area">
+                        <PieChart title="Activity Data" data={activity} range={activityRange} domain={activityDomain} month={month}/>
+                    </div>
+                    <div className="table-area">
+                        <TagSummaryTable tags={activityDomain} data={activity} title="Activity"/>
+                    </div>
+                </div>
+                <div className="weatherTag">
+                    <div className="pie-area">
+                        <PieChart title="Feeling Data" data={feeling} range={feelingRange} domain={feelingDomain} month={month}/>
+                    </div>
+                    <div className="table-area">
+                        <TagSummaryTable tags={feelingDomain} data={feeling} title="Emotion"/>
+                    </div>
+                </div>
             </div>
         </div>
     )

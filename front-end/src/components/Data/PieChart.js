@@ -3,7 +3,7 @@ import { Doughnut }  from 'react-chartjs-2';
 import './pieChart.css';
 import { useState } from 'react'
 
-function PieChart({title, data, range, domain, month}) {
+function PieChart({title, data, range, domain}) {
 
     const [diaryChartData, setDiaryChartData] = useState({
         labels:[],
@@ -14,9 +14,6 @@ function PieChart({title, data, range, domain, month}) {
     });
 
     const chart = () => {
-
-        console.log("data in chart" + data);
-
         setDiaryChartData({
             labels: domain,
             datasets: [{
@@ -25,7 +22,7 @@ function PieChart({title, data, range, domain, month}) {
             }]
         })
     };
-//diaryChartData.datasets[0].data,
+
     useEffect(() => {
         chart();
     }, [data]);
@@ -44,8 +41,6 @@ function PieChart({title, data, range, domain, month}) {
                         plugins: {
                             legend: {
                                 position: 'top'
-                                // onHover: handleHover,
-                                // onLeave: handleLeave
                             }
                         },
                         animation: {
