@@ -13,16 +13,6 @@ export const constructMessageObj = (value, curUser) => {
 }
 // Check if an image URL is valid
 export const checkImage = (name) => {
-    const image = new Image();
-    image.src = name;
-
-    image.onload = () =>
-    {
-        return true;
-    }
-    image.onerror = () =>
-    {
-        return false;
-    }
+    return true;
 }     
 
