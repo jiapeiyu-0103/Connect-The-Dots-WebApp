@@ -5,7 +5,8 @@ const messageRoutes = require("./messageRoutes")
 const userRoutes = require("./userRoutes")
 const dataRoutes = require("./dataRoutes")
 const diaryRoutes = require("./diaryRoutes")
-const socket = require('socket.io');
+
+
 
 // Mongoose initializations
 const mongoose = require('mongoose');
@@ -34,42 +35,94 @@ db.once('open', function() {
     app.use("/diaryApi", diaryRoutes);
 
     // PORT binding
-    const PORT = process.env.PORT;
+    const PORT = process.env.PORT || 3001;
 
-    const server = app.listen(PORT || 3001, () => {
-      console.log(`ConnectTheDots server is listening at http://localhost:${PORT || 3001}`)
+    const server = app.listen(PORT, () => {
+      console.log(`ConnectTheDots server is listening at http://localhost:${PORT}`)
     })
 
 
-    // ROOT
-    app.get('/', (req, res) => {
-      res.send('Connected successfully to ConnectTheDots server!');
+    // chat part server starts here: 
 
-    })
 
-    const io = socket(server, {
-        cors: {
-            origin: "https://connecthedots.herokuapp.com",
-            methods: ["GET", "POST"],
-            credentials: true,
-        },
-    });
+    const path = require('path');
+    const http = require('http');
+    const socket = require('socket.io');
+    
+    
+    // let clients = [];
+    
+    const chat_app = express();
+    const chat_server = http.createServer(chat_app);
+    const io = socket(chat_server);
+    
+    // change the default path !!!!!
+    // app.use(express.static('../../front-end/src/components/Message/Chat/index.html'));
+    chat_app.use(express.static(path.join(__dirname, '../../front-end/src/components/Message/Chat/chatModels')));
     
     io.on('connection', (socket) => {
-        // a random id give to whoever login to our application
-        console.log("connect to socket: " + socket.id);
-
-        socket.on('join_room', (data) => {
-            // data => room number
-            socket.join(data);
-            console.log('User: ' + data + ' Joined Rooms');
-        });
-
-
-        socket.on('disconnect', () =>{
-            console.log('USER DISCONNECTED');
-        });
+        console.log('>> new client connection ', socket.id)
+    
+        // welcome message
+        socket.emit('enter-room')
+    
+        // connect with other users
+        socket.on('pair', () => {
+    
+            // send a request to connect a random user
+            socket.broadcast.emit('request', {
+                message: ">> a user requests to connect to a random user",
+                sender: socket.id 
+            })
+    
+        })
+    
+        // provide an offer for random connection
+        socket.on('offer', (offer) => {  
+            console.log(offer.message)
+            socket.to(offer.receiver).emit('offer', offer)    
+        })
+    
+        // confirm the offer and set up the connection 
+        socket.on('confirm', (message) => {
+            console.log(message.message)
+            socket.to(message.receiver).emit('confirm', message)
+        })
+    
+        // provide a feedback after confirm
+        socket.on('feedback', (message) => {
+            console.log(message.message)
+            socket.to(message.receiver).emit('feedback', message)
+        })
+    
+    
+        // send a message 
+        socket.on('send-message', (message) => {
+            socket.to(message.receiver).emit('send-message',message)
+        })
+    
+        // notify when other users are typing
+        socket.on('typing', (notification) => {
+            socket.to(notification.receiver).emit('typing', notification)
+        })
+    
+        // notify when a user leaves
+        // socket.on('disconnect', () => {
+        //     io.emit('leave', {
+        //         message: "has left the chat room !",
+        //         sender: user
+        //     })
+        // })
+    
+        socket.on('leave', (message) => {
+            socket.to(message.receiver).emit('leave', message)
+        })
     })
+    
+    const CHAT_PORT = 10000 || process.env.PORT;
+    
+    chat_server.listen(CHAT_PORT, () => console.log(`>> server is listening to port: ${CHAT_PORT}`));
+        
     
     
 });
