@@ -46,10 +46,10 @@ function Account({curUser}) {
 
 
     let localURL = process.env.NODE_ENV === 'production' ? 'https://connect-the-dots-backend.herokuapp.com/userApi' : 'http://localhost:3001/userApi';
-    // let localURL = 'https://localhost:3001/userApi';
 
 
     // require implement of database
+    // save user information to db after
     const saveToDB = () => {
 
 
