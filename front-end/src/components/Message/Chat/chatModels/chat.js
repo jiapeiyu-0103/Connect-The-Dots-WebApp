@@ -1,6 +1,5 @@
-// https://connect-the-dots-chatroom.herokuapp.com
 // when trying to run on localhost, please change the link to localhost and choose a port for it
-const socket = io.connect('https://localhost:10000');
+const socket = io.connect('https://connect-the-dots-chatroom.herokuapp.com');
 const notification = document.getElementById('chat-message-notice')
 const output = document.getElementById('chat-message-show');
 const message = document.getElementById('send-message-text');
