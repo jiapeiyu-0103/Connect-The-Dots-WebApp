@@ -26,7 +26,7 @@ The users can see all data related to their accounts by accessing the Applicatio
 
 We are aiming to allow users to play mini games as well as having video/audio calls with each other. Based on time constraints, we will either include or exclude it from the final deliverable.
 
-## Project task requirements: 
+## Project Task Requirements: 
 
 *Minimal requirements (will definitely complete)*
 
@@ -69,7 +69,7 @@ Being a No-SQL database program, MongoDB allows our application to store data in
 #### Heroku:
 We deploy our application using Heroku, which offers both a CLI and a GUI and it allows us to deploy, manage, and scale our web application seamlessly. Additionally, it is highly customizable with third party add ons, provides free hosting, and last but not least, it works well in combination with Github Actions to set up a CI/CD workflow for our project from our Git repository to our live application. Compared with AWS Elastic Beanstalk, a similar technology, Heroku is much more beginner friendly with low ramp-up time and it does not require advanced DevOps knowledge to set up and maintain.
 
-## Above and Beyond’ functionality
+## Above and Beyond’ Functionality
 
  - The major ‘Above and Beyond’ functionality in our project is the chatroom function inside the message page. The chat room function allows users to start a real-time chat with a random user. The chat room is private and all the messages are visible between two users in the conversation. The chat room is basically implemented by using socket.io. We learned from the TCP connection and used a similar idea to set up a connection between two clients. The server responses for transmitting the private message only to its target client (user). From our perspective, this functionality is beyond the initial requirement of our course since we use the external socket.io JS framework to construct the chatroom. The framework helps us to set up the real-time, bidirectional and event-based communication between users.
  -  Another ‘Above and Beyond’ functionality allows users to view the diary-related data in the form of pie charts and tables,  which will display the distribution of different tags that users assigned to each diary entry in a certain month. We implemented it through the chart.js framework. Chat.js is widely used when developers want to give users better data visualization. Firstly, we filtered out the diary for the selected month and then counted the number of tags for weather, emotion and activity. Setting the summary data and configuration allows us to implement wonderful dynamic pie charts as we want. Moreover, the data table allows users not only to have a better data visualization but also view the exact number of each tag directly. 
@@ -80,7 +80,7 @@ We deploy our application using Heroku, which offers both a CLI and a GUI and it
 
 As for our next step, first of all, we will encrypt our user’s password through connecting with the firebase authentication system which will help to improve the security of our application. Secondly, considering a user may store a large amount of diary entries or there will be many posts in the tree hole section, we will add the pagination component to restrict the post/entry numbers that will be shown on each page. Last but not the least, we decide to add a function that could allow users to add friends after they met a like-minded person through our message-related functions, in order to let them have further connections.
 
-## Team contributions:
+## Team Contributions:
 
 #### Eddy Dinh:
 
