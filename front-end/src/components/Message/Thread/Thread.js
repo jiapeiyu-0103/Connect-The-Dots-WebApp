@@ -25,7 +25,7 @@ if (replies && replies.length !== 0) {
    repliesList = replies.map((reply, index) =>    
         <li key={index}>
         <div>
-        <img alt="stuff" src={thread.imageSrc} width="20px" height="20px" />
+        <img alt="stuff" src={reply.imageSrc} width="20px" height="20px" />
         <b>{`${reply.name} `}</b>
         </div>
         <p>{reply.content}</p>
