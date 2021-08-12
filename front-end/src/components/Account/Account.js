@@ -159,7 +159,9 @@ function Account({curUser}) {
 
                     <div className="info-input">
                         <label className="edit-info">Photo: </label> <br/>
-                        <input type="file" accept="image/*" multiple ={true} onChange={handleChange}/><br/>
+                        <div className="edit-pic">
+                          <input type="file" accept="image/*" multiple ={true} onChange={handleChange}/><br/>
+                        </div>
                     </div>
 
                     <div className="info-input">

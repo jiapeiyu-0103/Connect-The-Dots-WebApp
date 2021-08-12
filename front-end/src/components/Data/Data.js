@@ -183,8 +183,9 @@ function Data(props) {
 
     return (
         <div className="app">
-            <h1 className="summary-title">Diary Summary</h1>
+            <h1 className="summary-title">DIARY SUMMARY</h1>
             <div className="select">
+                <h2 className="suggest-title"> CHOOSE THE MONTH YOU WANT TO VIEW:</h2>
                 <Select
                     labelInValue
                     defaultValue={{ value: 'January' }}

@@ -1,0 +1,7 @@
+/* progress bar styles */
+.progress-bar{
+    height: 5vh;
+    background: var(--primary);
+    margin-top: 2vh;
+    z-index: -5;
+  }

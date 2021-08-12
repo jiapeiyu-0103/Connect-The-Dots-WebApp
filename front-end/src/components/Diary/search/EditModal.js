@@ -45,7 +45,8 @@ function EditModal(props) {
     editDiary(newDiary).then(function(){
         getAllDiaries(props.curUser.unique_id).then(function(res){
         props.setDiary(res);
-          window.alert("Edit successfully!");
+        window.alert("Edit successfully!");
+        props.handleClose();
         });
     });
   };

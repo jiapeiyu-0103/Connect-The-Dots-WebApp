@@ -4,6 +4,7 @@ import './UploadAudioModal.css';
 import useStorage from '../../../hook/useStorage';
 import Slider from 'infinite-react-carousel';
 import ReactAudioPlayer from 'react-audio-player';
+import ProgressBar from './ProgressBar';
 
 function UploadAudioModal(props){
 
@@ -35,7 +36,9 @@ function UploadAudioModal(props){
           
           <div className="modal-content">
               <h2> Record what you heard !</h2>
+              
               <div className="imges-container" >
+              
                   {props.url.length !==0 && (
                     // use carousel to display the upload media files
                   <Slider dots>
@@ -47,8 +50,15 @@ function UploadAudioModal(props){
                 </Slider>)}         
               </div>    
               <div className="pics-upload" >
-                <input type="file" accept="audio/*" multiple = "true" onChange={handleChange} /> 
+                <form>
+      
+                 <input type="file" accept="audio/*" multiple = "true" onChange={handleChange} />
+     
+                 { file && <ProgressBar file={file} setFile={setFile} /> }
+      
+                 </form>
               </div>
+             
           </div>          
         </div>
       );

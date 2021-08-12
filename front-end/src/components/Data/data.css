@@ -18,6 +18,12 @@
 
 }
 
+.suggest-title {
+    font-size: 1vw;
+    font-family: "Optima", sans-serif;
+
+}
+
 .pie-chart {
     margin-left: 10vw;
     width: 20vw;

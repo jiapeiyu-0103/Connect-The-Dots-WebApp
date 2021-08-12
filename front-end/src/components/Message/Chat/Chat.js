@@ -13,6 +13,7 @@ function Chat(props) {
             <div>
                 <div className="chatInput">
                     <h1>Welcome: {props.curUser.username}</h1>
+                    <h3  style={{'color': 'white',}}> Do you want to make new friends here? Just join our chat room! </h3>
                     <h4>Let's start a new chat with a stranger!</h4>
                 </div>
                 <div className="chatTab">

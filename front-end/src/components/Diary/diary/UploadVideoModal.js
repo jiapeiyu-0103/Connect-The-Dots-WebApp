@@ -3,6 +3,7 @@ import './UploadImageModal.css';
 import Slider from 'infinite-react-carousel';
 import { useState, useEffect} from 'react';
 import useStorage from '../../../hook/useStorage';
+import ProgressBar from './ProgressBar';
 
 function UploadVideoModal(props){
 
@@ -44,7 +45,11 @@ function UploadVideoModal(props){
                         </Slider>)}   
                     </div>
                     <div className="pics-upload" >
-                     <input type="file" accept="video/*" multiple = "true" onChange={handleChange} /> 
+                      <form>
+      
+                        <input type="file" accept="video/*" multiple = "true" onChange={handleChange} />
+                       { file && <ProgressBar file={file} setFile={setFile} /> }
+                      </form>
                     </div>             
           </div>          
         </div>
