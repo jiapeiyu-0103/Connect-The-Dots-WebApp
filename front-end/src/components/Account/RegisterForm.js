@@ -17,16 +17,6 @@ import axios from 'axios'
 
 const RegisterForm = (props) => {
 
-    //  const useStyles = makeStyles({
-    //      root: {
-    //          background: 'linear-gradient(45deg, #333, #999)',
-    //          border: 0,
-    //          borderRadius: 15,
-    //          padding: '0 30px'
-    //      }
-    //  })
-
-
     const [name, setName] = useState('')
     const [pswd, setPswd] = useState('')
     const [rePswd, setRePswd] = useState('')
@@ -40,8 +30,6 @@ const RegisterForm = (props) => {
     const checkNameAndCreate = (username) => {
         axios.get(localURL +`/checkUserName/${username}`)
             .then((response) => {
-                console.log("retrieve data from database and wait for username duplication check")
-                console.log(response)
                 if (response.data === "") {
                     createUserAndStore(name, pswd, sex, date)
                     setName('')

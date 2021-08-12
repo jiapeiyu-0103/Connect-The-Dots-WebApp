@@ -7,8 +7,6 @@ import axios from 'axios'
 
 function Account({curUser}) {
 
-    // console.log(curUser)
-
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState(curUser.username)
     const [photoURL, setPhotoURL] = useState(curUser.photo)
@@ -57,8 +55,6 @@ function Account({curUser}) {
 
         axios.get(localURL + `/checkUserName/${name}`)
             .then((response) => {
-                console.log("retrieve data from database and wait for username duplication check")
-                // console.log(response)
                 if (name === curUser.username || response.data === "") {
                     axios.patch(localURL +`/users/${curUser.unique_id}`, 
                                 {
@@ -73,7 +69,6 @@ function Account({curUser}) {
                             curUser.photo = photoURL
                             curUser.sex = sex
                             curUser.password = pswd
-                            console.log(`user with userID: ${curUser.unique_id} has been updated successfully`)
                             setEditMode(false)
                         })
                         .catch((err) => {
@@ -165,7 +160,6 @@ function Account({curUser}) {
                     <div className="info-input">
                         <label className="edit-info">Photo: </label> <br/>
                         <input type="file" accept="image/*" multiple ={true} onChange={handleChange}/><br/>
-                        {/* <input type="text" value={photoURL} placeholder="please enter image URL" onChange={(e) => {setPhotoURL(e.target.value)}}></input> <br/> */}
                     </div>
 
                     <div className="info-input">

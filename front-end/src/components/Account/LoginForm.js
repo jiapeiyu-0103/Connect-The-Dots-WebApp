@@ -20,7 +20,6 @@ function LoginForm({setState, setUser}) {
     const checkAccess = (username, password) => {
         axios.get(localURL +`/checkUserName/${username}`)
             .then((response) => {
-                console.log(response.data)
                 let user = response.data
                 if (user !== "" && user.username === username && user.password === password) {
                     setState(DASHBOARD);
@@ -46,19 +45,15 @@ function LoginForm({setState, setUser}) {
     
     const onLogin = (e) => {
         e.preventDefault()
-
         checkAccess(name, password)
     }
 
     if(hideRgstForm) {
         return (
             <div className="body-style">
-                {/* <h1 className="main-title">Connect the Dots</h1> */}
                 <div className="input-container">
                     <div className="name-container">
                         <h2 className="name-container">Welcome!</h2>
-                        {/* <label className="label">Username:</label>
-                        <input type='text' placeholder='please enter your user name' value={name} onChange={(e) => {setName(e.target.value)}}/><br/> */}
                         <TextField
                             variant='outlined'
                             color='primary'
@@ -72,8 +67,6 @@ function LoginForm({setState, setUser}) {
                     </div>
 
                     <div className="password-container">
-                        {/* <label className="label">Password: </label>
-                        <input type='password' placeholder='please enter your password' value={password} onChange={(e) => {setPassword(e.target.value)}}/><br/> */}
                         <TextField
                             variant='outlined'
                             color='primary'
@@ -86,8 +79,6 @@ function LoginForm({setState, setUser}) {
                             }}
                         /><br/>
                     </div>
-                    {/* <button className="sign-in" onClick = {onLogin}> Sign in </button>
-                    <button className="sign-up" onClick = {() => {setHideRgstForm(false)}}> Sign up </button> */}
                     <Button variant='contained' color='primary' onClick={onLogin} style={{'width': '30%', 'margin': '5px'}} font-family='Roboto'>
                         Sign In
                     </Button>
@@ -101,7 +92,6 @@ function LoginForm({setState, setUser}) {
                 <h1> Dots</h1>
                 </div>
                 <div className="logo">
-                {/* <img src="https://i.postimg.cc/3rmkRPmJ/Dope-Daydreamer.gif" alt="web Logo" className="responsive"></img> */}
                 <img src="https://i.postimg.cc/0jMzxyD9/Were-Falling-To-Pieces.gif" alt="web Logo" className="responsive"></img>
             </div>
             </div>

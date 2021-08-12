@@ -4,16 +4,13 @@ const router = express.Router()
 
 /* SOURCE: https://rahmanfadhil.com/express-rest-api/ */
 
-
-// 
-
 // Get all users
 router.get("/users", async (req, res) => {
 	const users = await User.find()
 	res.send(users)
-	console.log('>>> get all users from database')
 })
 
+// Add a new user
 router.post("/users", async (req, res) => {
 	const user = new User({
 		userID: req.body.userID,
@@ -24,24 +21,24 @@ router.post("/users", async (req, res) => {
 		photo: req.body.photo
 	})
 	await user.save()
-	console.log(`>> save a new user with userID: ${user.userID} to database`)
 	res.send(user)
 })
 
+// Get a single user using user_id
 router.get("/users/:id", async (req, res) => {
 	const user = await User.findOne({ userID: req.params.id })
 	res.send(user)
-	console.log(`>> get a user with userID: ${user.userID} from database`)
 })
 
+// get a single user using username
 router.get("/checkUserName/:username", async (req, res) => {
 	const user = await User.findOne({ username: req.params.username })
 	res.send(user)
 })
 
+// update a user
 router.patch("/users/:id", async (req, res) => {
 	const {userID, username, password, sex, photo, birthday} = req.body
-	console.log(req.body)
 	let update = await User.updateOne(
 				{ userID: req.params.id }, 
 				{$set: {
