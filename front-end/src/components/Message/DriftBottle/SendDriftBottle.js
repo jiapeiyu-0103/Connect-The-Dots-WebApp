@@ -19,8 +19,10 @@ const handleSend = (e) => {
                             color='primary'
                             label='Type your message here...'
                             multiline
+                            rows="20"
                             style={{
                                 'height': '400px',
+                                'overflow': 'scroll',
                             }}
                             />
                 <br/><br/>

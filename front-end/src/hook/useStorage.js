@@ -7,11 +7,9 @@ const useStorage = (file) => {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
-    // references
+    //Use firebase to store uploaded media file and receive back the related url
     if(file){
-    const storageRef = projectStorage.ref(file.name);
-    // const collectionRef = projectFirestore.collection('images');
-    
+    const storageRef = projectStorage.ref(file.name); 
     storageRef.put(file).on('state_changed', (snap) => {
       let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
       setProgress(percentage);
@@ -19,8 +17,6 @@ const useStorage = (file) => {
       setError(err);
     }, async () => {
       const url = await storageRef.getDownloadURL();
-    //   const createdAt = timestamp();
-    //   await collectionRef.add({ url, createdAt });
       setUrl(url);
     });
     }

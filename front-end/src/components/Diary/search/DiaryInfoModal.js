@@ -22,6 +22,7 @@ function DiaryInfoModal(props){
           <h3 className="diary-text">{props.entry.content}</h3>
           
           {props.entry.pics.length !==0 && (
+            // use carousel to display the upload media files
             <Slider dots className="carousel-image">
                   
                     {props.entry.pics.map(ig => (

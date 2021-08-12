@@ -3,10 +3,8 @@
     height: 100vh;
     overflow: auto;
     background-size: cover;
-    /* background-image: url('https://i.postimg.cc/8CnQ6FrG/Wechat-IMG19544.jpg'); */
     background-image: url('https://i.postimg.cc/qqhVMT94/White-Blue-Watercolor-Wallpaper-Mural-Hovia.png');
     background-repeat: repeat;
-    /* font-family: "Optima", sans-serif; */
     font-family:  "Optima", sans-serif;
     font-size:1.1vw;
 }
@@ -49,13 +47,10 @@
     border: none;
     color:white;
     font-family:  "Optima", sans-serif;
-    /* font-family:  "Optima", sans-serif; */
-    /* font-family: "Andale Mono"; */
     font-size:1vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
-    /* margin: 2% 2%; */
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
@@ -64,7 +59,7 @@
 }
 
 .sign-up:hover {
-    background-color:#56799d; /* Green */
+    background-color:#56799d; 
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 
@@ -75,14 +70,11 @@
     background-color:  #333;
     border: none;
     color:white;
-    /* font-family:  "Optima", sans-serif; */
     font-family:  "Optima", sans-serif;
-    /* font-family: "Andale Mono"; */
     font-size:1vw;
     display: inline-flex;
     padding: 2% 4%;
     margin-bottom: 2vh;
-    /* margin: 2% 2%; */
     transition-duration: 0.4s;
     border-radius: 15px;
     opacity: 0.75;
@@ -91,15 +83,13 @@
 }
 
 .sign-in:hover {
-    background-color:#56799d; /* Green */
+    background-color:#56799d; 
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .logo-name {
     font-size: 4vw;
-    
-    /* font-family: "OCR A Std", monospace; */
     opacity: 0.6;
     text-align: left;
     margin-bottom: 1vh;
@@ -115,12 +105,8 @@
     left: 8%;
     margin-left: 3vw;
     opacity: 0.7;
-    /* border-radius: 70%;
-    padding-top: 10vh;
-    padding-bottom: 10vh; */
-    /* background-color: white; */
-
 }
+
 .responsive {
     width: 100%;
     height: auto;

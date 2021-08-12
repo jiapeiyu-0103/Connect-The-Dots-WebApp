@@ -38,6 +38,7 @@ function UploadImageModal(props){
                    <h2> Record what you saw!</h2>
                      <div className="imges-container" >
                         {props.url.length !==0 && (
+                          // use carousel to display the upload media files
                         <Slider dots>
                           {props.url.map(ig => (
                             <img src={ig} alt="diary-image"></img>

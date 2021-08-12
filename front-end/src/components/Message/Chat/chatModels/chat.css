@@ -51,7 +51,7 @@
 }
 
 #leave-room-btn:hover {
-    background-color:#012b6e; /* Green */
+    background-color:#012b6e; 
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -70,7 +70,7 @@
 }
 
 #send-message-btn:hover {
-    background-color:#012b6e; /* Green */
+    background-color:#012b6e; 
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

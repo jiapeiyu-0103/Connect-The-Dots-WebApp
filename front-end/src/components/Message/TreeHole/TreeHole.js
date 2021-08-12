@@ -323,6 +323,11 @@ return (
                 color='primary'
                 label='Tell me your concerns:'
                 multiline
+                rows="10"
+                style={{
+                    'height': '400px',
+                    'overflow': 'scroll',
+                }}
                 className="treeHoleInput"/>
 
                 <br/>

@@ -36,6 +36,7 @@ function UploadVideoModal(props){
                    <h2> Record what you saw!</h2>
                      <div className="imges-container" >
                          {props.url.length !==0 && (
+                           // use carousel to display the upload media files
                          <Slider dots>
                          {props.url.map(video => (
                             <video width="400" height="250" controls src={video}/> 

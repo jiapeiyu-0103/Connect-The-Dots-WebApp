@@ -37,6 +37,7 @@ function UploadAudioModal(props){
               <h2> Record what you heard !</h2>
               <div className="imges-container" >
                   {props.url.length !==0 && (
+                    // use carousel to display the upload media files
                   <Slider dots>
                     {props.url.map(audio => (
                     

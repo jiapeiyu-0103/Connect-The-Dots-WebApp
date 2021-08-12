@@ -3,6 +3,7 @@ const DiaryEntry = require("./diaryModels/diaryModelExample")
 const router = express.Router()
 const mongoose = require("mongoose");
 
+// get all diary entry
 router.get('/getDiary', async function(req, res, next) {
   const user = req.query.user;
   console.log(user);
@@ -20,6 +21,7 @@ router.get('/getDiary', async function(req, res, next) {
     });
 });
 
+// Edit diary entry
 router.put('/:id', function(req, res, next) {
   const id = req.params.id;
   DiaryEntry.findOneAndUpdate({ _id: id }, {title: req.body.title,
@@ -37,6 +39,7 @@ router.put('/:id', function(req, res, next) {
     })
 });
 
+//Add a diary entry
 router.post('/addDiary', function(req, res, next) {
 	const newDiary = new DiaryEntry({
 	_id: new mongoose.Types.ObjectId(),
@@ -73,6 +76,7 @@ router.post('/addDiary', function(req, res, next) {
 	  });
   });
 
+  // Delete diary entry
 router.delete('/:id', function(req, res, next) {
 	const id = req.params.id;
 	DiaryEntry.remove({ _id: id })
@@ -89,6 +93,7 @@ router.delete('/:id', function(req, res, next) {
    
 });
 
+//Favorite a diary entry
 router.put('/addFav/:id', function(req, res, next) {
   const id = req.params.id;
   const newLike = !req.body.like;
@@ -103,6 +108,7 @@ router.put('/addFav/:id', function(req, res, next) {
     })
 });
 
+//Search a diary entry by a certain date
 router.get('/searchDate', function(req, res, next) {
 	const date = req.query.date;
 	const user = req.query.user;
@@ -135,6 +141,7 @@ router.get('/searchDate', function(req, res, next) {
   }
 });
 
+//Search a diary entry by weather tag
 router.get('/searchWea', function(req, res, next) {
 	const weather = req.query.weather;
 	const user = req.query.user;
@@ -153,6 +160,7 @@ router.get('/searchWea', function(req, res, next) {
 	
 });
 
+//Search a diary entry by emotion tag
 router.get('/searchEmo', function(req, res, next) {
 	const emotion = req.query.emotion;
 	const user = req.query.user;
@@ -170,6 +178,7 @@ router.get('/searchEmo', function(req, res, next) {
 	});
 });
 
+//Search a diary entry by activity tag
 router.get('/searchAct', function(req, res, next) {
 	const activity = req.query.activity;
 	const user = req.query.user;
@@ -187,6 +196,7 @@ router.get('/searchAct', function(req, res, next) {
 	});
   });
 
+  //Search a diary entry by keyword
 router.get('/searchWord', function(req, res, next) {
 	const keyword = req.query.keyword;
 	const user = req.query.user;
@@ -219,6 +229,7 @@ router.get('/searchWord', function(req, res, next) {
 	}
 });
 
+//Get a diary entry by a certain id
 router.get('/:id', async function(req, res, next) {
   const id = req.params.id;
   await DiaryEntry.findById(id)

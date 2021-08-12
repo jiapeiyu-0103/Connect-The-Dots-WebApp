@@ -30,9 +30,7 @@
 
 .tabwidth {
     width: 80vw;
-
     position: relative;
-    /* left:20%; */
     overflow: auto;
 }
 

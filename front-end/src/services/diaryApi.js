@@ -4,7 +4,12 @@ const localURL = process.env.NODE_ENV === 'production' ? 'https://connect-the-do
 export const addDiary = (diary) => {
     return axios.post(localURL + "/addDiary", 
     diary
-    );
+    )
+    .then((response) => {
+      console.log(">> New diary is added successfully.")
+  }).catch((err) => {
+      console.log(err)
+  });
   };
 
 export const getAllDiaries = (user) => {
@@ -12,19 +17,32 @@ export const getAllDiaries = (user) => {
         .then(response => {
           console.log(user);
           return response.data
-        });
+        })
+        .catch((err) => {
+          console.log(err)
+      });
 };
 
 export const deleteDiary = (diary) => {
     return axios.delete(localURL + `/${diary._id}`, 
     diary
-    );
+    )
+    .then((response) => {
+      console.log(">> Diary is deleted successfully.")
+  }).catch((err) => {
+      console.log(err)
+  });
 };
 
 export const favDiary = (diary) => {
     return axios.put(localURL + `/addFav/${diary._id}`, 
     diary
-    );
+    )
+    .then((response) => {
+      console.log(">> Diary is hearted successfully.")
+  }).catch((err) => {
+      console.log(err)
+  });
 };
 
 export const searchByDate = (date,user) => {
@@ -32,7 +50,10 @@ export const searchByDate = (date,user) => {
       localURL + `/searchDate?date=${date}&user=${user}`
    ).then(response => {
     return response.data
-  });
+  })
+  .catch((err) => {
+    console.log(err)
+});
 };
 
 export const searchByWeather = (weather, user) => {
@@ -40,6 +61,9 @@ export const searchByWeather = (weather, user) => {
     localURL + `/searchWea?weather=${weather}&user=${user}`
  ).then(response => {
   return response.data
+})
+.catch((err) => {
+  console.log(err)
 });
 };
 
@@ -48,6 +72,9 @@ export const searchByEmotion = (emotion,user) => {
     localURL + `/searchEmo?emotion=${emotion}&user=${user}`
  ).then(response => {
   return response.data
+})
+.catch((err) => {
+  console.log(err)
 });
 };
 
@@ -56,6 +83,9 @@ export const searchByActivity = (activity,user) => {
     localURL + `/searchAct?activity=${activity}&user=${user}`
  ).then(response => {
   return response.data
+})
+.catch((err) => {
+  console.log(err)
 });
 };
 
@@ -64,16 +94,27 @@ export const searchByKeyword = (keyword, user) => {
     localURL + `/searchWord?keyword=${keyword}&user=${user}`
  ).then(response => {
   return response.data
+})
+.catch((err) => {
+  console.log(err)
 });
 };
 
 export const getDiaryById = (diary) => {
   return axios.get(localURL +`/${diary.id}`)
-              .then(resp => resp.data);
+              .then(resp => resp.data)
+              .catch((err) => {
+                console.log(err)
+            });
 };
 
 export const editDiary = (diary) => {
   return axios.put(localURL + `/${diary.id}`, 
   diary
-  );
+  )
+  .then((response) => {
+    console.log(">> The diary is edited successfully.")
+}).catch((err) => {
+    console.log(err)
+});
 };

@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 
+//Schema for diary entry
 const schema = mongoose.Schema({
 	_id: mongoose.Types.ObjectId,
 	userID: String,

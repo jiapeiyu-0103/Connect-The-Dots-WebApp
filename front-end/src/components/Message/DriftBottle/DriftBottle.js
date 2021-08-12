@@ -327,7 +327,7 @@ const deleteBottle = (type, index) => {
         .then(response => response.json())
         .then((data) => {
             if (data === 'DELETE SEND BOTTLE success') {
-                // Fetch sent bottles on success
+                // Fetch sent bottles on the success
                 fetchSendBottles();
 
             } else {

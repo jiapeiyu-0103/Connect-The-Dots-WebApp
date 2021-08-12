@@ -68,7 +68,7 @@ const initialDiary = [
             isDraft: true,
         }
   ];// parse to js object
-// let cards = JSON.parse(cardsString);
+
 
 const diaryReducer = (state = initialDiary, action) => {
 	switch (action.type) {
@@ -76,9 +76,7 @@ const diaryReducer = (state = initialDiary, action) => {
             return [...state, action.payload];
                
         case 'Remove':
-            // return state.splice(state.indexOf(action.payload)-1,1);
-            // return state.splice(state.findIndex(obj => obj.name !== action.payload.name),1);
-            // return state.filter( obj => obj.name !== action.payload.name);
+        
             return  state.filter(obj => obj.id !== action.payload.id);
 
         case 'Favorite':

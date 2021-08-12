@@ -39,11 +39,13 @@ const handleDelClick = (e) => {
 
   return (
         <div className="card" key={props.entry._id}>  
+        {/* If the user does not upload the image file, the entry will display a default image as the diary cover */}
             {props.entry.pics.length !==0 && (<img className= "card-image" src={props.entry.pics[0]} alt="diary-image"></img>)}
             {props.entry.pics.length === 0 && (<img className= "card-image" src="https://i.postimg.cc/4y0Hgq13/diary-covers-2133724.jpg" alt="diary-cover"></img>)}
             <div className="card-container">
                 <h3 className="intro"> Date: {props.entry.date}</h3>
                 <h3 className="intro"> Title: {props.entry.title}</h3>
+                {/* Only when user choose a emoji tag, the tag will show up on the cover of the diary entry */}
                 {props.entry.wea_emoji !== '' && (<img alt="" className="checkbox-img" src={props.entry.wea_emoji}/>)}
                 {props.entry.emo_emoji !== '' && (<img alt="" className="checkbox-img" src={props.entry.emo_emoji}/>)}
                 {props.entry.act_emoji !== '' && (<img alt="" className="checkbox-img" src={props.entry.act_emoji}/>)}

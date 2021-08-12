@@ -346,6 +346,7 @@ function Diary(props) {
 
             </div>
                 <div>
+                  {/* when click the button, the corresponding upload media modal will show up */}
                   {isImageOpen && (<UploadImage url={pics} setState={setPics} show={true} handleClose={()=>setIsImageOpen(false)}/>)}
                 </div>
                 <div>

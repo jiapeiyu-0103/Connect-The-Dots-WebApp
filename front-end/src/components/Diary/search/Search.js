@@ -22,6 +22,7 @@ function Search(props) {
     <h2 className="search-title">SEARCH DIARY BY: </h2>
     <h3 className="opt-one">TAG </h3>
     <div className="switch">
+      {/* Use switch to switch between two compoentes, conditional rendering */}
       <Switch checkedChildren="Date" unCheckedChildren="Tag" style={{ width:70, height: 30, fontFamily:"Optima", fontSize: "3vw"}} onChange={onChange}  defaultChecked />
     </div>
     <h3 className="opt-two">DATE </h3>
